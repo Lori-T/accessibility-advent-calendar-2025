@@ -1,0 +1,98 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Start page – {{ serviceName }} 
+{% endblock %}
+
+
+
+{% block stylesheets %}
+  {{ super() }}
+  <style>
+    .tab-order-sim {
+      flex-direction: row-reverse;
+    }
+
+    /* Remove focus indicator - not accessible */
+    .no-focus-outline:focus {
+      outline: none !important;
+      box-shadow: none !important;
+      background: none !important;
+    }
+  </style>
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    items: [
+      { text: "Home", href: "/index" },
+      { text: "Record supernatural sightings", href: "#" },
+      { text: "Record a ghost sighting" }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl spooky-heading">Record a ghost sighting</h1>
+
+    <p class="govuk-body">
+      Use this service to tell the <strong>Department for Supernatural Affairs</strong> about a ghost, spirit or haunting you’ve seen.
+    </p>
+    <p>Your report helps us track supernatural activity and keep communities safe.</p>
+
+    <h2 class="govuk-heading-m">You can use this service to record:</h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>a single ghost sighting</li>
+      <li>multiple hauntings in the same location</li>
+    </ul>
+
+    <h2 class="govuk-heading-m">You’ll need to tell us:</h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>where you saw the ghost</li>
+      <li>when you saw it</li>
+      <li>what it looked like (if you could tell)</li>
+    </ul>
+
+    <p class="govuk-body">
+      Do not use this service to report other paranormal activity, such as vampires, werewolves or cursed pumpkins.
+    </p>
+      
+    {{ govukButton({
+      text: "Start now",
+      href: "/question1",
+      isStartButton: true
+    }) }}
+
+    <h1 class="govuk-heading-m">Other ways to submit a ghost sighting</h1>
+
+    <p>
+      You can also <a href="mailto:hauntings@dsa.gov.uk">submit your sighting by email</a>.
+    </p>
+     
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+      <h2 class="govuk-heading-m" id="subsection-title">Related content</h2>
+      <nav role="navigation" aria-labelledby="subsection-title">
+        <ul class="govuk-list govuk-!-font-size-16">
+          <li>
+            <a href="/guidance1" class="no-focus-outline">How to spot a ghost</a>
+          </li>
+          <li>
+            <a href="#" target="_blank" class="govuk-!-font-weight-bold no-focus-outline">
+              Find out more
+            </a>
+          </li>
+          <li>
+            <a href="/guidance" class="no-focus-outline">Known haunted locations in the UK</a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+</div>
+{% endblock %}

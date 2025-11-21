@@ -1,0 +1,103 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your answers – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-xl spooky-heading">
+      Check your answers before submitting your ghost sighting
+    </h1>
+
+    {# Safely build the haunting date #}
+    {% set hauntingDate = "Not entered" %}
+    {% if data['day'] and data['month'] and data['year'] %}
+      {% set hauntingDate = data['day'] + '/' + data['month'] + '/' + data['year'] %}
+    {% endif %}
+
+    {# Join multiple checkbox selections from question 2 #}
+    {% set ghostTypes = "Not selected" %}
+    {% if data['sighting-type'] %}
+      {% if data['sighting-type'] is string %}
+        {% set ghostTypes = data['sighting-type'] %}
+      {% else %}
+        {% set ghostTypes = data['sighting-type'] | join(', ') %}
+      {% endif %}
+    {% endif %}
+
+    {# File upload name fix #}
+    {% set ghostEvidence = data['ghostFile'] or "No evidence uploaded" %}
+
+    {{ govukSummaryList({
+      rows: [
+
+        {
+          key: { text: "Your full name" },
+          value: { text: data['full-name'] or "Not provided" },
+          actions: { items: [ { href: "/question1", text: "Change" } ] }
+        },
+        {
+          key: { text: "Email address" },
+          value: { text: data['email'] or "Not provided" },
+          actions: { items: [ { href: "/question1", text: "Change" } ] }
+        },
+        {
+          key: { text: "Type of ghost sighting" },
+          value: { text: ghostTypes },
+          actions: { items: [ { href: "/question2", text: "Change" } ] }
+        },
+        {
+          key: { text: "Date of haunting" },
+          value: { text: hauntingDate },
+          actions: { items: [ { href: "/question3", text: "Change" } ] }
+        },
+        {
+          key: { text: "Where you saw the ghost" },
+          value: { text: data['sightingLocation'] or "No location entered" },
+          actions: { items: [ { href: "/question3", text: "Change" } ] }
+        },
+        {
+          key: { text: "Description of the ghost" },
+          value: { text: data['sightingDescription'] or "No description entered" },
+          actions: { items: [ { href: "/question4", text: "Change" } ] }
+        },
+        {
+          key: { text: "Manifestation intensity" },
+          value: { text: data['activity'] or "Not selected" },
+          actions: { items: [ { href: "/question5", text: "Change" } ] }
+        },
+        {
+          key: { text: "Evidence uploaded" },
+          value: { text: ghostEvidence },
+          actions: { items: [ { href: "/question6", text: "Change" } ] }
+        }
+
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">
+      Now submit your sighting
+    </h2>
+
+    <p>
+      By submitting this report you confirm that, to the best of your knowledge,
+      the ghost you saw was real and not a trick of the light.
+    </p>
+
+    <form action="/confirmation" method="post" novalidate>
+      {{ govukButton({ text: "Accept and send" }) }}
+    </form>
+
+  </div>
+</div>
+{% endblock %}

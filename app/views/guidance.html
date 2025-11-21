@@ -1,0 +1,66 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  How to spot a ghost – Department for Supernatural Affairs
+{% endblock %}
+
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    items: [
+      { text: "Home", href: "#" },
+      { text: "Guidance", href: "#" },
+      { text: "How to spot a ghost" }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl spooky-heading">How to spot a ghost</h1>
+
+    <aside class="govuk-prototype-kit-common-templates-mainstream-guide-contents-list" role="complementary">
+      <nav class="govuk-prototype-kit-common-templates-contents-list" aria-label="Pages in this guide">
+        <h2 class="govuk-prototype-kit-common-templates-contents-list__title">Contents</h2>
+        <ol class="govuk-prototype-kit-common-templates-contents-list__list">
+          <li aria-current="true" class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+            How to spot a ghost
+          </li>
+          <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+            <a href="/guidance1">Different types of haunting</a>
+          </li>
+          <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+            <a href="/guidance2">How to report a haunting</a>
+          </li>
+        </ol>
+      </nav>
+    </aside>
+
+    <h2 class="govuk-heading-m">Common signs of ghostly presence</h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>unexplained temperature drops (especially sudden chills)</li>
+      <li>whispering or faint crying where no one is present</li>
+      <li>objects moving or tilting on their own</li>
+      <li>flickering candles or lights with no electrical fault</li>
+      <li>a strong smell of old perfume, tobacco or damp air from nowhere</li>
+    </ul>
+
+    <p>If you experience these signs, remain calm.  
+    Many hauntings are simply passing visitations or echoes of restless energy.</p>
+
+    <nav class="govuk-prototype-kit-common-templates-pagination" role="navigation" aria-label="Pagination">
+      {{ govukPagination({
+        next: {
+          labelText: "Different types of haunting",
+          href: "/guidance1"
+        }
+      }) }}
+    </nav>
+
+    <p><a href="#">View printable version of the guide</a></p>
+
+  </div>
+</div>
+{% endblock %}

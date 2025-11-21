@@ -1,0 +1,74 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  How to report a haunting – Department for Supernatural Affairs
+{% endblock %}
+
+
+
+{% block beforeContent %}
+  {{ govukBreadcrumbs({
+    items: [
+      { text: "Home", href: "#" },
+      { text: "Guidance", href: "#" },
+      { text: "How to report a haunting" }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl spooky-heading">How to report a haunting</h1>
+
+    <aside class="govuk-prototype-kit-common-templates-mainstream-guide-contents-list" role="complementary">
+      <nav class="govuk-prototype-kit-common-templates-contents-list" aria-label="Pages in this guide">
+        <h2 class="govuk-prototype-kit-common-templates-contents-list__title">Contents</h2>
+        <ol class="govuk-prototype-kit-common-templates-contents-list__list">
+          <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+            <a href="/guidance">How to spot a ghost</a>
+          </li>
+          <li class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+            <a href="/guidance1">Different types of haunting</a>
+          </li>
+          <li aria-current="true" class="govuk-prototype-kit-common-templates-contents-list__list-item govuk-prototype-kit-common-templates-contents-list__list-item--dashed">
+            How to report a haunting
+          </li>
+        </ol>
+      </nav>
+    </aside>
+
+    <h2 class="govuk-heading-m">How to make a report</h2>
+
+    <p>You can <a href="/start">record your ghost sighting online</a>, or send your report through secure psychic channels (or email will do).</p>
+
+    <h3 class="govuk-heading-s">You’ll need to provide</h3>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>your full name and contact email</li>
+      <li>the type of ghost or activity you witnessed</li>
+      <li>the date, time and location of the incident</li>
+      <li>a short description of what happened</li>
+      <li>any photographic or spectral evidence (optional)</li>
+    </ul>
+
+    <p>Once submitted, your report will be reviewed by an authorised investigator.  
+    Most hauntings are processed within <strong>5 working nights</strong>.</p>
+
+    <p>If activity increases or becomes dangerous (for example, levitating furniture or spectral possession),  
+    please contact your local <strong>Emergency Ghost Response Unit</strong>.</p>
+
+    <nav class="govuk-prototype-kit-common-templates-pagination" role="navigation" aria-label="Pagination">
+      {{ govukPagination({
+        previous: {
+          labelText: "Different types of haunting",
+          href: "/guidance1"
+        }
+      }) }}
+    </nav>
+
+    <p><a href="#">View printable version of the guide</a></p>
+
+  </div>
+</div>
+{% endblock %}

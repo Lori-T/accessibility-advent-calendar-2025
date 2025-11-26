@@ -25,10 +25,10 @@
     <form class="form" id="sighting-form" method="post" action="/question2" novalidate>
       <fieldset class="govuk-fieldset" aria-describedby="ghost-hint">
         <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
-          What kind of apparition did you encounter?
+          What festive sighting did you encounter?
         </legend>
         <span id="ghost-hint" class="govuk-hint">
-          Select all that apply — if you dare...
+          Select all that apply 
         </span>
 
         <div class="govuk-checkboxes" data-module="govuk-checkboxes">
@@ -37,32 +37,32 @@
           <div class="govuk-checkboxes__item">
             <input class="govuk-checkboxes__input" id="transparent" name="sighting-type" type="checkbox" value="Transparent figure"
               {% if 'Transparent figure' in selectedTypes %}checked{% endif %}>
-            <label class="govuk-label govuk-checkboxes__label" for="transparent">Transparent figure</label>
+            <label class="govuk-label govuk-checkboxes__label" for="transparent">Traditional Santa (red hat, white beard, twinkle in his eye)</label>
           </div>
 
           <div class="govuk-checkboxes__item">
             <input class="govuk-checkboxes__input" id="floating" name="sighting-type" type="checkbox" value="Floating apparition"
               {% if 'Floating apparition' in selectedTypes %}checked{% endif %}>
-            <label class="govuk-label govuk-checkboxes__label" for="floating">Floating apparition</label>
+            <label class="govuk-label govuk-checkboxes__label" for="floating">Flying sleigh</label>
           </div>
 
           <div class="govuk-checkboxes__item">
             <input class="govuk-checkboxes__input" id="shadow" name="sighting-type" type="checkbox" value="Shadowy presence"
               {% if 'Shadowy presence' in selectedTypes %}checked{% endif %}>
-            <label class="govuk-label govuk-checkboxes__label" for="shadow">Shadowy presence</label>
+            <label class="govuk-label govuk-checkboxes__label" for="shadow">Reindeer herd</label>
           </div>
 
           <div class="govuk-checkboxes__item">
             <input class="govuk-checkboxes__input" id="poltergeist" name="sighting-type" type="checkbox" value="Poltergeist activity"
               {% if 'Poltergeist activity' in selectedTypes %}checked{% endif %}>
-            <label class="govuk-label govuk-checkboxes__label" for="poltergeist">Poltergeist activity</label>
+            <label class="govuk-label govuk-checkboxes__label" for="poltergeist">Elf activity</label>
           </div>
         </div>
       </fieldset>
 
       <!-- Hidden link for spooky clue -->
       <a href="/question3" class="spooky-hidden ghost-bottom-right">
-        👻 Psst... the letter is P
+        🧝🏽 A tiny elf pops out of a present and whispers: the letter is I.
       </a>
 
 

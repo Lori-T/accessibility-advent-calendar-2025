@@ -1,0 +1,51 @@
+{% extends "/layouts/_calendar.njk" %}
+
+{% set pageTitle= "Day 5: Check your heading structure" %}
+{% block calendar %}
+
+  <p class="govuk-body">
+    Headings act as signposts. They help users - including screen reader users - understand how your content is organised.
+  </p>
+
+  <h2 class="govuk-heading-m">What you’re checking today</h2>
+  <p class="govuk-body">
+    You’re checking whether your headings form a logical and meaningful outline.
+  </p>
+
+  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>right-click and select <strong>Inspect</strong></li>
+    <li>search for <code>&lt;h1</code>, <code>&lt;h2</code>, and <code>&lt;h3</code> using Ctrl + F</li>
+    <li>ensure there is only one <code>&lt;h1&gt;</code> per page</li>
+    <li>make sure heading levels are not skipped (for example, <code>h1 → h3</code>)</li>
+    <li>check headings describe the content that follows</li>
+  </ul>
+
+  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+  <p class="govuk-body">
+    <strong>1.3.1 Info and Relationships</strong> - headings must be marked up correctly to convey structure.
+  </p>
+
+  <h2 class="govuk-heading-m">Why this matters</h2>
+  <p class="govuk-body">
+    Good structure helps people navigate, skim content and understand relationships between sections.
+  </p>
+
+  <h2 class="govuk-heading-m">Try this bonus check</h2>
+  <p class="govuk-body">
+    Use your screen reader’s “headings list” command. Does your content outline make sense?
+  </p>
+
+{% endblock %}
+
+{% block sidebar %}
+<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
+  <nav role="navigation" aria-labelledby="subsection-title">
+    <ul class="govuk-list govuk-!-font-size-16">
+      <li><a class="govuk-link" href="https://www.w3.org/WAI/tutorials/page-structure/headings/">W3C: Using headings</a></li>
+      <li><a class="govuk-link" href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships">WCAG 2.2: Info and Relationships</a></li>
+    </ul>
+  </nav>
+</aside>
+{% endblock %}

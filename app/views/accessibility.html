@@ -1,79 +1,58 @@
-{% extends "layouts/main.html" %}
+{% extends "/layouts/_calendar.njk" %}
 
-{% block pageTitle %}
-  Accessibility statement – {{ serviceName }} 
+{% set pageTitle = "Accessibility statement for the Accessibility Advent Calendar" %}
+{% block calendar %}
+
+  <p class="govuk-body">
+    This accessibility statement applies to the <a href="https://accessibility-advent-2025.lorithomson.co.uk" class="govuk-link">Accessibility Advent Calendar 2025</a>.
+  </p>
+
+  <h2 class="govuk-heading-m">Using this website</h2>
+  <p class="govuk-body">
+    You should be able to:
+  </p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>navigate most of the website using only a keyboard</li>
+    <li>zoom in up to 400 percent without content disappearing</li>
+    <li>navigate using assistive technologies such as screen readers</li>
+    <li>use the site on different devices, including mobile phones and tablets</li>
+  </ul>
+
+ 
+  <h2 class="govuk-heading-m">How accessible this website is</h2>
+  <p class="govuk-body">
+    We aim to meet the <strong>WCAG 2.2 AA</strong> standard wherever possible, unless the content is intentionally innacessible for training purposes. This website also links to other websites, resources, and YouTube videos which may not be fully accessible.
+  </p>
+  <h2 class="govuk-heading-m">Feedback and contact information</h2>
+  <p class="govuk-body">
+    If you find any problems not listed on this page or would like to provide general feedback please <a href="mailto:lori.thomson@hotmail.co.uk" class="govuk-link">Get in touch by email</a>
+  </p>
+
+ 
+  <h2 class="govuk-heading-m">Technical information about this website’s accessibility</h2>
+  <p class="govuk-body">
+    This website is designed to comply with the <strong>Web Content Accessibility Guidelines version 2.2 (WCAG 2.2) AA standard</strong> and may also contain some intentionally innaccessible content.
+  </p>
+
+  <h2 class="govuk-heading-m">Preparation of this accessibility statement</h2>
+  <p class="govuk-body">
+    This statement was prepared on 1 December 2025. It was last reviewed on 1 December 2025.
+  </p>
+  <p class="govuk-body">
+    The website was last tested on 1 December 2025 using manual checks and assisted testing tools, including keyboard-only navigation, browser zoom, NVDA and WAVE.
+  </p>
+
 {% endblock %}
 
-{% block content %}
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
-
-    <h1 class="govuk-heading-xl">Accessibility statement for Record a ghost sighting</h1>
-
-    <p class="govuk-body">
-      This website is run by the <strong>Department for Supernatural Affairs*</strong>.  
-      It has been created as part of an accessibility training exercise and
-      <strong>intentionally contains accessibility issues</strong>.
-    </p>
-
-    <p class="govuk-body">
-      The purpose of this site is to help learners identify, experience and fix
-      common accessibility problems in a realistic environment.
-      It should not be used as an example of an accessible digital service.
-    </p>
-
-     <p class="govuk-body">
-     *not a real government department.
-    </p>
-
-    <h2 class="govuk-heading-m">How accessible this website is</h2>
-
-    <p class="govuk-body">
-      This site is <strong>not fully accessible</strong>. The following are examples of
-      issues that have been deliberately included:
-    </p>
-
-    <ul class="govuk-list govuk-list--bullet">
-      <li>missing or incorrect form labels</li>
-      <li>focus indicators removed or inconsistent</li>
-      <li>colour contrast failures</li>
-      <li>heading hierarchy errors</li>
-      <li>links that lack clear purpose</li>
-      <li>interactive elements that cannot be reached with a keyboard</li>
-      <li>missing image alt text</li>
-      <li>tables without captions or summaries</li>
+{% block sidebar %}
+<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
+  <nav aria-labelledby="subsection-title">
+    <ul class="govuk-list govuk-!-font-size-16 govuk-list--bullet">
+      <li><a href="/" class="govuk-link">Home</a></li>
+      <li><a href="/sitemap" class="govuk-link">Site map</a></li>
+      <li><a href="/advent-calendar/about.html" class="govuk-link">About</a></li>
     </ul>
-
-    <h2 class="govuk-heading-m">Purpose of this training site</h2>
-
-    <p class="govuk-body">
-      This service has been designed as part of a training resource to build
-      awareness and confidence in testing and identifying accessibility barriers.
-      Every page intentionally fails one or more <abbr title="Web Content Accessibility Guidelines">WCAG 2.2 AA</abbr> success criteria.
-    </p>
-
-    <h2 class="govuk-heading-m">Feedback and contact information</h2>
-
-    <p class="govuk-body">
-      Because this is a training resource, we don't intend to resolve these intentional issues. 
-      <p class="govuk-body">
-      You can explore or contribute to this project on
-      <a href="https://github.com/Lori-T/record-a-ghost-sighting" class="govuk-link" target="_blank" rel="noopener noreferrer">
-        GitHub
-      </a>,
-      or provide <a href="mailto:lorithomson@hotmail.co.uk" class="govuk-link">feedback by email</a> or complete the <a href="https://www.surveymonkey.com/r/8JZX5KD" class="govuk-link" target="_blank" rel="noopener noreferrer">
-        feedback survey</a>
-          </p>
-
-    <h2 class="govuk-heading-m">Preparation of this accessibility statement</h2>
-
-    <p class="govuk-body">
-      This statement was prepared on 31 October 2025.  
-      It was last reviewed on 31 October 2025.
-    </p>
-
-   
-
-  </div>
-</div>
+  </nav>
+</aside>
 {% endblock %}

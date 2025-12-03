@@ -1,0 +1,50 @@
+{% extends "/layouts/_calendar.njk" %}
+
+{% set pageTitle= "Day 20: Check icons and SVGs for accessibility" %}
+{% block calendar %}
+
+  <p class="govuk-body">
+    Icons and SVGs need clear labelling if they convey meaning. Decorative icons must be hidden from assistive technologies.
+  </p>
+
+  <h2 class="govuk-heading-m">What you're checking today</h2>
+  <p class="govuk-body">
+    You're checking that meaningful icons have accessible names, and decorative icons are ignored by screen readers.
+  </p>
+
+  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>inspect an icon or SVG using <strong>Inspect</strong></li>
+    <li>if the icon conveys meaning, ensure it has a label using visible text or <code>aria-label</code></li>
+    <li>decorative icons should be hidden using <code>aria-hidden="true"</code></li>
+    <li>check that icons meet the minimum 3:1 contrast ratio requirement</li>
+  </ul>
+
+  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+  <p class="govuk-body">
+    <strong>1.1.1 Non-text Content</strong> and <strong>1.4.11 Non-text Contrast</strong> - icons must be accessible and perceivable.
+  </p>
+
+  <h2 class="govuk-heading-m">Why this matters</h2>
+  <p class="govuk-body">
+    Poorly labelled icons confuse users and prevent some people from completing tasks. Good icon accessibility improves clarity for everyone.
+  </p>
+
+  <h2 class="govuk-heading-m">Try this bonus check</h2>
+  <p class="govuk-body">
+    Turn on a screen reader and navigate your page. Does it read out only meaningful icons?
+  </p>
+
+{% endblock %}
+
+{% block sidebar %}
+<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
+  <nav aria-labelledby="subsection-title">
+    <ul class="govuk-list govuk-!-font-size-16">
+      <li><a class="govuk-link" href="https://css-tricks.com/accessible-svgs/">Accessible SVGs</a></li>
+      <li><a class="govuk-link" href="https://webaim.org/articles/contrast/">WebAIM - Non-text contrast</a></li>
+    </ul>
+  </nav>
+</aside>
+{% endblock %}

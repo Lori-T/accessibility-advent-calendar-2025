@@ -1,0 +1,50 @@
+{% extends "/layouts/_calendar.njk" %}
+
+{% set pageTitle= "Day 22: Check pointer gestures" %}
+{% block calendar %}
+
+  <p class="govuk-body">
+    Some features rely on gestures like swiping, dragging or pinching. These interactions must have simple alternatives for users who cannot perform complex gestures.
+  </p>
+
+  <h2 class="govuk-heading-m">What you're checking today</h2>
+  <p class="govuk-body">
+    You're checking that users can complete actions without needing multi-point or path-based gestures.
+  </p>
+
+  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>look for interactions that require dragging, swiping or pinching</li>
+    <li>check for a simple alternative like a button or link</li>
+    <li>test whether the interaction works with the keyboard</li>
+    <li>ensure users cannot trigger actions unintentionally</li>
+  </ul>
+
+  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+  <p class="govuk-body">
+    <strong>2.5.1 Pointer Gestures</strong> - avoid requiring complex gestures and provide alternatives.
+  </p>
+
+  <h2 class="govuk-heading-m">Why this matters</h2>
+  <p class="govuk-body">
+    Complex gestures can exclude users with motor impairments or those using assistive technologies. Simple alternatives improve usability and consistency.
+  </p>
+
+  <h2 class="govuk-heading-m">Try this bonus check</h2>
+  <p class="govuk-body">
+    Try completing the gesture using only the keyboard. If you cannot, there should be another way.
+  </p>
+
+{% endblock %}
+
+{% block sidebar %}
+<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
+  <nav aria-labelledby="subsection-title">
+    <ul class="govuk-list govuk-!-font-size-16">
+      <li><a class="govuk-link" href="https://webkit.org/blog/7367/gesture-recognizers/">Understanding gesture recognition</a></li>
+      <li><a class="govuk-link" href="https://www.w3.org/WAI/WCAG22/Understanding/pointer-gestures">WCAG 2.2: Pointer Gestures</a></li>
+    </ul>
+  </nav>
+</aside>
+{% endblock %}

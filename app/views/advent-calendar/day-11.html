@@ -1,0 +1,51 @@
+{% extends "/layouts/_calendar.njk" %}
+
+{% set pageTitle= "Day 11: Check your form labels" %}
+{% block calendar %}
+
+  <p class="govuk-body">
+    Form fields rely on clear, connected labels. Without proper labels, screen readers cannot announce what a field is for, and some users will be unable to complete the form.
+  </p>
+
+  <h2 class="govuk-heading-m">What you're checking today</h2>
+  <p class="govuk-body">
+    You're checking that every form field has a properly associated label that describes its purpose.
+  </p>
+
+  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>right-click a form field and select <strong>Inspect</strong></li>
+    <li>look for a <code>&lt;label&gt;</code> element linked to the field using <code>for</code> and <code>id</code></li>
+    <li>confirm that each input has a unique <code>id</code></li>
+    <li>check that labels are visible and not replaced by placeholder text</li>
+    <li>for radios or checkboxes, look for a <strong>fieldset</strong> and <strong>legend</strong> describing the group</li>
+  </ul>
+
+  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+  <p class="govuk-body">
+    <strong>4.1.2 Name, Role, Value</strong> - elements must have the correct labels, roles and properties.
+  </p>
+
+  <h2 class="govuk-heading-m">Why this matters</h2>
+  <p class="govuk-body">
+    Some users cannot complete forms without properly linked labels. Labels also benefit speech recognition users and people with cognitive impairments.
+  </p>
+
+  <h2 class="govuk-heading-m">Try this bonus check</h2>
+  <p class="govuk-body">
+    Click the label text. Does it place the cursor into the input? If not, the label is not connected properly.
+  </p>
+
+{% endblock %}
+
+{% block sidebar %}
+<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
+  <nav aria-labelledby="subsection-title">
+    <ul class="govuk-list govuk-!-font-size-16">
+      <li><a class="govuk-link" href="https://design-system.service.gov.uk/components/text-input/">GOV.UK Design System - Text input</a></li>
+      <li><a class="govuk-link" href="https://webaim.org/techniques/forms/controls">WebAIM - Form controls</a></li>
+    </ul>
+  </nav>
+</aside>
+{% endblock %}

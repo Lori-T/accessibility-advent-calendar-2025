@@ -1,0 +1,50 @@
+{% extends "/layouts/_calendar.njk" %}
+
+{% set pageTitle= "Day 23: Check motion actuation" %}
+{% block calendar %}
+
+  <p class="govuk-body">
+    Some interactions are triggered by device motion, such as shaking or tilting. Users must be able to disable these features and use an alternative input method.
+  </p>
+
+  <h2 class="govuk-heading-m">What you're checking today</h2>
+  <p class="govuk-body">
+    You're checking that any motion-based interactions have simple alternatives and can be turned off.
+  </p>
+
+  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>look for features activated by shaking, tilting or device movement</li>
+    <li>check that these interactions are not required to complete tasks</li>
+    <li>ensure there is a button or control that performs the same action</li>
+    <li>confirm that motion inputs can be disabled in settings</li>
+  </ul>
+
+  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+  <p class="govuk-body">
+    <strong>2.5.4 Motion Actuation</strong> - provide alternatives to motion-based interactions.
+  </p>
+
+  <h2 class="govuk-heading-m">Why this matters</h2>
+  <p class="govuk-body">
+    Motion actuation can be difficult or impossible for users with motor impairments or people using fixed devices. Alternatives increase reliability and safety.
+  </p>
+
+  <h2 class="govuk-heading-m">Try this bonus check</h2>
+  <p class="govuk-body">
+    Try limiting motion on your device. Does the interaction still work using an alternative?
+  </p>
+
+{% endblock %}
+
+{% block sidebar %}
+<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
+  <nav aria-labelledby="subsection-title">
+    <ul class="govuk-list govuk-!-font-size-16">
+      <li><a class="govuk-link" href="https://developer.apple.com/documentation/coremotion">iOS Motion API overview</a></li>
+      <li><a class="govuk-link" href="https://www.w3.org/WAI/WCAG22/Understanding/motion-actuation">WCAG 2.2: Motion Actuation</a></li>
+    </ul>
+  </nav>
+</aside>
+{% endblock %}

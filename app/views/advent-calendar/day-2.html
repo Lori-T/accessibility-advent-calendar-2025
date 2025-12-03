@@ -1,0 +1,52 @@
+{% extends "/layouts/main.html" %}
+
+{% set pageTitle= "Day 2: Navigate your page using only the keyboard" %}
+{% block content %}
+
+  <p class="govuk-body">
+    Keyboard accessibility is essential for people who cannot use a mouse or trackpad. If a page cannot be operated with a keyboard alone, it is not accessible.
+  </p>
+
+  <h2 class="govuk-heading-m">What you’re checking today</h2>
+  <p class="govuk-body">
+    You’re checking that all interactive elements - links, buttons, menus, forms and controls - can be reached and used using only the keyboard.
+  </p>
+
+  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>click near the top of your page to set a starting point</li>
+    <li>press <strong>Tab</strong> to move forward through interactive elements</li>
+    <li>press <strong>Shift + Tab</strong> to move backwards</li>
+    <li>check that the focus order follows the visual layout of the page</li>
+    <li>ensure no elements are skipped or unreachable</li>
+    <li>activate buttons and links using <strong>Enter</strong> or <strong>Space</strong></li>
+  </ul>
+
+  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+  <p class="govuk-body">
+    <strong>2.1.1 Keyboard</strong> - everything must be usable without a mouse.
+  </p>
+
+  <h2 class="govuk-heading-m">Why this matters</h2>
+  <p class="govuk-body">
+    Many users rely entirely on the keyboard. Strong keyboard support also improves compatibility with screen readers, voice control software and assistive devices.
+  </p>
+
+  <h2 class="govuk-heading-m">Try this bonus check</h2>
+  <p class="govuk-body">
+    Open a menu or modal with the keyboard. Can you tab into it, move around, and close it again?
+  </p>
+
+{% endblock %}
+
+{% block sidebar %}
+<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
+  <nav role="navigation" aria-labelledby="subsection-title">
+    <ul class="govuk-list govuk-!-font-size-16">
+      <li><a class="govuk-link" href="https://webaim.org/techniques/keyboard/">WebAIM: Keyboard Accessibility</a></li>
+      <li><a class="govuk-link" href="https://www.w3.org/WAI/WCAG22/Understanding/keyboard">WCAG 2.2: Keyboard</a></li>
+    </ul>
+  </nav>
+</aside>
+{% endblock %}

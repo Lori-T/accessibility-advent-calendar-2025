@@ -1,0 +1,51 @@
+{% extends "/layouts/_calendar.njk" %}
+
+{% set pageTitle= "Day 9: Zoom to 400% to check reflow" %}
+{% block calendar %}
+
+  <p class="govuk-body">
+    Users who need larger text often zoom in significantly. Your page must remain usable and readable when zoomed to 400%.
+  </p>
+
+  <h2 class="govuk-heading-m">What you’re checking today</h2>
+  <p class="govuk-body">
+    You’re checking that your layout responds appropriately when zoomed, without causing horizontal scrolling or clipping.
+  </p>
+
+  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>use your browser’s zoom controls to increase zoom to 400%</li>
+    <li>check that your content rearranges into a single column</li>
+    <li>ensure all text remains readable and nothing disappears off-screen</li>
+    <li>test menus, navigation, forms and buttons</li>
+    <li>confirm there is no horizontal scrolling</li>
+  </ul>
+
+  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+  <p class="govuk-body">
+    <strong>1.4.10 Reflow</strong> - content must reflow without forcing horizontal scrolling at up to 400% zoom.
+  </p>
+
+  <h2 class="govuk-heading-m">Why this matters</h2>
+  <p class="govuk-body">
+    Reflow supports people with low vision, cognitive disabilities and users on small screens.
+  </p>
+
+  <h2 class="govuk-heading-m">Try this bonus check</h2>
+  <p class="govuk-body">
+    Rotate your phone to portrait mode. Does it behave similarly to 400% zoom?
+  </p>
+
+{% endblock %}
+
+{% block sidebar %}
+<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
+  <nav role="navigation" aria-labelledby="subsection-title">
+    <ul class="govuk-list govuk-!-font-size-16">
+      <li><a class="govuk-link" href="https://www.w3.org/WAI/WCAG22/Understanding/reflow">WCAG 2.2: Reflow</a></li>
+      <li><a class="govuk-link" href="https://www.a11yproject.com/posts/how-to-test-reflow/">How to test reflow</a></li>
+    </ul>
+  </nav>
+</aside>
+{% endblock %}

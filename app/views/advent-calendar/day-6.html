@@ -1,0 +1,50 @@
+{% extends "/layouts/_calendar.njk" %}
+
+{% set pageTitle= "Day 6: Check that link text makes sense" %}
+{% block calendar %}
+
+  <p class="govuk-body">
+    Link text must clearly explain where the link goes or what it does. Vague text like “Click here” or “Read more” forces people to rely on context they may not be able to see.
+  </p>
+
+  <h2 class="govuk-heading-m">What you’re checking today</h2>
+  <p class="govuk-body">
+    You’re checking whether each link makes sense when read on its own, and whether repeated links are distinguishable.
+  </p>
+
+  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>scan your page for vague links such as “Click here”, “More”, “Read more”, or “Find out more”</li>
+    <li>check that link text explains the purpose of the link without needing extra context</li>
+    <li>ensure repeated link text points to the same destination</li>
+    <li>use a screen reader’s list of links to check if links make sense in isolation</li>
+  </ul>
+
+  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+  <p class="govuk-body">
+    <strong>2.4.4 Link Purpose (In Context)</strong> - users must understand the purpose of a link from its text.
+  </p>
+
+  <h2 class="govuk-heading-m">Why this matters</h2>
+  <p class="govuk-body">
+    Clear link text helps all users, especially screen reader users and people who skim content quickly.
+  </p>
+
+  <h2 class="govuk-heading-m">Try this bonus check</h2>
+  <p class="govuk-body">
+    Hover over the link. Is the tooltip meaningful, or just repeating the link text?
+  </p>
+
+{% endblock %}
+
+{% block sidebar %}
+<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
+  <nav role="navigation" aria-labelledby="subsection-title">
+    <ul class="govuk-list govuk-!-font-size-16">
+      <li><a class="govuk-link" href="https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context">WCAG 2.2: Link Purpose</a></li>
+      <li><a class="govuk-link" href="https://webaim.org/techniques/hypertext/">WebAIM: Hypertext links</a></li>
+    </ul>
+  </nav>
+</aside>
+{% endblock %}

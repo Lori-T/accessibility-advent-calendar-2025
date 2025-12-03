@@ -1,0 +1,74 @@
+{% extends "/layouts/_calendar.njk" %}
+
+{% set pageTitle = "About the Accessibility Advent Calendar" %}
+{% block calendar %}
+
+  <p class="govuk-body">
+    The Accessibility Advent Calendar is a fun and practical way to learn about digital accessibility throughout December. Each day reveals a quick accessibility tip that you can complete in under five minutes. These small checks help build good habits and make digital content more inclusive for everyone.
+  </p>
+
+  <p class="govuk-body">
+    The 2025 edition focuses on <strong>25 accessibility checks you can do in under 5 minutes</strong>. These are simple, repeatable activities that anyone can try, regardless of technical confidence.
+  </p>
+
+  <h2 class="govuk-heading-m">Who the calendar is for</h2>
+  <p class="govuk-body">
+    This calendar is for anyone who creates, publishes or maintains digital content, including:
+  </p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>designers and content designers</li>
+    <li>developers and engineers</li>
+    <li>researchers and accessibility specialists</li>
+    <li>product managers and delivery teams</li>
+    <li>anyone interested in making digital content more accessible</li>
+  </ul>
+
+  <h2 class="govuk-heading-m">Why accessibility matters</h2>
+  <p class="govuk-body">
+    Digital accessibility is about making sure that everyone can use websites, services and online content. This includes people with disabilities, people using assistive technologies, people in different environments and people using a wide range of devices.
+  </p>
+  <p class="govuk-body">
+    By making accessibility part of everyday practice, we can reduce barriers, remove frustration and help more people succeed online.
+  </p>
+
+  <h2 class="govuk-heading-m">How the calendar works</h2>
+  <p class="govuk-body">
+    Each of the 25 days includes:
+  </p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>a short explanation of the accessibility topic</li>
+    <li>a five-minute accessibility check to try</li>
+    <li>a brief WCAG 2.2 reference</li>
+    <li>a bonus extra activity for deeper learning</li>
+    <li>useful links to explore the topic further</li>
+  </ul>
+
+  <p class="govuk-body">
+    You can open each door daily throughout December, or browse everything on the <a href="/site-map" class="govuk-link">site map</a>.
+  </p>
+
+  <h2 class="govuk-heading-m">Looking back at the 2024 advent calendar</h2>
+  <p class="govuk-body">
+    If you enjoyed this year’s calendar, you can also explore the <strong>2024 Accessibility Advent Calendar</strong>. Last year's theme focussed on practical introductions to accessibility concepts, including digital access, inclusive design, assistive technologies, creating accessible social media, colour contrast, and more.
+  </p>
+
+  <p class="govuk-body">
+    You can visit the 2024 calendar here:
+    <a href="https://accessibility-advent.lorithomson.co.uk/" class="govuk-link">Accessibility Advent Calendar 2024</a>
+  </p>
+
+{% endblock %}
+
+{% block sidebar %}
+<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
+  <nav aria-labelledby="subsection-title">
+    <ul class="govuk-list govuk-!-font-size-16 govuk-list--bullet">
+      <li><a href="/" class="govuk-link">Home</a></li>
+      <li><a href="/site-map" class="govuk-link">Site map</a></li>
+      <li><a href="/accessibility.html" class="govuk-link">Accessibility statement</a></li>
+      <li><a href="https://accessibility-advent.lorithomson.co.uk/" class="govuk-link">2024 advent calendar</a></li>
+    </ul>
+  </nav>
+</aside>
+{% endblock %}

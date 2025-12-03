@@ -1,0 +1,50 @@
+{% extends "/layouts/_calendar.njk" %}
+
+{% set pageTitle= "Day 3: Check your page title" %}
+{% block calendar %}
+
+  <p class="govuk-body">
+    Page titles help users understand where they are. They appear in browser tabs, bookmarks and search results, and are the first thing screen readers announce.
+  </p>
+
+  <h2 class="govuk-heading-m">What you’re checking today</h2>
+  <p class="govuk-body">
+    You’re checking whether your page has a clear, descriptive title that accurately reflects the content.
+  </p>
+
+  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>look at the text shown in the browser tab</li>
+    <li>right-click and select <strong>Inspect</strong> to find the <code>&lt;title&gt;</code> element in the <code>&lt;head&gt;</code></li>
+    <li>ensure the title is unique, descriptive and follows the pattern “Page name – Service name”</li>
+    <li>check that the title makes sense even when viewed out of context</li>
+  </ul>
+
+  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+  <p class="govuk-body">
+    <strong>2.4.2 Page Titled</strong> - pages must have meaningful and descriptive titles.
+  </p>
+
+  <h2 class="govuk-heading-m">Why this matters</h2>
+  <p class="govuk-body">
+    Informative titles help all users, especially those using screen readers or navigating many open tabs.
+  </p>
+
+  <h2 class="govuk-heading-m">Try this bonus check</h2>
+  <p class="govuk-body">
+    Open your page in a private browser window. Does the title still make perfect sense?
+  </p>
+
+{% endblock %}
+
+{% block sidebar %}
+<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
+  <nav role="navigation" aria-labelledby="subsection-title">
+    <ul class="govuk-list govuk-!-font-size-16">
+      <li><a class="govuk-link" href="https://www.w3.org/WAI/WCAG22/Understanding/page-titled">WCAG 2.2: Page Titled</a></li>
+      <li><a class="govuk-link" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title">MDN: &lt;title&gt; element</a></li>
+    </ul>
+  </nav>
+</aside>
+{% endblock %}

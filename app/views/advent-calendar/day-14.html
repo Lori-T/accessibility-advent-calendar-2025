@@ -1,0 +1,50 @@
+{% extends "/layouts/_calendar.njk" %}
+
+{% set pageTitle= "Day 14: Check reduced motion settings" %}
+{% block calendar %}
+
+  <p class="govuk-body">
+    Some users experience discomfort, dizziness or distraction from animations. Sites should respect the user's reduced motion preference.
+  </p>
+
+  <h2 class="govuk-heading-m">What you're checking today</h2>
+  <p class="govuk-body">
+    You're checking that animations stop, pause or simplify when the device is set to reduce motion.
+  </p>
+
+  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>turn on Reduce motion in your device settings</li>
+    <li>reload your page</li>
+    <li>check that animations such as scrolling effects, parallax and auto-playing UI animations are reduced</li>
+    <li>ensure nothing essential is lost when motion is reduced</li>
+  </ul>
+
+  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+  <p class="govuk-body">
+    <strong>2.3.3 Animation from Interactions</strong> - animations triggered by interactions must be optional.
+  </p>
+
+  <h2 class="govuk-heading-m">Why this matters</h2>
+  <p class="govuk-body">
+    Reduced motion support helps users avoid discomfort and supports people with vestibular disorders, migraines or sensory sensitivities.
+  </p>
+
+  <h2 class="govuk-heading-m">Try this bonus check</h2>
+  <p class="govuk-body">
+    Toggle reduced motion off again. Does the behaviour change noticeably?
+  </p>
+
+{% endblock %}
+
+{% block sidebar %}
+<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
+  <nav aria-labelledby="subsection-title">
+    <ul class="govuk-list govuk-!-font-size-16">
+      <li><a class="govuk-link" href="https://webkit.org/blog/7551/responsive-design-for-motion/">Designing for motion sensitivity</a></li>
+      <li><a class="govuk-link" href="https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions">WCAG 2.2: Animation from Interactions</a></li>
+    </ul>
+  </nav>
+</aside>
+{% endblock %}

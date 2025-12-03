@@ -1,0 +1,79 @@
+{% extends "/layouts/main.html" %}
+
+{% set pageTitle = "Day 1: Check your colour contrast" %}
+
+{% block content %}
+
+  <h1 class="govuk-heading-l">{{ pageTitle }}</h1>
+
+  <p class="govuk-body">
+    Colour contrast is one of the quickest ways to improve accessibility. Good contrast helps people with low vision, colour blindness or anyone reading content on a small screen or in bright light. It ensures text and interactive elements remain clear and readable.
+  </p>
+
+  <h2 class="govuk-heading-m">What you’re checking today</h2>
+  <p class="govuk-body">
+    You’re checking whether text and user interface components have enough contrast against their background. This helps users perceive content quickly and comfortably.
+  </p>
+
+  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
+  <p class="govuk-body">Follow these steps using tools built into your browser:</p>
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li>right-click any piece of text on your page and select <strong>Inspect</strong> to open developer tools</li>
+    <li>in the Styles panel, look for the <code>color</code> and <code>background</code> properties</li>
+    <li>click the coloured square beside the value to open the browser’s colour picker</li>
+    <li>check the displayed contrast ratio – Chrome and Firefox show whether it passes WCAG</li>
+    <li>if your browser does not show contrast information, copy the colours into a free checker like <a href="https://webaim.org/resources/contrastchecker/" class="govuk-link">WebAIM Contrast Checker</a></li>
+  </ul>
+
+  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+  <p class="govuk-body">
+    <strong>1.4.3 Contrast (Minimum)</strong> – text must have enough contrast with its background. WCAG requires:
+  </p>
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li>4.5:1 for normal text</li>
+    <li>3:1 for large text (18pt or 14pt bold)</li>
+    <li>3:1 for icons and user interface components</li>
+  </ul>
+
+  <h2 class="govuk-heading-m">Why this matters</h2>
+  <p class="govuk-body">
+    Low contrast is one of the most common accessibility issues. It makes reading difficult or impossible for many users and creates barriers on mobile devices or in bright environments.
+  </p>
+
+  <h2 class="govuk-heading-m">Try this bonus check</h2>
+  <p class="govuk-body">
+    Switch your device to dark mode and view your page again. Do text, buttons and links still meet contrast requirements?
+  </p>
+
+{% endblock %}
+
+{% block sidebar %}
+<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
+  <nav role="navigation" aria-labelledby="subsection-title">
+    <ul class="govuk-list govuk-!-font-size-16">
+
+      <li>
+        <a href="https://webaim.org/resources/contrastchecker/" class="govuk-link">
+          WebAIM Colour Contrast Checker
+        </a>
+      </li>
+
+      <li>
+        <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum" class="govuk-link">
+          WCAG 2.2: Understanding Contrast (Minimum)
+        </a>
+      </li>
+
+      <li>
+        <a href="https://accessibility-advent.lorithomson.co.uk/advent-calendar/day-7" class="govuk-link">
+          Accessibility Advent 2024 Day 7: Understanding colour contrast for accessibility
+        </a>
+      </li>
+
+    </ul>
+  </nav>
+</aside>
+{% endblock %}

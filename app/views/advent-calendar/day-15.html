@@ -1,0 +1,51 @@
+{% extends "/layouts/_calendar.njk" %}
+
+{% set pageTitle= "Day 15: Check your video captions" %}
+{% block calendar %}
+
+  <p class="govuk-body">
+    Captions ensure that videos are accessible to Deaf users and anyone who cannot listen to audio. Captions should be accurate, complete and synchronised.
+  </p>
+
+  <h2 class="govuk-heading-m">What you're checking today</h2>
+  <p class="govuk-body">
+    You're checking whether any pre-recorded videos on your site have correct captions.
+  </p>
+
+  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>play the video and look for a CC or Subtitles button</li>
+    <li>turn the captions on</li>
+    <li>check that speech, sound effects and important audio cues are included</li>
+    <li>look for synchronisation problems</li>
+    <li>if captions are missing, check the HTML for <code>&lt;track kind="captions"&gt;</code></li>
+  </ul>
+
+  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+  <p class="govuk-body">
+    <strong>1.2.2 Captions (Prerecorded)</strong> - all prerecorded videos must have captions.
+  </p>
+
+  <h2 class="govuk-heading-m">Why this matters</h2>
+  <p class="govuk-body">
+    Captions support Deaf users, people in noisy environments and those who process information better through text than audio.
+  </p>
+
+  <h2 class="govuk-heading-m">Try this bonus check</h2>
+  <p class="govuk-body">
+    Turn off the sound completely. Can you still understand the video?
+  </p>
+
+{% endblock %}
+
+{% block sidebar %}
+<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
+  <nav aria-labelledby="subsection-title">
+    <ul class="govuk-list govuk-!-font-size-16">
+      <li><a class="govuk-link" href="https://www.w3.org/WAI/media/av/captions/">W3C - Captions</a></li>
+      <li><a class="govuk-link" href="https://support.google.com/youtube/answer/2734796">YouTube - Add captions</a></li>
+    </ul>
+  </nav>
+</aside>
+{% endblock %}

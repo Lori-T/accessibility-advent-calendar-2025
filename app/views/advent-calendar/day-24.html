@@ -1,0 +1,53 @@
+{% extends "/layouts/_calendar.njk" %}
+
+{% set pageTitle= "Day 24: Check text spacing" %}
+{% block calendar %}
+
+  <p class="govuk-body">
+    Some users apply custom text spacing to improve readability. Your content should remain functional and readable when text spacing changes.
+  </p>
+
+  <h2 class="govuk-heading-m">What you're checking today</h2>
+  <p class="govuk-body">
+    You're checking that increased spacing does not cause text to overlap, become cut off or break the layout.
+  </p>
+
+  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>use a text spacing bookmarklet or extension to apply increased spacing</li>
+    <li>test the WCAG recommended spacing</li>
+    <li>line height: 1.5</li>
+    <li>paragraph spacing: 2 times the font size</li>
+    <li>letter spacing: 0.12em</li>
+    <li>word spacing: 0.16em</li>
+    <li>check headings, paragraphs and buttons for any text issues</li>
+  </ul>
+
+  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+  <p class="govuk-body">
+    <strong>1.4.12 Text Spacing</strong> - users must be able to adjust spacing without losing content or functionality.
+  </p>
+
+  <h2 class="govuk-heading-m">Why this matters</h2>
+  <p class="govuk-body">
+    Adjusted text spacing helps people with dyslexia, ADHD, cognitive load difficulties and low vision.
+  </p>
+
+  <h2 class="govuk-heading-m">Try this bonus check</h2>
+  <p class="govuk-body">
+    Apply text spacing on your mobile device. Does it still work correctly?
+  </p>
+
+{% endblock %}
+
+{% block sidebar %}
+<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
+  <nav aria-labelledby="subsection-title">
+    <ul class="govuk-list govuk-!-font-size-16">
+      <li><a class="govuk-link" href="https://www.w3.org/WAI/WCAG22/Understanding/text-spacing">WCAG 2.2: Text Spacing</a></li>
+      <li><a class="govuk-link" href="https://github.com/alphagov/accessibility-personas/blob/main/tools/text-spacing-bookmarklet.js">Text spacing bookmarklet</a></li>
+    </ul>
+  </nav>
+</aside>
+{% endblock %}

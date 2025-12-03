@@ -1,0 +1,51 @@
+{% extends "/layouts/_calendar.njk" %}
+
+{% set pageTitle= "Day 17: Check the focus order" %}
+{% block calendar %}
+
+  <p class="govuk-body">
+    When using a keyboard, focus should move through the page in a logical order. Users need to understand where they are and what they can do next.
+  </p>
+
+  <h2 class="govuk-heading-m">What you're checking today</h2>
+  <p class="govuk-body">
+    You're checking that the focus order follows the visual layout and does not skip or trap users.
+  </p>
+
+  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>press <strong>Tab</strong> to move forwards and <strong>Shift + Tab</strong> to move backwards</li>
+    <li>check focus moves left to right and top to bottom</li>
+    <li>ensure nothing receives focus unexpectedly</li>
+    <li>confirm you can tab into and out of menus and modals</li>
+    <li>look for keyboard traps where focus cannot escape</li>
+  </ul>
+
+  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+  <p class="govuk-body">
+    <strong>2.4.3 Focus Order</strong> - focus must follow a meaningful sequence that preserves relationships.
+  </p>
+
+  <h2 class="govuk-heading-m">Why this matters</h2>
+  <p class="govuk-body">
+    A confusing focus order disrupts navigation and makes pages unusable for keyboard-only users and assistive tech users.
+  </p>
+
+  <h2 class="govuk-heading-m">Try this bonus check</h2>
+  <p class="govuk-body">
+    Open a mobile menu. Can you reach all links with the keyboard?
+  </p>
+
+{% endblock %}
+
+{% block sidebar %}
+<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
+  <nav aria-labelledby="subsection-title">
+    <ul class="govuk-list govuk-!-font-size-16">
+      <li><a class="govuk-link" href="https://webaim.org/techniques/keyboard/#focusorder">WebAIM - Keyboard Focus Order</a></li>
+      <li><a class="govuk-link" href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order">WCAG 2.2: Focus Order</a></li>
+    </ul>
+  </nav>
+</aside>
+{% endblock %}

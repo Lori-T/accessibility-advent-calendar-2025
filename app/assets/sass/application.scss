@@ -358,43 +358,43 @@ body.no-festive .snow-container::before {
   content: "";
   display: block;
   width: 100%;
-  height: 24px; /* height for larger bulbs */
+  height: 22px;
 
-  /* 🎄 Updated lights with glow effect */
   background-image:
-    radial-gradient(circle at 18px 12px,
-      var(--festive-gold) 6px,
-      rgba(245, 197, 66, 0.45) 12px,
-      transparent 14px),
 
-    radial-gradient(circle at 58px 12px,
-      var(--festive-red) 6px,
-      rgba(179, 0, 0, 0.45) 12px,
-      transparent 14px),
+    /* RED bulb */
+    radial-gradient(circle at 15px 11px,
+      var(--festive-red) 5px,
+      rgba(179, 0, 0, 0.45) 11px,
+      transparent 13px),
 
-    radial-gradient(circle at 98px 12px,
-      var(--festive-green) 6px,
-      rgba(11, 107, 11, 0.45) 12px,
-      transparent 14px),
+    /* GREEN bulb */
+    radial-gradient(circle at 55px 11px,
+      var(--festive-green) 5px,
+      rgba(11, 107, 11, 0.45) 11px,
+      transparent 13px),
 
-    radial-gradient(circle at 138px 12px,
-      var(--festive-gold) 6px,
-      rgba(245, 197, 66, 0.45) 12px,
-      transparent 14px),
+    /* GOLD bulb */
+    radial-gradient(circle at 95px 11px,
+      var(--festive-gold) 5px,
+      rgba(245, 197, 66, 0.45) 11px,
+      transparent 13px);
 
-    radial-gradient(circle at 178px 12px,
-      var(--festive-red) 6px,
-      rgba(179, 0, 0, 0.45) 12px,
-      transparent 14px);
-
-  /* Even spacing + repeats cleanly */
-  background-size: 160px 24px;
+  /* One full pattern = 120px */
+  background-size: 120px 22px;
   background-repeat: repeat-x;
 
-  /* Soft twinkle animation */
   animation: twinkleGlow 2s ease-in-out infinite alternate;
-
   border-bottom: 3px solid var(--festive-green);
+}
+
+@keyframes twinkleGlow {
+  0% {
+    filter: brightness(0.85) drop-shadow(0 0 3px rgba(255,255,255,0.45));
+  }
+  100% {
+    filter: brightness(1.4) drop-shadow(0 0 6px rgba(255,255,255,0.9));
+  }
 }
 
 /* ✨ Glow flicker animation */

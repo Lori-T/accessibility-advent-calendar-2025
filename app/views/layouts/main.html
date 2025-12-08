@@ -32,20 +32,21 @@
       </a>
     </div>
 
+    <!-- Service name -->
     {% if serviceName %}
-      <div class="govuk-header__content">
-        <a href="/" class="govuk-header__link govuk-header__service-name">
-          {{ serviceName }}
-        </a>
-      </div>
+    <div class="govuk-header__content">
+      <a href="/" class="govuk-header__link govuk-header__service-name">
+        {{ serviceName }}
+      </a>
+    </div>
     {% endif %}
 
-    <!-- Toggle -->
-    <button id="festive-toggle"
-            class="festive-toggle-in-header govuk-button govuk-button--secondary"
-            type="button"
-            aria-pressed="false">
-      🎄 Turn off festive effects
+    <!-- FESTIVE SWITCH -->
+    <button id="festive-toggle" class="festive-toggle-combo" aria-pressed="false">
+      <span class="switch-track">
+        <span class="switch-knob"></span>
+      </span>
+      <span class="switch-text">Festive effects</span>
     </button>
 
   </div>
@@ -55,41 +56,49 @@
 {% block stylesheets %}
   {{ super() }}
 
- <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const body = document.body;
-    const btn = document.getElementById('festive-toggle');
-    if (!btn) return;
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const body = document.body;
+  const btn = document.getElementById("festive-toggle");
+  const label = btn.querySelector(".switch-text");
 
-    // Restore setting
-    const pref = localStorage.getItem('festiveEffects');
-    if (pref === 'off') {
-      body.classList.add('no-festive');
-      btn.textContent = '❄️ Turn on festive effects';
-      btn.setAttribute('aria-pressed', 'false');
+  if (!btn) return;
+
+  function updateState(isOn) {
+    if (isOn) {
+      body.classList.remove("no-festive");
+      btn.setAttribute("aria-pressed", "true");
+      btn.classList.add("is-on");
+
+      // ❄️ Emoji when ON
+      label.textContent = "❄️ Festive effects off";
+
+      localStorage.setItem("festiveEffects", "on");
+    } else {
+      body.classList.add("no-festive");
+      btn.setAttribute("aria-pressed", "false");
+      btn.classList.remove("is-on");
+
+      // 🎄 Emoji when OFF
+      label.textContent = "🎄 Festive effects on";
+
+      localStorage.setItem("festiveEffects", "off");
     }
+  }
 
-    // Button ONLY (no bubbling to header)
-    btn.addEventListener('click', function (event) {
-      event.stopPropagation();
+  // Restore saved setting
+  const pref = localStorage.getItem("festiveEffects");
+  updateState(pref !== "off");
 
-      const active = !body.classList.contains('no-festive');
-
-      if (active) {
-        body.classList.add('no-festive');
-        btn.textContent = '❄️ Turn on festive effects';
-        btn.setAttribute('aria-pressed', 'false');
-        localStorage.setItem('festiveEffects', 'off');
-      } else {
-        body.classList.remove('no-festive');
-        btn.textContent = '🎄 Turn off festive effects';
-        btn.setAttribute('aria-pressed', 'true');
-        localStorage.setItem('festiveEffects', 'on');
-      }
-    });
+  // Toggle on click
+  btn.addEventListener("click", function (event) {
+    event.stopPropagation();
+    const isOn = btn.getAttribute("aria-pressed") === "true";
+    updateState(!isOn);
   });
-</script>
+});
 
+</script>
 
 {% endblock %}
 

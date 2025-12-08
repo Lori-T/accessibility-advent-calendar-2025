@@ -96,36 +96,60 @@ html, body {
 
 
 // -----------------------------------------------
-// FESTIVE TOGGLE (RIGHT SIDE OF HEADER)
+// FESTIVE TOGGLE SWITCH (RIGHT SIDE OF HEADER)
 // -----------------------------------------------
-.festive-toggle-in-header {
-  background-color: var(--festive-red) !important;
-  border-color: darkred !important;
-  color: #fff !important;
-  font-size: 0.9rem;
-  padding: 6px 14px;
-  white-space: nowrap;
-  margin-left: auto;
-  box-shadow: 0 0 4px rgba(0,0,0,0.25);
+/* Visual switch-style button */
+.festive-toggle-combo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border: 2px solid var(--festive-red);
+  border-radius: 20px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--festive-red);
 }
 
-/* Hover */
-.festive-toggle-in-header:hover {
-  background-color: #990000 !important;
+.festive-toggle-combo.is-on {
+  background: var(--festive-green);
+  color: #fff;
 }
 
-/* Accessible GOV.UK-style focus */
-.festive-toggle-in-header:focus {
-  outline: none !important;
-  color: #000 !important;
-  background: #fff !important;
+.switch-track {
+  width: 36px;
+  height: 18px;
+  background: #ccc;
+  border-radius: 20px;
+  position: relative;
+}
+
+.switch-knob {
+  width: 18px;
+  height: 18px;
+  background: var(--festive-red);
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: transform 0.2s ease;
+}
+
+/* When aria-pressed is true, move the knob */
+.festive-toggle-combo[aria-pressed="true"] .switch-knob {
+  transform: translateX(18px);
+}
+
+/* Focus style for the whole control */
+.festive-toggle-combo:focus {
+  outline: none;
   box-shadow:
     0 0 0 4px var(--focus-outline),
-    0 0 0 6px var(--focus-inner) !important;
-  text-decoration: none !important;
+    0 0 0 6px var(--focus-inner);
 }
 
-/* Remove outdated floating settings */
+/* Remove any old floating behaviour by id, just in case */
 #festive-toggle {
   position: static !important;
   top: auto !important;
@@ -134,7 +158,10 @@ html, body {
   z-index: auto !important;
 }
 
-/* Responsive toggle placement */
+
+/* -----------------------------------------------
+   RESPONSIVE HEADER
+-------------------------------------------------- */
 @media (max-width: 700px) {
   .header-with-toggle {
     flex-wrap: wrap;
@@ -143,51 +170,44 @@ html, body {
   .govuk-header__logo {
     order: 1;
     width: 100%;
+    text-align: center;
   }
 
   .govuk-header__content {
     order: 2;
     width: 100%;
+    text-align: center;
     margin-top: 8px;
   }
 
-  .festive-toggle-in-header {
+  #festive-toggle {
     order: 3;
     width: 100%;
-    margin: 12px 0 0 0;
-    text-align: left;
+    margin-top: 12px;
+    text-align: center;
   }
 }
 
 
-/* -----------------------------------------------
-   CALENDAR GRID — fully responsive
--------------------------------------------------- */
-
+// -----------------------------------------------
+// CALENDAR GRID — Fully responsive + improved spacing
+// -----------------------------------------------
 .calendar {
   display: grid;
   gap: 40px;
   margin: 20px 0;
 
-  /* Desktop (default) */
   grid-template-columns: repeat(5, 1fr);
 
-  /* Large tablets */
   @media (max-width: 1100px) {
     grid-template-columns: repeat(4, 1fr);
   }
-
-  /* Tablets */
   @media (max-width: 900px) {
     grid-template-columns: repeat(3, 1fr);
   }
-
-  /* Mobiles */
   @media (max-width: 650px) {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  /* Very small screens */
   @media (max-width: 420px) {
     grid-template-columns: 1fr;
   }
@@ -197,33 +217,33 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
-  padding: 20px;
+  border-radius: 14px;
+  padding: 26px 20px;
   text-decoration: none;
-  font-size: 1.2em;
+  font-size: 1.25em;
   color: #fff;
+  min-height: 90px;
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
   position: relative;
-  min-height: 60px;
-
-  &:focus {
-    outline: none !important;
-    box-shadow:
-      0 0 0 4px var(--focus-outline),
-      0 0 0 6px var(--focus-inner);
-  }
-
-  &:hover::after {
-    content: "★";
-    color: var(--festive-gold);
-    font-size: 1.4rem;
-    position: absolute;
-    top: 6px;
-    right: 10px;
-  }
 }
 
+/* Subtle hover animation */
+.calendar-day:hover {
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.calendar-day:focus {
+  outline: none !important;
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 4px var(--focus-outline),
+    0 0 0 6px var(--focus-inner);
+}
+
+/* ACCESSIBLE VISITED STATE */
 .calendar-day:visited {
-  color: #ffffff !important;
+  color: #ffffff !important; /* keep white for contrast on red/green */
 }
 
 /* alternating colours */
@@ -255,20 +275,6 @@ html, body {
   border-color: #2a0b06 !important;
 }
 
-/* Subtle festive door hover */
-.calendar-day {
-  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
-}
-
-.calendar-day:hover {
-  transform: translateY(-4px) rotate(-1deg);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-.calendar-day:focus {
-  transform: translateY(-2px);
-}
-
 
 // -----------------------------------------------
 // FOOTER
@@ -294,15 +300,14 @@ html, body {
 
   &:focus {
     outline: none !important;
+    background: #fff !important;
+    color: #000 !important;
     box-shadow:
       0 0 0 4px var(--focus-outline),
       0 0 0 6px var(--focus-inner);
-    color: #000 !important;
-    background: #fff !important;
   }
 }
 
-/* Hide GOV.UK default icons */
 .govuk-footer__licence-logo,
 .govuk-footer__copyright-logo,
 .govuk-footer__crown,
@@ -316,7 +321,7 @@ html, body {
 
 
 // -----------------------------------------------
-// SNOW ONLY IN CONTENT AREA
+// SNOW IN CONTENT ONLY
 // -----------------------------------------------
 .snow-container {
   position: relative;
@@ -326,10 +331,7 @@ html, body {
 .snow-container::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background-image: url("/public/images/snowflake.png");
   background-repeat: repeat;
   background-size: 200px;
@@ -356,23 +358,56 @@ body.no-festive .snow-container::before {
   content: "";
   display: block;
   width: 100%;
-  height: 12px;
+  height: 24px; /* height for larger bulbs */
+
+  /* 🎄 Updated lights with glow effect */
   background-image:
-    radial-gradient(circle at 10px 6px, var(--festive-gold) 2px, transparent 3px),
-    radial-gradient(circle at 30px 6px, var(--festive-red) 2px, transparent 3px),
-    radial-gradient(circle at 50px 6px, var(--festive-green) 2px, transparent 3px),
-    radial-gradient(circle at 70px 6px, var(--festive-gold) 2px, transparent 3px),
-    radial-gradient(circle at 90px 6px, var(--festive-red) 2px, transparent 3px);
-  background-size: 100px 12px;
-  animation: twinkle 2s ease-in-out infinite alternate;
-  border-bottom: 2px solid var(--festive-green);
+    radial-gradient(circle at 18px 12px,
+      var(--festive-gold) 6px,
+      rgba(245, 197, 66, 0.45) 12px,
+      transparent 14px),
+
+    radial-gradient(circle at 58px 12px,
+      var(--festive-red) 6px,
+      rgba(179, 0, 0, 0.45) 12px,
+      transparent 14px),
+
+    radial-gradient(circle at 98px 12px,
+      var(--festive-green) 6px,
+      rgba(11, 107, 11, 0.45) 12px,
+      transparent 14px),
+
+    radial-gradient(circle at 138px 12px,
+      var(--festive-gold) 6px,
+      rgba(245, 197, 66, 0.45) 12px,
+      transparent 14px),
+
+    radial-gradient(circle at 178px 12px,
+      var(--festive-red) 6px,
+      rgba(179, 0, 0, 0.45) 12px,
+      transparent 14px);
+
+  /* Even spacing + repeats cleanly */
+  background-size: 160px 24px;
+  background-repeat: repeat-x;
+
+  /* Soft twinkle animation */
+  animation: twinkleGlow 2s ease-in-out infinite alternate;
+
+  border-bottom: 3px solid var(--festive-green);
 }
 
-@keyframes twinkle {
-  0% { filter: brightness(0.7); opacity: 0.8; }
-  100% { filter: brightness(1.4); opacity: 1; }
+/* ✨ Glow flicker animation */
+@keyframes twinkleGlow {
+  0% {
+    filter: brightness(0.9) drop-shadow(0 0 3px rgba(255,255,255,0.6));
+  }
+  100% {
+    filter: brightness(1.4) drop-shadow(0 0 6px rgba(255,255,255,0.9));
+  }
 }
 
 body.no-festive .govuk-header::after {
   display: none !important;
 }
+

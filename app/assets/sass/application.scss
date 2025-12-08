@@ -411,3 +411,14 @@ body.no-festive .govuk-header::after {
   display: none !important;
 }
 
+.festive-toggle-combo {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 700px) {
+  .festive-toggle-combo {
+    margin-top: 12px;
+    margin-bottom: 16px;
+  }
+}

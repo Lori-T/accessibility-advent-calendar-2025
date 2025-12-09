@@ -59,7 +59,7 @@ html, body {
 /* LOGO — subtle glow when focused */
 .santa-logo {
   display: block;
-  max-height: 110px; /* smaller */
+  max-height: 110px;
   object-fit: contain;
   filter:
     drop-shadow(0 0 2px rgba(255,255,255,0.5))
@@ -199,7 +199,7 @@ html, body {
   color: #fff !important; /* FORCE WHITE ALWAYS */
 }
 
-/* visited links — stays white */
+/* Keep text white always */
 .calendar-day:visited,
 .calendar-day:active,
 .calendar-day:hover {
@@ -232,19 +232,50 @@ html, body {
     0 0 0 6px var(--focus-inner);
 }
 
+/* Disabled days */
+.calendar-day-disabled {
+  margin-bottom: 0;
+  color: #555 !important;
+}
+.calendar-day-disabled:nth-child(odd) {
+  color: #005a30 !important;
+  background-color: #cce2d8 !important;
+  border-color: #005a30 !important;
+}
+.calendar-day-disabled:nth-child(even) {
+  color: #2a0b06 !important;
+  background-color: #f4cdc6 !important;
+  border-color: #2a0b06 !important;
+}
 
-/* Disabled days */ .calendar-day-disabled { 
-  margin-bottom: 0; color: #555 !important;
- } 
- .calendar-day-disabled:nth-child(odd) { 
-  color: #005a30 !important; 
-    background-color: #cce2d8 !important; 
-    border-color: #005a30 !important; } 
-    
-    .calendar-day-disabled:nth-child(even) { 
-      color: #2a0b06 !important; 
-      background-color: #f4cdc6 !important; 
-      border-color: #2a0b06 !important; }
+/* -----------------------------------------------
+   🎁 FESTIVE EFFECT — PRESENT ICON ON ALL ACTIVE DOORS
+-------------------------------------------------- */
+body:not(.no-festive) .calendar-day:not(.calendar-day-disabled)::after {
+  content: "🎁";
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  font-size: 1.2rem;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+/* -----------------------------------------------
+   🧦 FESTIVE EFFECT — STOCKINGS ON SPECIAL DATES
+-------------------------------------------------- */
+body:not(.no-festive) .calendar-day:nth-child(5)::before,
+body:not(.no-festive) .calendar-day:nth-child(12)::before,
+body:not(.no-festive) .calendar-day:nth-child(19)::before,
+body:not(.no-festive) .calendar-day:nth-child(24)::before {
+  content: "🧦";
+  position: absolute;
+  top: 6px;
+  left: 10px;
+  font-size: 1.2rem;
+  opacity: 0.85;
+  pointer-events: none;
+}
 
 /* -----------------------------------------------
    FOOTER
@@ -282,7 +313,6 @@ html, body {
   text-align: center;
 }
 
-
 /* -----------------------------------------------
    CHRISTMAS LIGHTS
 -------------------------------------------------- */
@@ -311,4 +341,38 @@ html, body {
 
 body.no-festive .govuk-header::after {
   display: none !important;
+}
+
+/* -----------------------------------------------
+   ✨ SPARKLE BORDER EFFECT (festive mode only)
+-------------------------------------------------- */
+
+/* Sparkle pattern */
+@keyframes sparkleBorder {
+  0% {
+    border-image-source: radial-gradient(circle, rgba(255,255,255,0.6) 20%, transparent 70%);
+  }
+  100% {
+    border-image-source: radial-gradient(circle, rgba(255,255,255,0.9) 30%, transparent 70%);
+  }
+}
+
+/* Base sparkle border (invisible by default) */
+body:not(.no-festive) .calendar-day {
+  border: 3px solid transparent;
+  border-radius: 14px;
+  border-image-slice: 1;
+}
+
+/* ✨ Hover sparkle with gentle shimmer */
+body:not(.no-festive) .calendar-day:hover {
+  border-image-source: radial-gradient(circle, rgba(255,255,255,0.7) 30%, transparent 70%);
+  animation: sparkleBorder 2.5s ease-in-out infinite alternate;
+}
+
+/* ✨ Focus outline — static sparkle, no animation (WCAG safe) */
+body:not(.no-festive) .calendar-day:focus {
+  animation: none !important; /* Stop shimmer */
+  border-image-source: radial-gradient(circle, rgba(255,255,255,1) 40%, transparent 70%);
+  border-width: 4px;
 }

@@ -1,59 +1,94 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle= "Day 12: Check your page using WAVE" %}
-{% block calendar %}
+{% set pageTitle = "Day 12: Check focus order follows the visual layout" %}
 
-  <p class="govuk-body">
-    WAVE is a quick and simple testing tool that highlights accessibility issues directly on your page. It helps you spot errors, contrast problems and structural issues fast.
-  </p>
+{% block content %}
 
-  <h2 class="govuk-heading-m">What you're checking today</h2>
-  <p class="govuk-body">
-    You're using WAVE to scan your page for common accessibility issues that can be fixed quickly.
-  </p>
+<p class="govuk-body">
+  Santa’s route planner helps him check each stop on Christmas Eve. On screen it looks logical,
+  but the keyboard focus jumps around in a confusing order.
+</p>
 
-  <h2 class="govuk-heading-m">Quick 5-minute check (Web version)</h2>
-  <ul class="govuk-list govuk-list--bullet">
-    <li>go to <a class="govuk-link" href="https://wave.webaim.org">https://wave.webaim.org</a></li>
-    <li>enter the URL of the page you want to check</li>
-    <li>review the icons that appear on your page</li>
-    <li>red icons highlight errors</li>
-    <li>yellow icons highlight contrast issues</li>
-    <li>blue and green icons show structural information</li>
-  </ul>
+<h2 class="govuk-heading-m">Your mission today</h2>
+<p class="govuk-body">
+  Check that the order of focus matches the visual reading order of the page.
+</p>
 
-  <h2 class="govuk-heading-m">Quick 5-minute check (Browser extension)</h2>
-  <ul class="govuk-list govuk-list--bullet">
-    <li>install the WAVE extension for Chrome or Firefox</li>
-    <li>open your page and click the WAVE icon in your toolbar</li>
-    <li>use the sidebar to explore errors and alerts</li>
-    <li>click an icon to see the explanation and the related code</li>
-  </ul>
+<h2 class="govuk-heading-m">Quick 5-minute check</h2>
+<ul class="govuk-list govuk-list--bullet">
+  <li>press <strong>Tab</strong> repeatedly from the top of the page</li>
+  <li>check whether focus moves left-to-right and top-to-bottom in a logical way</li>
+  <li>ensure you do not jump unexpectedly between sections</li>
+  <li>watch out for tabindex attributes that override the natural order</li>
+</ul>
 
-  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
-  <p class="govuk-body">
-    WAVE checks many WCAG criteria, including contrast, structure, labels and alt text.
-  </p>
+<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-  <h2 class="govuk-heading-m">Why this matters</h2>
-  <p class="govuk-body">
-    WAVE helps catch common issues early, saving time and reducing accessibility debt. It highlights problems visually, making them easier to understand.
-  </p>
+<h2 class="govuk-heading-m">Test the route planner</h2>
+<p class="govuk-body">
+  Below is a row of “stops” on Santa’s route. The tab order has been deliberately
+  changed so that focus jumps in a non-visual order.
+</p>
 
-  <h2 class="govuk-heading-m">Try this bonus check</h2>
-  <p class="govuk-body">
-    Run WAVE on both desktop and mobile layouts. Some issues only appear at smaller screen sizes.
-  </p>
+<div class="govuk-button-group govuk-!-margin-top-2">
+
+  {# ❌ Deliberate issue: tabindex values change the natural order #}
+  <button class="govuk-button govuk-button--secondary" type="button" tabindex="3">
+    Stop 1 - Lapland
+  </button>
+
+  <button class="govuk-button govuk-button--secondary" type="button" tabindex="1">
+    Stop 2 - Europe
+  </button>
+
+  <button class="govuk-button govuk-button--secondary" type="button" tabindex="2">
+    Stop 3 - North America
+  </button>
+
+</div>
+
+<p class="govuk-body govuk-!-margin-top-2">
+  Try tabbing across these buttons. Focus does not move from left to right.
+  This can be confusing and disorientating for keyboard users.
+</p>
+
+<h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+<p class="govuk-body">
+  <strong>2.4.3 focus order</strong> - focus should move in an order that preserves
+  meaning and operability.
+</p>
+
+<h2 class="govuk-heading-m">Why this matters</h2>
+<p class="govuk-body">
+  People using keyboards or assistive technologies rely on a predictable focus order
+  to understand content and complete tasks. Unexpected jumps can cause errors and frustration.
+</p>
+
+<h2 class="govuk-heading-m">Bonus challenge</h2>
+<p class="govuk-body">
+  Remove the tabindex attributes in dev tools so the buttons follow the natural DOM order.
+  How does this change the focus order?
+</p>
 
 {% endblock %}
 
 {% block sidebar %}
 <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
   <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
-  <nav aria-labelledby="subsection-title">
+  <nav role="navigation" aria-labelledby="subsection-title">
     <ul class="govuk-list govuk-!-font-size-16">
-      <li><a class="govuk-link" href="https://wave.webaim.org/extension/">WAVE browser extensions</a></li>
-      <li><a class="govuk-link" href="https://webaim.org/resources/contrastchecker/">WebAIM Contrast Checker</a></li>
+      <li>
+        <a class="govuk-link"
+           href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order">
+          WCAG 2.2: focus order (2.4.3)
+        </a>
+      </li>
+      <li>
+        <a class="govuk-link"
+           href="https://webaim.org/techniques/keyboard/tabindex">
+          WebAIM: tabindex
+        </a>
+      </li>
     </ul>
   </nav>
 </aside>

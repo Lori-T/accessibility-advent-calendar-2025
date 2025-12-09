@@ -1,39 +1,74 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle= "Day 10: Check visible focus styles" %}
-{% block calendar %}
+{% set pageTitle = "Day 10: Check content when text is resized" %}
 
-  <p class="govuk-body">
-    When users navigate using the keyboard, they need a clear visual indicator showing where they are on the page. This indicator is called the focus outline.
+{% block content %}
+
+<p class="govuk-body">
+  The North Pole weather widget tells Santa whether it is safe to fly. It works at normal
+  zoom, but when users increase the text size, some of the content becomes hidden.
+</p>
+
+<h2 class="govuk-heading-m">Your mission today</h2>
+<p class="govuk-body">
+  Check that people can increase text size to at least 200% without losing content or functionality.
+</p>
+
+<h2 class="govuk-heading-m">Quick 5-minute check</h2>
+<ul class="govuk-list govuk-list--bullet">
+  <li>open a page in your service</li>
+  <li>use the browser zoom or system text size settings to increase text to around 200%</li>
+  <li>check that all content is still visible and readable</li>
+  <li>make sure important controls are not pushed off-screen or overlapped</li>
+</ul>
+
+<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+<h2 class="govuk-heading-m">Test the North Pole weather widget</h2>
+<p class="govuk-body">
+  Below is a small widget. It uses a fixed height, which can cause problems when text size
+  is increased.
+</p>
+
+<div style="border: 1px solid #b1b4b6;
+            max-width: 320px;
+            height: 90px;             /* ❌ Deliberate issue: fixed height */
+            overflow: hidden;
+            padding: 8px;
+            background: #f3f2f1;">
+
+  <p class="govuk-body-s govuk-!-margin-bottom-1">
+    North Pole weather - Christmas Eve
   </p>
-
-  <h2 class="govuk-heading-m">What you’re checking today</h2>
-  <p class="govuk-body">
-    You’re checking whether the focus outline is clear, visible and high contrast on every interactive element.
+  <p class="govuk-body-s govuk-!-margin-bottom-1">
+    Visibility: excellent<br>
+    Wind: light tailwind<br>
+    Temperature: very cold, but manageable<br>
+    Backup route: available through Lapland air corridor
   </p>
+</div>
 
-  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
-  <ul class="govuk-list govuk-list--bullet">
-    <li>press <strong>Tab</strong> repeatedly to move through the page</li>
-    <li>check that a clear focus indicator appears on every interactive element</li>
-    <li>ensure the indicator is high contrast and visible in all environments</li>
-    <li>check custom components (like styled buttons) which often lose focus styles</li>
-  </ul>
+<p class="govuk-body govuk-!-margin-top-2">
+  Increase the browser zoom or text size. Some of the text may become clipped or require
+  awkward scrolling.
+</p>
 
-  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
-  <p class="govuk-body">
-    <strong>2.4.7 Focus Visible</strong> - keyboard focus must always be visible.
-  </p>
+<h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+<p class="govuk-body">
+  <strong>1.4.4 resize text</strong> - users must be able to resize text up to 200%
+  without loss of content or functionality.
+</p>
 
-  <h2 class="govuk-heading-m">Why this matters</h2>
-  <p class="govuk-body">
-    Without a visible focus indicator, keyboard users become lost and unable to complete tasks.
-  </p>
+<h2 class="govuk-heading-m">Why this matters</h2>
+<p class="govuk-body">
+  Many people increase text size to read comfortably. Fixed-height containers can cause
+  important information to disappear or become hard to reach.
+</p>
 
-  <h2 class="govuk-heading-m">Try this bonus check</h2>
-  <p class="govuk-body">
-    Try tabbing around in bright light or outdoors. Can you still see the focus outline clearly?
-  </p>
+<h2 class="govuk-heading-m">Bonus challenge</h2>
+<p class="govuk-body">
+  Try removing the fixed height from the widget in dev tools. How does it behave when zoomed in?
+</p>
 
 {% endblock %}
 
@@ -42,8 +77,18 @@
   <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
   <nav role="navigation" aria-labelledby="subsection-title">
     <ul class="govuk-list govuk-!-font-size-16">
-      <li><a class="govuk-link" href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible">WCAG 2.2: Focus Visible</a></li>
-      <li><a class="govuk-link" href="https://webaim.org/techniques/keyboard/#focus">WebAIM: Focus indicators</a></li>
+      <li>
+        <a class="govuk-link"
+           href="https://www.w3.org/WAI/WCAG22/Understanding/resize-text">
+          WCAG 2.2: resize text (1.4.4)
+        </a>
+      </li>
+      <li>
+        <a class="govuk-link"
+           href="https://www.w3.org/WAI/people-use-web/user-stories/">
+          W3C: user stories - low vision
+        </a>
+      </li>
     </ul>
   </nav>
 </aside>

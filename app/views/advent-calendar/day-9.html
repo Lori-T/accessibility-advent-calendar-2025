@@ -1,40 +1,76 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle= "Day 9: Zoom to 400% to check reflow" %}
-{% block calendar %}
+{% set pageTitle = "Day 9: Check forms have proper labels" %}
 
-  <p class="govuk-body">
-    Users who need larger text often zoom in significantly. Your page must remain usable and readable when zoomed to 400%.
-  </p>
+{% block content %}
 
-  <h2 class="govuk-heading-m">What you’re checking today</h2>
-  <p class="govuk-body">
-    You’re checking that your layout responds appropriately when zoomed, without causing horizontal scrolling or clipping.
-  </p>
+<p class="govuk-body">
+  New elves have to register for their shifts using an online form. The form was put together
+  quickly using placeholder text instead of proper labels.
+</p>
 
-  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
-  <ul class="govuk-list govuk-list--bullet">
-    <li>use your browser’s zoom controls to increase zoom to 400%</li>
-    <li>check that your content rearranges into a single column</li>
-    <li>ensure all text remains readable and nothing disappears off-screen</li>
-    <li>test menus, navigation, forms and buttons</li>
-    <li>confirm there is no horizontal scrolling</li>
-  </ul>
+<h2 class="govuk-heading-m">Your mission today</h2>
+<p class="govuk-body">
+  Check that every input, select and textarea has an explicit, associated label.
+</p>
 
-  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
-  <p class="govuk-body">
-    <strong>1.4.10 Reflow</strong> - content must reflow without forcing horizontal scrolling at up to 400% zoom.
-  </p>
+<h2 class="govuk-heading-m">Quick 5-minute check</h2>
+<ul class="govuk-list govuk-list--bullet">
+  <li>pick a form page in your service</li>
+  <li>check that each field has a visible label</li>
+  <li>inspect the HTML - labels should be linked to inputs using <code>for</code> and <code>id</code></li>
+  <li>make sure placeholder text is not being used as the only label</li>
+</ul>
 
-  <h2 class="govuk-heading-m">Why this matters</h2>
-  <p class="govuk-body">
-    Reflow supports people with low vision, cognitive disabilities and users on small screens.
-  </p>
+<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-  <h2 class="govuk-heading-m">Try this bonus check</h2>
-  <p class="govuk-body">
-    Rotate your phone to portrait mode. Does it behave similarly to 400% zoom?
-  </p>
+<h2 class="govuk-heading-m">Test the elf registration form</h2>
+<p class="govuk-body">
+  Below is a simplified version of the form. One of the fields relies only on a placeholder
+  and has no proper label.
+</p>
+
+<form class="govuk-!-margin-top-2">
+
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="elf-name">
+      Elf name
+    </label>
+    <input class="govuk-input" id="elf-name" name="elf-name" type="text">
+  </div>
+
+  {# ❌ Deliberate issue: no label, only placeholder #}
+  <div class="govuk-form-group">
+    <input class="govuk-input"
+           name="elf-code"
+           type="text"
+           placeholder="Elf ID code (for example E-123)">
+  </div>
+
+</form>
+
+<p class="govuk-body">
+  Try navigating this form with a screen reader. “Elf ID code” will not be announced as a label,
+  making the field harder to understand.
+</p>
+
+<h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+<p class="govuk-body">
+  <strong>1.3.1 info and relationships</strong> and <strong>3.3.2 labels or instructions</strong> -
+  form controls must be properly labelled and instructions must be clear.
+</p>
+
+<h2 class="govuk-heading-m">Why this matters</h2>
+<p class="govuk-body">
+  Without labels, form fields can be confusing or unusable, especially for screen reader users,
+  people with cognitive impairments or people using autofill tools.
+</p>
+
+<h2 class="govuk-heading-m">Bonus challenge</h2>
+<p class="govuk-body">
+  Inspect a real form in your service. Can you find any fields that only use placeholder text
+  instead of labels?
+</p>
 
 {% endblock %}
 
@@ -43,8 +79,17 @@
   <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
   <nav role="navigation" aria-labelledby="subsection-title">
     <ul class="govuk-list govuk-!-font-size-16">
-      <li><a class="govuk-link" href="https://www.w3.org/WAI/WCAG22/Understanding/reflow">WCAG 2.2: Reflow</a></li>
-      <li><a class="govuk-link" href="https://www.a11yproject.com/posts/how-to-test-reflow/">How to test reflow</a></li>
+      <li>
+        <a class="govuk-link" href="https://design-system.service.gov.uk/components/text-input/">
+          GOV.UK Design System: text input
+        </a>
+      </li>
+      <li>
+        <a class="govuk-link"
+           href="https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions">
+          WCAG 2.2: labels or instructions (3.3.2)
+        </a>
+      </li>
     </ul>
   </nav>
 </aside>

@@ -2,13 +2,13 @@
 {% set hideBackLink = true %}
 {% set fullWidth = true %}
 {% set largeTitle = true %}
-{% set pageTitle = "25 days of digital accessibility tips" %}
+{% set pageTitle = "12 days of digital accessibility tips" %}
 
 {% block content %}
 
 <p class="govuk-body">
-  Open a door each day in December to reveal a new accessibility tip you can complete in under five minutes.
-  {% if (currentDay and currentYear == "2025" and currentDay <= 25) %}
+  Open a door each day to reveal a new accessibility tip you can complete in under five minutes.
+  {% if (currentDay and currentYear == "2025" and currentDay <= 12) %}
     Today is <strong>Day {{ currentDay }}</strong>.
   {% endif %}
 </p>
@@ -19,27 +19,33 @@
 </p>
 
 <div class="calendar">
-  {% for day in range(1, 26) %}
 
-  {# Unlocked doors #}
-  {% if (currentYear > 2025) or (currentYear == 2025 and day <= currentDay) %}
-    <a
-      href="/advent-calendar/day-{{ day }}"
-      class="calendar-day"
-      aria-label="Open the door for Day {{ day }} to view today's accessibility tip"
-      {% if currentYear == 2025 and day == currentDay %} aria-current="date" {% endif %}
-    >
-      Day {{ day }}
-    </a>
+  {% for day in range(1, 13) %}
 
-  {# Locked doors #}
-  {% else %}
-    <p class="calendar-day calendar-day-disabled" aria-hidden="true">
-      Opens {{ day }} December
-    </p>
-  {% endif %}
+    {# -------------------------
+       UNLOCKED DOORS
+       (Opens based on real date)
+       ------------------------- #}
+    {% if (currentYear > 2025) or (currentYear == 2025 and day <= currentDay) %}
+      <a
+        href="/advent-calendar/day-{{ day }}"
+        class="calendar-day"
+        aria-label="Open the door for Day {{ day }} to view today's accessibility tip"
+        {% if currentYear == 2025 and day == currentDay %} aria-current="date" {% endif %}
+      >
+        Day {{ day }}
+      </a>
 
-{% endfor %}
+    {# -------------------------
+       LOCKED DOORS
+       ------------------------- #}
+    {% else %}
+      <p class="calendar-day calendar-day-disabled" aria-hidden="true">
+        Opens {{ day }} December
+      </p>
+    {% endif %}
+
+  {% endfor %}
 
 </div>
 

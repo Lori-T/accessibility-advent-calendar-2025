@@ -1,39 +1,80 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle= "Day 6: Check that link text makes sense" %}
-{% block calendar %}
+{% set pageTitle = "Day 6: Check heading levels and structure" %}
 
-  <p class="govuk-body">
-    Link text must clearly explain where the link goes or what it does. Vague text like “Click here” or “Read more” forces people to rely on context they may not be able to see.
-  </p>
+{% block content %}
 
-  <h2 class="govuk-heading-m">What you’re checking today</h2>
-  <p class="govuk-body">
-    You’re checking whether each link makes sense when read on its own, and whether repeated links are distinguishable.
-  </p>
+<p class="govuk-body">
+  The elves have created a “workshop status board” to show all the tasks they are working on.
+  In a hurry, they picked heading styles that looked good rather than following a logical order.
+</p>
 
-  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
+<h2 class="govuk-heading-m">Your mission today</h2>
+<p class="govuk-body">
+  Check that headings follow a clear, logical structure and reflect the hierarchy of the content.
+</p>
+
+<h2 class="govuk-heading-m">Quick 5-minute check</h2>
+<ul class="govuk-list govuk-list--bullet">
+  <li>identify the main page heading - there should usually be only one</li>
+  <li>check that subheadings follow a logical order (for example, h2 then h3)</li>
+  <li>make sure headings are not skipped just to achieve a visual style</li>
+  <li>avoid using headings for text that is not really a section heading</li>
+</ul>
+
+<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+<h2 class="govuk-heading-m">Test the workshop status board</h2>
+<p class="govuk-body">
+  Below is a simplified status board. There is a deliberate accessibility issue:
+  the heading levels jump around instead of following a logical nesting order.
+</p>
+
+<div class="govuk-!-margin-top-2 govuk-!-margin-bottom-3 govuk-inset-text">
+
+  <h1 class="govuk-heading-l">
+    Elf workshop status
+  </h1>
+
+  {# ❌ Deliberate issue: skipping from h1 to h4 for visual style #}
+  <h4 class="govuk-heading-s">
+    Urgent tasks
+  </h4>
+
   <ul class="govuk-list govuk-list--bullet">
-    <li>scan your page for vague links such as “Click here”, “More”, “Read more”, or “Find out more”</li>
-    <li>check that link text explains the purpose of the link without needing extra context</li>
-    <li>ensure repeated link text points to the same destination</li>
-    <li>use a screen reader’s list of links to check if links make sense in isolation</li>
+    <li>wrap presents for northern region</li>
+    <li>repair sleigh navigation system</li>
   </ul>
 
-  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
-  <p class="govuk-body">
-    <strong>2.4.4 Link Purpose (In Context)</strong> - users must understand the purpose of a link from its text.
-  </p>
+  {# ❌ Deliberate issue: going back up to h2 after h4 #}
+  <h2 class="govuk-heading-m">
+    Completed tasks
+  </h2>
 
-  <h2 class="govuk-heading-m">Why this matters</h2>
-  <p class="govuk-body">
-    Clear link text helps all users, especially screen reader users and people who skim content quickly.
-  </p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>test flight over Lapland</li>
+    <li>reindeer health checks</li>
+  </ul>
 
-  <h2 class="govuk-heading-m">Try this bonus check</h2>
-  <p class="govuk-body">
-    Hover over the link. Is the tooltip meaningful, or just repeating the link text?
-  </p>
+</div>
+
+<h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+<p class="govuk-body">
+  <strong>1.3.1 info and relationships</strong> - information, structure and
+  relationships must be conveyed programmatically, not just visually.
+</p>
+
+<h2 class="govuk-heading-m">Why this matters</h2>
+<p class="govuk-body">
+  Many screen reader users navigate by headings. If levels are inconsistent or used
+  purely for appearance, it becomes hard to understand the structure of the page.
+</p>
+
+<h2 class="govuk-heading-m">Bonus challenge</h2>
+<p class="govuk-body">
+  Use a browser extension or dev tools to view a list of headings on a real page.
+  Does the order make sense without seeing the visual layout?
+</p>
 
 {% endblock %}
 
@@ -42,8 +83,18 @@
   <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
   <nav role="navigation" aria-labelledby="subsection-title">
     <ul class="govuk-list govuk-!-font-size-16">
-      <li><a class="govuk-link" href="https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context">WCAG 2.2: Link Purpose</a></li>
-      <li><a class="govuk-link" href="https://webaim.org/techniques/hypertext/">WebAIM: Hypertext links</a></li>
+      <li>
+        <a class="govuk-link"
+           href="https://www.w3.org/WAI/tutorials/page-structure/headings/">
+          W3C tutorial: headings
+        </a>
+      </li>
+      <li>
+        <a class="govuk-link"
+           href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships">
+          WCAG 2.2: info and relationships (1.3.1)
+        </a>
+      </li>
     </ul>
   </nav>
 </aside>

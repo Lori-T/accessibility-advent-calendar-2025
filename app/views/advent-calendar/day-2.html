@@ -1,41 +1,80 @@
-{% extends "/layouts/main.html" %}
+{% extends "/layouts/main.html" %} 
 
-{% set pageTitle= "Day 2: Navigate your page using only the keyboard" %}
+{% set pageTitle = "Day 2: Navigate your page using only the keyboard" %}
+
 {% block content %}
 
+<p class="govuk-body">
+  Santa HQ has released early tracking data, and you are one of the testers.
+  Before it is approved for Christmas Eve, your job is to check whether the page works
+  for people who rely on a keyboard instead of a mouse or trackpad.
+</p>
+
+<h2 class="govuk-heading-m">Your mission today</h2>
+<p class="govuk-body">
+  Check that every interactive element – links, buttons, menus and panels – can be reached
+  and operated using only the keyboard.
+</p>
+
+<h2 class="govuk-heading-m">Quick 5-minute check</h2>
+<ul class="govuk-list govuk-list--bullet">
+  <li>click near the top of the page to set a starting point</li>
+  <li>press <strong>Tab</strong> to move forwards through interactive elements</li>
+  <li>press <strong>Shift + Tab</strong> to move backwards</li>
+  <li>make sure nothing is skipped or unreachable</li>
+  <li>check that all controls can be activated using <strong>Enter</strong> or <strong>Space</strong></li>
+  <li>check you never get “stuck” inside a component or panel</li>
+</ul>
+
+<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+<h2 class="govuk-heading-m">Test the Santa tracker info panel</h2>
+<p class="govuk-body">
+  Below is a simplified “info panel” that the elves are developing.
+  It contains a deliberate accessibility issue: once you open it,
+  you cannot close it using the keyboard.
+</p>
+
+<a href="#santa-panel" class="govuk-link govuk-!-margin-bottom-2">
+  Open Santa tracker info panel
+</a>
+
+<div id="santa-panel"
+     class="govuk-inset-text govuk-!-margin-top-3"
+     style="padding: 20px; border-left: 5px solid #d4351c;">
   <p class="govuk-body">
-    Keyboard accessibility is essential for people who cannot use a mouse or trackpad. If a page cannot be operated with a keyboard alone, it is not accessible.
+    🎅 Santa's sleigh reached 14,500 mph during last night's test flight.
+  </p>
+  <p class="govuk-body">
+    ❌ <strong>Accessibility issue:</strong> this panel cannot be closed using the keyboard.
+    You can only close it with a mouse.
   </p>
 
-  <h2 class="govuk-heading-m">What you’re checking today</h2>
-  <p class="govuk-body">
-    You’re checking that all interactive elements - links, buttons, menus, forms and controls - can be reached and used using only the keyboard.
-  </p>
+  {# Deliberate issue: close “button” is a span, not focusable, not operable with keyboard #}
+  <span style="display: inline-block; margin-top: 10px; color: #b30000; cursor: pointer;">
+    Close panel ✖
+  </span>
+</div>
 
-  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
-  <ul class="govuk-list govuk-list--bullet">
-    <li>click near the top of your page to set a starting point</li>
-    <li>press <strong>Tab</strong> to move forward through interactive elements</li>
-    <li>press <strong>Shift + Tab</strong> to move backwards</li>
-    <li>check that the focus order follows the visual layout of the page</li>
-    <li>ensure no elements are skipped or unreachable</li>
-    <li>activate buttons and links using <strong>Enter</strong> or <strong>Space</strong></li>
-  </ul>
+<h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+<p class="govuk-body">
+  <strong>2.1.1 keyboard</strong> – everything must be operable using the keyboard.<br>
+  <strong>2.1.2 no keyboard trap</strong> – users must be able to move focus into
+  and out of components.
+</p>
 
-  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
-  <p class="govuk-body">
-    <strong>2.1.1 Keyboard</strong> - everything must be usable without a mouse.
-  </p>
+<h2 class="govuk-heading-m">Why this matters</h2>
+<p class="govuk-body">
+  Many people rely entirely on the keyboard. If controls cannot be reached or activated,
+  the service becomes unusable. Broken keyboard support also affects people using
+  assistive technologies like switch devices or voice recognition.
+</p>
 
-  <h2 class="govuk-heading-m">Why this matters</h2>
-  <p class="govuk-body">
-    Many users rely entirely on the keyboard. Strong keyboard support also improves compatibility with screen readers, voice control software and assistive devices.
-  </p>
-
-  <h2 class="govuk-heading-m">Try this bonus check</h2>
-  <p class="govuk-body">
-    Open a menu or modal with the keyboard. Can you tab into it, move around, and close it again?
-  </p>
+<h2 class="govuk-heading-m">Bonus challenge</h2>
+<p class="govuk-body">
+  After opening the panel, try to continue tabbing through the rest of the page.
+  Does focus behave as you expect, or does it jump or disappear?
+</p>
 
 {% endblock %}
 
@@ -44,8 +83,18 @@
   <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
   <nav role="navigation" aria-labelledby="subsection-title">
     <ul class="govuk-list govuk-!-font-size-16">
-      <li><a class="govuk-link" href="https://webaim.org/techniques/keyboard/">WebAIM: Keyboard Accessibility</a></li>
-      <li><a class="govuk-link" href="https://www.w3.org/WAI/WCAG22/Understanding/keyboard">WCAG 2.2: Keyboard</a></li>
+      <li>
+        <a class="govuk-link"
+           href="https://webaim.org/techniques/keyboard/">
+          WebAIM: keyboard accessibility
+        </a>
+      </li>
+      <li>
+        <a class="govuk-link"
+           href="https://www.w3.org/WAI/WCAG22/Understanding/no-keyboard-trap">
+          WCAG 2.2: no keyboard trap (2.1.2)
+        </a>
+      </li>
     </ul>
   </nav>
 </aside>

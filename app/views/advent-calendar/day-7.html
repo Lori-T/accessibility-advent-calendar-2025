@@ -1,40 +1,78 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle= "Day 7: Check image alt text" %}
-{% block calendar %}
+{% set pageTitle = "Day 7: Make link purpose clear in context" %}
 
-  <p class="govuk-body">
-    Alt text helps people who cannot see images understand their purpose. It must describe the meaning of the image, not just the image itself.
-  </p>
+{% block content %}
 
-  <h2 class="govuk-heading-m">What you’re checking today</h2>
-  <p class="govuk-body">
-    You’re checking that meaningful images have appropriate alt text, and decorative images are ignored by screen readers.
-  </p>
+<p class="govuk-body">
+  Santa’s logistics team share updates through a dashboard of important links.
+  Unfortunately, several of the links just say “click here”, which is not very helpful.
+</p>
 
-  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
-  <ul class="govuk-list govuk-list--bullet">
-    <li>right-click an image and select <strong>Inspect</strong></li>
-    <li>look at the <code>alt</code> attribute in the HTML</li>
-    <li>ensure the alt text describes the purpose of the image, not unnecessary detail</li>
-    <li>use <code>alt=""</code> for decorative images so screen readers skip them</li>
-    <li>look for common errors such as missing alt, filenames used as alt, or overly long descriptions</li>
-  </ul>
+<h2 class="govuk-heading-m">Your mission today</h2>
+<p class="govuk-body">
+  Check that link text makes sense out of context and clearly describes the destination
+  or action.
+</p>
 
-  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
-  <p class="govuk-body">
-    <strong>1.1.1 Non-text Content</strong> - images must have appropriate text alternatives.
-  </p>
+<h2 class="govuk-heading-m">Quick 5-minute check</h2>
+<ul class="govuk-list govuk-list--bullet">
+  <li>scan the page for links that say things like “click here” or “more”</li>
+  <li>check whether the link text alone explains what will happen</li>
+  <li>if it does not, consider rewriting the link text</li>
+  <li>avoid repeating the same link text for different destinations</li>
+</ul>
 
-  <h2 class="govuk-heading-m">Why this matters</h2>
-  <p class="govuk-body">
-    Without alt text, screen reader users lose essential context. Good alt text supports accessibility, search engines and resilience if images fail to load.
-  </p>
+<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-  <h2 class="govuk-heading-m">Try this bonus check</h2>
-  <p class="govuk-body">
-    Temporarily disable images using a browser extension. Can you still understand the page?
-  </p>
+<h2 class="govuk-heading-m">Test the Santa logistics links</h2>
+<p class="govuk-body">
+  Below is a list of links used by Santa’s logistics team. There is a deliberate
+  accessibility issue: several links use the same vague wording.
+</p>
+
+<ul class="govuk-list">
+  <li>
+    Reindeer flight schedule -
+    {# ❌ Deliberate issue: vague link text #}
+    <a href="#" class="govuk-link">click here</a>
+  </li>
+  <li>
+    Toy factory maintenance log -
+    <a href="#" class="govuk-link">click here</a>
+  </li>
+  <li>
+    View weather conditions for Christmas Eve -
+    <a href="#" class="govuk-link">view</a>
+  </li>
+  <li>
+    Check toy quality control results -
+    <a href="#" class="govuk-link">more</a>
+  </li>
+</ul>
+
+<p class="govuk-body govuk-!-margin-top-2">
+  Imagine using a screen reader shortcut that lists links out of context - “click here”,
+  “click here”, “view”, “more”. It is not clear which link does what.
+</p>
+
+<h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+<p class="govuk-body">
+  <strong>2.4.4 link purpose (in context)</strong> - the purpose of each link should
+  be clear from its text, or from its text together with nearby context.
+</p>
+
+<h2 class="govuk-heading-m">Why this matters</h2>
+<p class="govuk-body">
+  Clear link text helps everyone scan a page quickly. It is especially important for
+  people who use screen readers or voice input, and people with some cognitive impairments.
+</p>
+
+<h2 class="govuk-heading-m">Bonus challenge</h2>
+<p class="govuk-body">
+  On one of your own pages, copy and paste just the links into a list. Would they still
+  make sense without the surrounding paragraphs?
+</p>
 
 {% endblock %}
 
@@ -43,8 +81,18 @@
   <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
   <nav role="navigation" aria-labelledby="subsection-title">
     <ul class="govuk-list govuk-!-font-size-16">
-      <li><a class="govuk-link" href="https://webaim.org/techniques/alttext/">WebAIM: Alternative text</a></li>
-      <li><a class="govuk-link" href="https://www.w3.org/WAI/tutorials/images/">W3C Images Tutorial</a></li>
+      <li>
+        <a class="govuk-link"
+           href="https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context">
+          WCAG 2.2: link purpose (2.4.4)
+        </a>
+      </li>
+      <li>
+        <a class="govuk-link"
+           href="https://design-system.service.gov.uk/styles/typography/#links">
+          GOV.UK Design System: links
+        </a>
+      </li>
     </ul>
   </nav>
 </aside>

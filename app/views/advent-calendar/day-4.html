@@ -1,39 +1,95 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle= "Day 4: Resize text to 200%" %}
-{% block calendar %}
+{% set pageTitle = "Day 4: Check colour contrast on the naughty or nice meter" %}
 
-  <p class="govuk-body">
-    Some users increase text size to read more comfortably. Your content must remain usable when text is scaled significantly.
-  </p>
+{% block content %}
 
-  <h2 class="govuk-heading-m">What you’re checking today</h2>
-  <p class="govuk-body">
-    You’re checking that resizing text does not cause content to overlap, disappear, or become difficult to read.
-  </p>
+<p class="govuk-body">
+  Santa’s “naughty or nice meter” shows how well different regions are doing.
+  It looks fun and colourful, but some of the labels are hard to read.
+</p>
 
-  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
-  <ul class="govuk-list govuk-list--bullet">
-    <li>increase text size or zoom using your browser’s settings (Chrome, Firefox, Edge → Zoom → 200%)</li>
-    <li>check headings, menus, buttons and forms for overlap or hidden text</li>
-    <li>ensure text wraps naturally and remains fully readable</li>
-    <li>check both browser zoom and system-level text resizing options</li>
-  </ul>
+<h2 class="govuk-heading-m">Your mission today</h2>
+<p class="govuk-body">
+  Check that text and essential icons have enough contrast against their background.
+</p>
 
-  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
-  <p class="govuk-body">
-    <strong>1.4.4 Resize Text</strong> - users must be able to increase text size up to 200% without losing content or functionality.
-  </p>
+<h2 class="govuk-heading-m">Quick 5-minute check</h2>
+<ul class="govuk-list govuk-list--bullet">
+  <li>pick a page with coloured panels, tags or charts</li>
+  <li>identify text that sits on coloured backgrounds</li>
+  <li>use a colour contrast checker to test text against its background</li>
+  <li>make sure normal text meets at least a 4.5:1 contrast ratio</li>
+  <li>check small icons or symbols if they convey meaning</li>
+</ul>
 
-  <h2 class="govuk-heading-m">Why this matters</h2>
-  <p class="govuk-body">
-    Many people with low vision or reading difficulties rely on text resizing. If your layout breaks, it becomes inaccessible.
-  </p>
+<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-  <h2 class="govuk-heading-m">Try this bonus check</h2>
-  <p class="govuk-body">
-    Change only the text size (not the page zoom). Does your layout still work?
-  </p>
+<h2 class="govuk-heading-m">Test the naughty or nice meter</h2>
+<p class="govuk-body">
+  Below is a simple version of Santa’s meter. One of the labels has poor contrast
+  against its background.
+</p>
+
+<div class="govuk-grid-row govuk-!-margin-top-2">
+
+  <div class="govuk-grid-column-one-third">
+    <div class="govuk-!-margin-bottom-2"
+         style="padding: 16px; background: #005a30; color: #ffffff;">
+      <p class="govuk-body govuk-!-margin-bottom-1">
+        North Pole - nice
+      </p>
+      <p class="govuk-body govuk-!-margin-bottom-0">
+        Contrast is good here.
+      </p>
+    </div>
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    {# ❌ Deliberate issue: poor contrast between text (#777) and background (#f2f2f2) #}
+    <div class="govuk-!-margin-bottom-2"
+         style="padding: 16px; background: #f2f2f2; color: #777777;">
+      <p class="govuk-body govuk-!-margin-bottom-1">
+        Midlands - borderline
+      </p>
+      <p class="govuk-body govuk-!-margin-bottom-0">
+        ❌ Text contrast here is too low.
+      </p>
+    </div>
+  </div>
+
+  <div class="govuk-grid-column-one-third">
+    <div class="govuk-!-margin-bottom-2"
+         style="padding: 16px; background: #b10e1e; color: #ffffff;">
+      <p class="govuk-body govuk-!-margin-bottom-1">
+        South Pole - naughty
+      </p>
+      <p class="govuk-body govuk-!-margin-bottom-0">
+        Contrast is good here.
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+<p class="govuk-body">
+  <strong>1.4.3 contrast (minimum)</strong> - text and images of text must have
+  enough contrast with their background.
+</p>
+
+<h2 class="govuk-heading-m">Why this matters</h2>
+<p class="govuk-body">
+  Low contrast text is hard to read for many people, especially in bright light
+  or on lower quality screens. It particularly affects users with low vision or
+  colour vision deficiency.
+</p>
+
+<h2 class="govuk-heading-m">Bonus challenge</h2>
+<p class="govuk-body">
+  Use a colour picker to sample the text and background colours from the “borderline”
+  panel. Put the values into a contrast checker - does it pass?
+</p>
 
 {% endblock %}
 
@@ -42,8 +98,16 @@
   <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
   <nav role="navigation" aria-labelledby="subsection-title">
     <ul class="govuk-list govuk-!-font-size-16">
-      <li><a class="govuk-link" href="https://www.w3.org/WAI/WCAG22/Understanding/resize-text">WCAG 2.2: Resize Text</a></li>
-      <li><a class="govuk-link" href="https://www.a11yproject.com/posts/understanding-zoom/">Understanding page zoom</a></li>
+      <li>
+        <a class="govuk-link" href="https://webaim.org/resources/contrastchecker/">
+          WebAIM: contrast checker
+        </a>
+      </li>
+      <li>
+        <a class="govuk-link" href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum">
+          WCAG 2.2: contrast (minimum) (1.4.3)
+        </a>
+      </li>
     </ul>
   </nav>
 </aside>

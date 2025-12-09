@@ -1,39 +1,76 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle= "Day 3: Check your page title" %}
-{% block calendar %}
+{% set pageTitle = "Day 3: Check that focus is always visible" %}
 
-  <p class="govuk-body">
-    Page titles help users understand where they are. They appear in browser tabs, bookmarks and search results, and are the first thing screen readers announce.
-  </p>
+{% block content %}
 
-  <h2 class="govuk-heading-m">What you’re checking today</h2>
-  <p class="govuk-body">
-    You’re checking whether your page has a clear, descriptive title that accurately reflects the content.
-  </p>
+<p class="govuk-body">
+  The elves have built a “present packing dashboard” to track gift wrapping progress.
+  It looks festive, but some of the buttons lose their outline when you tab to them.
+</p>
 
-  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
-  <ul class="govuk-list govuk-list--bullet">
-    <li>look at the text shown in the browser tab</li>
-    <li>right-click and select <strong>Inspect</strong> to find the <code>&lt;title&gt;</code> element in the <code>&lt;head&gt;</code></li>
-    <li>ensure the title is unique, descriptive and follows the pattern “Page name – Service name”</li>
-    <li>check that the title makes sense even when viewed out of context</li>
-  </ul>
+<h2 class="govuk-heading-m">Your mission today</h2>
+<p class="govuk-body">
+  Check that it is always clear which element currently has keyboard focus.
+</p>
 
-  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
-  <p class="govuk-body">
-    <strong>2.4.2 Page Titled</strong> - pages must have meaningful and descriptive titles.
-  </p>
+<h2 class="govuk-heading-m">Quick 5-minute check</h2>
+<ul class="govuk-list govuk-list--bullet">
+  <li>use <strong>Tab</strong> and <strong>Shift + Tab</strong> to move around the page</li>
+  <li>at each step, check you can clearly see where focus is</li>
+  <li>make sure focus is not hidden behind colour alone (shape, border or outline all help)</li>
+  <li>ensure focus is visible on links, buttons, form controls and custom components</li>
+</ul>
 
-  <h2 class="govuk-heading-m">Why this matters</h2>
-  <p class="govuk-body">
-    Informative titles help all users, especially those using screen readers or navigating many open tabs.
-  </p>
+<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-  <h2 class="govuk-heading-m">Try this bonus check</h2>
-  <p class="govuk-body">
-    Open your page in a private browser window. Does the title still make perfect sense?
-  </p>
+<h2 class="govuk-heading-m">Test the present packing dashboard</h2>
+<p class="govuk-body">
+  Below is a row of controls used by the elves. One of the buttons has a deliberate
+  accessibility issue: the focus outline has been removed for aesthetic reasons.
+</p>
+
+<div class="govuk-button-group">
+
+  <button class="govuk-button" type="button">
+    Mark as wrapped
+  </button>
+
+  <button class="govuk-button govuk-button--secondary" type="button">
+    Mark as delayed
+  </button>
+
+  {# ❌ Deliberate issue: inline style removes the focus outline #}
+  <button class="govuk-button govuk-button--secondary"
+          type="button"
+          style="outline: none !important; box-shadow: none !important;">
+    Mark as urgent
+  </button>
+
+</div>
+
+<p class="govuk-body govuk-!-margin-top-3">
+  Try tabbing through the buttons. Can you see focus on all three,
+  or does one disappear?
+</p>
+
+<h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+<p class="govuk-body">
+  <strong>2.4.7 focus visible</strong> - keyboard focus must always be visible.
+</p>
+
+<h2 class="govuk-heading-m">Why this matters</h2>
+<p class="govuk-body">
+  Users who navigate with the keyboard need a clear visual indicator of where they are.
+  If focus is not visible, it is easy to activate the wrong control or lose track
+  of progress on a page.
+</p>
+
+<h2 class="govuk-heading-m">Bonus challenge</h2>
+<p class="govuk-body">
+  Use your browser’s dev tools to temporarily remove the inline styles from the
+  “Mark as urgent” button. How does the focus indicator change?
+</p>
 
 {% endblock %}
 
@@ -42,8 +79,18 @@
   <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
   <nav role="navigation" aria-labelledby="subsection-title">
     <ul class="govuk-list govuk-!-font-size-16">
-      <li><a class="govuk-link" href="https://www.w3.org/WAI/WCAG22/Understanding/page-titled">WCAG 2.2: Page Titled</a></li>
-      <li><a class="govuk-link" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title">MDN: &lt;title&gt; element</a></li>
+      <li>
+        <a class="govuk-link"
+           href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible">
+          WCAG 2.2: focus visible (2.4.7)
+        </a>
+      </li>
+      <li>
+        <a class="govuk-link"
+           href="https://design-system.service.gov.uk/styles/focus-states/">
+          GOV.UK Design System: focus states
+        </a>
+      </li>
     </ul>
   </nav>
 </aside>

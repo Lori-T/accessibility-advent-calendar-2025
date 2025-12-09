@@ -1,40 +1,77 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle= "Day 5: Check your heading structure" %}
-{% block calendar %}
+{% set pageTitle = "Day 5: Check the page title makes sense" %}
 
-  <p class="govuk-body">
-    Headings act as signposts. They help users - including screen reader users - understand how your content is organised.
-  </p>
+{% block content %}
 
-  <h2 class="govuk-heading-m">What you’re checking today</h2>
-  <p class="govuk-body">
-    You’re checking whether your headings form a logical and meaningful outline.
-  </p>
+<p class="govuk-body">
+  Santa’s reindeer health team has put together a “status report” page, but they
+  forgot to update the page title from a default value.
+</p>
 
-  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
-  <ul class="govuk-list govuk-list--bullet">
-    <li>right-click and select <strong>Inspect</strong></li>
-    <li>search for <code>&lt;h1</code>, <code>&lt;h2</code>, and <code>&lt;h3</code> using Ctrl + F</li>
-    <li>ensure there is only one <code>&lt;h1&gt;</code> per page</li>
-    <li>make sure heading levels are not skipped (for example, <code>h1 → h3</code>)</li>
-    <li>check headings describe the content that follows</li>
-  </ul>
+<h2 class="govuk-heading-m">Your mission today</h2>
+<p class="govuk-body">
+  Check that each page has a clear, unique and descriptive title shown in the browser tab.
+</p>
 
-  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
-  <p class="govuk-body">
-    <strong>1.3.1 Info and Relationships</strong> - headings must be marked up correctly to convey structure.
-  </p>
+<h2 class="govuk-heading-m">Quick 5-minute check</h2>
+<ul class="govuk-list govuk-list--bullet">
+  <li>open your page in a browser</li>
+  <li>look at the title shown in the browser tab or window</li>
+  <li>check that the title describes the page’s purpose or main content</li>
+  <li>make sure different pages do not all use the same generic title</li>
+  <li>ensure that error pages or confirmation pages also use specific titles</li>
+</ul>
 
-  <h2 class="govuk-heading-m">Why this matters</h2>
-  <p class="govuk-body">
-    Good structure helps people navigate, skim content and understand relationships between sections.
-  </p>
+<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-  <h2 class="govuk-heading-m">Try this bonus check</h2>
-  <p class="govuk-body">
-    Use your screen reader’s “headings list” command. Does your content outline make sense?
-  </p>
+<h2 class="govuk-heading-m">Test the reindeer health report</h2>
+<p class="govuk-body">
+  Below is a “mock browser tab” showing the title that has been set on a page.
+  The title is deliberately too generic.
+</p>
+
+<div class="govuk-!-margin-top-3 govuk-!-margin-bottom-3"
+     style="border: 1px solid #b1b4b6; border-radius: 6px;">
+
+  <div style="background: #f3f2f1; padding: 8px 12px; border-bottom: 1px solid #b1b4b6;">
+    <span class="govuk-body-s govuk-!-margin-right-2">
+      {# ❌ Deliberate issue: generic page title #}
+      <strong>Page</strong>
+    </span>
+    <span class="govuk-body-s" style="color: #505a5f;">
+      - example browser tab
+    </span>
+  </div>
+
+  <div style="padding: 16px;">
+    <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
+      Reindeer health report
+    </h3>
+    <p class="govuk-body-s govuk-!-margin-bottom-0">
+      ❌ <strong>Accessibility issue:</strong> the page title in the tab just says “Page”.
+      It should describe this screen, for example “Reindeer health report - Santa HQ”.
+    </p>
+  </div>
+
+</div>
+
+<h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+<p class="govuk-body">
+  <strong>2.4.2 page titled</strong> - pages must have titles that describe topic or purpose.
+</p>
+
+<h2 class="govuk-heading-m">Why this matters</h2>
+<p class="govuk-body">
+  Many users navigate using browser tabs, history or screen reader shortcuts that list page
+  titles. Generic titles like “Home” or “Page” make it hard to find the right content.
+</p>
+
+<h2 class="govuk-heading-m">Bonus challenge</h2>
+<p class="govuk-body">
+  Open a few pages from your own service and list their titles. Can a user guess the content
+  of each page just from its title?
+</p>
 
 {% endblock %}
 
@@ -43,8 +80,18 @@
   <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
   <nav role="navigation" aria-labelledby="subsection-title">
     <ul class="govuk-list govuk-!-font-size-16">
-      <li><a class="govuk-link" href="https://www.w3.org/WAI/tutorials/page-structure/headings/">W3C: Using headings</a></li>
-      <li><a class="govuk-link" href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships">WCAG 2.2: Info and Relationships</a></li>
+      <li>
+        <a class="govuk-link"
+           href="https://www.w3.org/WAI/WCAG22/Understanding/page-titled">
+          WCAG 2.2: page titled (2.4.2)
+        </a>
+      </li>
+      <li>
+        <a class="govuk-link"
+           href="https://design-system.service.gov.uk/styles/page-template/">
+          GOV.UK Design System: page template
+        </a>
+      </li>
     </ul>
   </nav>
 </aside>

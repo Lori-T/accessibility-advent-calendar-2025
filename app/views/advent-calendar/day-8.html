@@ -1,40 +1,75 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle= "Day 8: Turn off CSS to check structure" %}
-{% block calendar %}
+{% set pageTitle = "Day 8: Check custom controls have an accessible name, role and value" %}
 
-  <p class="govuk-body">
-    Turning off CSS helps you see whether your HTML is well structured. If the page is still readable, you’re likely using semantic markup correctly.
-  </p>
+{% block content %}
 
-  <h2 class="govuk-heading-m">What you’re checking today</h2>
-  <p class="govuk-body">
-    You’re checking how your page reads without any styling, and whether content remains in a logical order.
-  </p>
+<p class="govuk-body">
+  The elves have designed a stylish “gift wrapping machine control panel” with custom
+  toggle switches. It looks good, but one of the toggles is not announced correctly
+  by assistive technologies.
+</p>
 
-  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
-  <ul class="govuk-list govuk-list--bullet">
-    <li>install a CSS toggle extension such as “Web Developer” (Firefox/Chrome)</li>
-    <li>use the “Disable styles” option to remove all CSS</li>
-    <li>check if content still appears in a sensible order</li>
-    <li>look for headings, lists, navigation and text that appear out of place</li>
-    <li>ensure important information is still present and readable</li>
-  </ul>
+<h2 class="govuk-heading-m">Your mission today</h2>
+<p class="govuk-body">
+  Check that custom components expose an accessible name, role and current value.
+</p>
 
-  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
-  <p class="govuk-body">
-    <strong>1.3.1 Info and Relationships</strong> - structure must be conveyed through semantics, not visual styling.
-  </p>
+<h2 class="govuk-heading-m">Quick 5-minute check</h2>
+<ul class="govuk-list govuk-list--bullet">
+  <li>identify any non-standard controls (custom toggles, sliders, accordions, tabs)</li>
+  <li>check that they can be focused and operated with the keyboard</li>
+  <li>use a screen reader to see how they are announced</li>
+  <li>ensure they expose a role (for example, button, switch, tab) and a meaningful label</li>
+</ul>
 
-  <h2 class="govuk-heading-m">Why this matters</h2>
-  <p class="govuk-body">
-    Good structure supports accessibility, SEO and compatibility with assistive technologies.
-  </p>
+<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-  <h2 class="govuk-heading-m">Try this bonus check</h2>
-  <p class="govuk-body">
-    With CSS disabled, try pressing <strong>Tab</strong>. Does the focus order still make sense?
-  </p>
+<h2 class="govuk-heading-m">Test the wrapping machine panel</h2>
+<p class="govuk-body">
+  Below is a simplified panel. One of the controls is built using only a
+  <code>&lt;div&gt;</code> without any role or label.
+</p>
+
+<div class="govuk-!-margin-top-2 govuk-!-margin-bottom-3 govuk-inset-text">
+
+  <button type="button" class="govuk-button govuk-button--secondary govuk-!-margin-right-2">
+    Auto-wrap mode
+  </button>
+
+  {# ❌ Deliberate issue: looks like a toggle but is just a div with no semantics #}
+  <div style="display: inline-block;
+              padding: 10px 16px;
+              border-radius: 20px;
+              background: #f3f2f1;
+              cursor: pointer;">
+    Festive ribbons on
+  </div>
+
+</div>
+
+<p class="govuk-body">
+  Try using a screen reader or keyboard-only navigation. Only the real button is announced
+  as an interactive control. The “Festive ribbons on” element is invisible to assistive tech.
+</p>
+
+<h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+<p class="govuk-body">
+  <strong>4.1.2 name, role, value</strong> - user interface components must expose
+  their role, name and current value to assistive technologies.
+</p>
+
+<h2 class="govuk-heading-m">Why this matters</h2>
+<p class="govuk-body">
+  Custom controls that are not coded accessibly might look clickable, but are impossible
+  to use for people relying on screen readers, switch devices or voice input.
+</p>
+
+<h2 class="govuk-heading-m">Bonus challenge</h2>
+<p class="govuk-body">
+  Inspect the “Festive ribbons on” element in dev tools. How could you improve it
+  (for example using a real <code>&lt;button&gt;</code> or adding role, aria-pressed and a label)?
+</p>
 
 {% endblock %}
 
@@ -43,8 +78,18 @@
   <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
   <nav role="navigation" aria-labelledby="subsection-title">
     <ul class="govuk-list govuk-!-font-size-16">
-      <li><a class="govuk-link" href="https://www.w3.org/WAI/tutorials/page-structure/">W3C: Page structure</a></li>
-      <li><a class="govuk-link" href="https://webaim.org/resources/structure/">WebAIM: Semantic structure</a></li>
+      <li>
+        <a class="govuk-link"
+           href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role">
+          MDN: button role and ARIA
+        </a>
+      </li>
+      <li>
+        <a class="govuk-link"
+           href="https://www.w3.org/WAI/WCAG22/Understanding/name-role-value">
+          WCAG 2.2: name, role, value (4.1.2)
+        </a>
+      </li>
     </ul>
   </nav>
 </aside>

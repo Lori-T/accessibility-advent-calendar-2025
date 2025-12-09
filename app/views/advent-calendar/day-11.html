@@ -1,50 +1,94 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle= "Day 11: Check your form labels" %}
-{% block calendar %}
+{% set pageTitle = "Day 11: Check reflow on small screens" %}
 
-  <p class="govuk-body">
-    Form fields rely on clear, connected labels. Without proper labels, screen readers cannot announce what a field is for, and some users will be unable to complete the form.
+{% block content %}
+
+<p class="govuk-body">
+  The toy factory dashboard looks great on a wide monitor, but the elves noticed that
+  on smaller screens it introduces a horizontal scrollbar and some content becomes hard to read.
+</p>
+
+<h2 class="govuk-heading-m">Your mission today</h2>
+<p class="govuk-body">
+  Check that content reflows without requiring horizontal scrolling on smaller viewports.
+</p>
+
+<h2 class="govuk-heading-m">Quick 5-minute check</h2>
+<ul class="govuk-list govuk-list--bullet">
+  <li>open a page and resize the browser window to a mobile width (around 320px)</li>
+  <li>check whether you need to scroll horizontally to read lines of text</li>
+  <li>look for tables or dashboards that are too wide to fit</li>
+  <li>make sure buttons and labels are not cut off at the edges</li>
+</ul>
+
+<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+
+<h2 class="govuk-heading-m">Test the toy factory dashboard</h2>
+<p class="govuk-body">
+  Below is a sample dashboard container. It uses a fixed width that can cause horizontal
+  scrolling on small screens.
+</p>
+
+<div style="border: 1px solid #b1b4b6;
+            padding: 12px;
+            width: 600px;   /* ❌ Deliberate issue: fixed wide width */
+            overflow-x: auto;">
+
+  <h3 class="govuk-heading-s">
+    Toy factory production overview
+  </h3>
+  <p class="govuk-body-s govuk-!-margin-bottom-1">
+    Today’s production: 12,450 toys - slightly above target.
   </p>
-
-  <h2 class="govuk-heading-m">What you're checking today</h2>
-  <p class="govuk-body">
-    You're checking that every form field has a properly associated label that describes its purpose.
+  <p class="govuk-body-s govuk-!-margin-bottom-0">
+    Watch out for bottlenecks in the painting line and packaging area.
   </p>
+</div>
 
-  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
-  <ul class="govuk-list govuk-list--bullet">
-    <li>right-click a form field and select <strong>Inspect</strong></li>
-    <li>look for a <code>&lt;label&gt;</code> element linked to the field using <code>for</code> and <code>id</code></li>
-    <li>confirm that each input has a unique <code>id</code></li>
-    <li>check that labels are visible and not replaced by placeholder text</li>
-    <li>for radios or checkboxes, look for a <strong>fieldset</strong> and <strong>legend</strong> describing the group</li>
-  </ul>
+<p class="govuk-body govuk-!-margin-top-2">
+  On a small screen or narrow window, this container will force horizontal scrolling.
+  Try narrowing your browser and see what happens.
+</p>
 
-  <h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
-  <p class="govuk-body">
-    <strong>4.1.2 Name, Role, Value</strong> - elements must have the correct labels, roles and properties.
-  </p>
+<h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+<p class="govuk-body">
+  <strong>1.4.10 reflow</strong> - content should reflow on small viewports without
+  requiring users to scroll in two directions.
+</p>
 
-  <h2 class="govuk-heading-m">Why this matters</h2>
-  <p class="govuk-body">
-    Some users cannot complete forms without properly linked labels. Labels also benefit speech recognition users and people with cognitive impairments.
-  </p>
+<h2 class="govuk-heading-m">Why this matters</h2>
+<p class="govuk-body">
+  Many people use services on mobile devices or small screens. Two-dimensional scrolling
+  makes reading and completing tasks much harder, especially for people with motor
+  or visual impairments.
+</p>
 
-  <h2 class="govuk-heading-m">Try this bonus check</h2>
-  <p class="govuk-body">
-    Click the label text. Does it place the cursor into the input? If not, the label is not connected properly.
-  </p>
+<h2 class="govuk-heading-m">Bonus challenge</h2>
+<p class="govuk-body">
+  Use your browser’s responsive design mode to test a real page on a 320px wide viewport.
+  Do any sections force you to scroll horizontally to read text?
+</p>
 
 {% endblock %}
 
 {% block sidebar %}
 <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
   <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
-  <nav aria-labelledby="subsection-title">
+  <nav role="navigation" aria-labelledby="subsection-title">
     <ul class="govuk-list govuk-!-font-size-16">
-      <li><a class="govuk-link" href="https://design-system.service.gov.uk/components/text-input/">GOV.UK Design System - Text input</a></li>
-      <li><a class="govuk-link" href="https://webaim.org/techniques/forms/controls">WebAIM - Form controls</a></li>
+      <li>
+        <a class="govuk-link"
+           href="https://www.w3.org/WAI/WCAG22/Understanding/reflow">
+          WCAG 2.2: reflow (1.4.10)
+        </a>
+      </li>
+      <li>
+        <a class="govuk-link"
+           href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design">
+          MDN: responsive design basics
+        </a>
+      </li>
     </ul>
   </nav>
 </aside>

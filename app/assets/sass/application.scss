@@ -170,20 +170,34 @@ html, body {
   }
 }
 
+
 /* -----------------------------------------------
-   CALENDAR GRID — responsive
+   CALENDAR GRID — 12 DAYS LAYOUT
 -------------------------------------------------- */
 .calendar {
   display: grid;
   gap: 40px;
   margin: 20px 0;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);  /* 4 per row for desktop */
 }
 
-@media (max-width: 1100px) { .calendar { grid-template-columns: repeat(4, 1fr); } }
-@media (max-width: 900px)  { .calendar { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 650px)  { .calendar { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 420px)  { .calendar { grid-template-columns: 1fr; } }
+@media (max-width: 1100px) {
+  .calendar {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .calendar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 420px) {
+  .calendar {
+    grid-template-columns: 1fr;
+  }
+}
 
 .calendar-day {
   display: flex;
@@ -265,9 +279,7 @@ body:not(.no-festive) .calendar-day:not(.calendar-day-disabled)::after {
    🧦 FESTIVE EFFECT — STOCKINGS ON SPECIAL DATES
 -------------------------------------------------- */
 body:not(.no-festive) .calendar-day:nth-child(5)::before,
-body:not(.no-festive) .calendar-day:nth-child(12)::before,
-body:not(.no-festive) .calendar-day:nth-child(19)::before,
-body:not(.no-festive) .calendar-day:nth-child(24)::before {
+body:not(.no-festive) .calendar-day:nth-child(12)::before {
   content: "🧦";
   position: absolute;
   top: 6px;
@@ -277,41 +289,67 @@ body:not(.no-festive) .calendar-day:nth-child(24)::before {
   pointer-events: none;
 }
 
-/* -----------------------------------------------
-   FOOTER
--------------------------------------------------- */
+
+
+/* ------------------------------------------------------
+   FOOTER (festive dark green)
+------------------------------------------------------ */
+
 .govuk-footer {
-  background: var(--midnight-blue) !important;
-  border-top: 4px solid var(--festive-red) !important;
-  color: #fff !important;
-  background-image: url("/public/images/snowy-footer.png");
-  background-repeat: repeat-x;
-  background-position: bottom center;
-  background-size: auto 90px;
-  padding-top: 2rem;
-  padding-bottom: 2rem !important;
+  background-color: #00703c !important; /* dark festive green */
+  color: #ffffff !important;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 4px solid #d4351c; /* red accent */
 }
 
+/* Footer text */
+.govuk-footer__text,
+.govuk-footer p,
+.govuk-footer li {
+  color: #ffffff !important;
+}
+
+/* Footer links: white default */
 .govuk-footer a {
-  color: var(--festive-gold) !important;
+  color: #ffffff !important;
+  text-decoration: underline;
 }
 
+/* Gold on hover */
 .govuk-footer a:hover {
-  color: #fff !important;
+  color: #ffbf47 !important;
 }
 
-.govuk-footer a:focus {
-  outline: none !important;
-  background: #fff !important;
-  color: #000 !important;
+/* Black on focus (with accessible GOV.UK yellow highlight) */
+.govuk-footer a:focus,
+.govuk-footer a:focus-visible {
+  color: #0b0c0c !important;                 /* GOV.UK text black */
+  background-color: #ffbf47 !important;      /* GOV.UK yellow */
+  outline: 3px solid transparent;
   box-shadow:
-    0 0 0 4px var(--focus-outline),
-    0 0 0 6px var(--focus-inner);
+    0 0 0 2px #0b0c0c,
+    0 0 0 4px #ffbf47;
 }
 
-.govuk-footer__meta {
-  text-align: center;
+/* ------------------------------------------------------
+   REMOVE GOV.UK CROWNS FROM FOOTER
+------------------------------------------------------ */
+
+/* Common footer crown containers */
+.govuk-footer__licence-logo,
+.govuk-footer__copyright-logo,
+.govuk-footer__logo {
+  display: none !important;
 }
+
+/* hide any crown SVGs/images in the footer */
+.govuk-footer svg[focusable="false"],
+.govuk-footer img[alt*="Crown"] {
+  display: none !important;
+}
+
+
 
 /* -----------------------------------------------
    CHRISTMAS LIGHTS
@@ -343,36 +381,3 @@ body.no-festive .govuk-header::after {
   display: none !important;
 }
 
-/* -----------------------------------------------
-   ✨ SPARKLE BORDER EFFECT (festive mode only)
--------------------------------------------------- */
-
-/* Sparkle pattern */
-@keyframes sparkleBorder {
-  0% {
-    border-image-source: radial-gradient(circle, rgba(255,255,255,0.6) 20%, transparent 70%);
-  }
-  100% {
-    border-image-source: radial-gradient(circle, rgba(255,255,255,0.9) 30%, transparent 70%);
-  }
-}
-
-/* Base sparkle border (invisible by default) */
-body:not(.no-festive) .calendar-day {
-  border: 3px solid transparent;
-  border-radius: 14px;
-  border-image-slice: 1;
-}
-
-/* ✨ Hover sparkle with gentle shimmer */
-body:not(.no-festive) .calendar-day:hover {
-  border-image-source: radial-gradient(circle, rgba(255,255,255,0.7) 30%, transparent 70%);
-  animation: sparkleBorder 2.5s ease-in-out infinite alternate;
-}
-
-/* ✨ Focus outline — static sparkle, no animation (WCAG safe) */
-body:not(.no-festive) .calendar-day:focus {
-  animation: none !important; /* Stop shimmer */
-  border-image-source: radial-gradient(circle, rgba(255,255,255,1) 40%, transparent 70%);
-  border-width: 4px;
-}

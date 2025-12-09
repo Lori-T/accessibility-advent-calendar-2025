@@ -2,9 +2,9 @@
 // Main stylesheet for the Accessibility Advent Calendar
 //
 
-// -----------------------------------------------
-// GLOBAL VARIABLES & BASE STYLES
-// -----------------------------------------------
+/* -----------------------------------------------
+   GLOBAL VARIABLES & BASE STYLES
+-------------------------------------------------- */
 :root {
   --festive-red: #b30000;
   --festive-green: #0b6b0b;
@@ -19,10 +19,9 @@ html, body {
   background: linear-gradient(to bottom, #ffffff 0%, #e3f0ff 100%);
 }
 
-
-// -----------------------------------------------
-// HEADER – Department for Elfish Affairs
-// -----------------------------------------------
+/* -----------------------------------------------
+   HEADER – Department for Elfish Affairs
+-------------------------------------------------- */
 .govuk-header {
   background-color: var(--festive-red) !important;
   border-bottom: 4px solid var(--festive-green) !important;
@@ -57,25 +56,34 @@ html, body {
   padding: 0 !important;
 }
 
-.govuk-header__container.govuk-width-container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+/* LOGO — subtle glow when focused */
+.santa-logo {
+  display: block;
+  max-height: 110px; /* smaller */
+  object-fit: contain;
+  filter:
+    drop-shadow(0 0 2px rgba(255,255,255,0.5))
+    drop-shadow(0 0 8px var(--festive-gold));
 }
 
-/* Header service name */
+.govuk-header__link--homepage:focus .santa-logo {
+  filter:
+    drop-shadow(0 0 6px var(--festive-gold))
+    drop-shadow(0 0 12px rgba(255,255,255,0.9));
+}
+
+/* Service name */
 .govuk-header__link.govuk-header__service-name {
   color: #ffffff !important;
   font-weight: 600 !important;
   text-decoration: none !important;
-
-  &:hover {
-    color: var(--festive-gold) !important;
-    text-shadow: 0 0 6px var(--festive-gold);
-  }
 }
 
-/* Focus style for service name */
+.govuk-header__link.govuk-header__service-name:hover {
+  color: var(--festive-gold) !important;
+  text-shadow: 0 0 6px var(--festive-gold);
+}
+
 .govuk-header__link.govuk-header__service-name:focus {
   color: #000 !important;
   background: #fff !important;
@@ -84,21 +92,9 @@ html, body {
     0 0 0 6px var(--focus-inner);
 }
 
-/* Logo glow */
-.santa-logo {
-  display: block;
-  max-height: 120px;
-  object-fit: contain;
-  filter:
-    drop-shadow(0 0 2px rgba(255,255,255,0.5))
-    drop-shadow(0 0 8px var(--festive-gold));
-}
-
-
-// -----------------------------------------------
-// FESTIVE TOGGLE SWITCH (RIGHT SIDE OF HEADER)
-// -----------------------------------------------
-/* Visual switch-style button */
+/* -----------------------------------------------
+   FESTIVE TOGGLE SWITCH
+-------------------------------------------------- */
 .festive-toggle-combo {
   display: inline-flex;
   align-items: center;
@@ -136,12 +132,10 @@ html, body {
   transition: transform 0.2s ease;
 }
 
-/* When aria-pressed is true, move the knob */
 .festive-toggle-combo[aria-pressed="true"] .switch-knob {
   transform: translateX(18px);
 }
 
-/* Focus style for the whole control */
 .festive-toggle-combo:focus {
   outline: none;
   box-shadow:
@@ -149,19 +143,7 @@ html, body {
     0 0 0 6px var(--focus-inner);
 }
 
-/* Remove any old floating behaviour by id, just in case */
-#festive-toggle {
-  position: static !important;
-  top: auto !important;
-  right: auto !important;
-  transform: none !important;
-  z-index: auto !important;
-}
-
-
-/* -----------------------------------------------
-   RESPONSIVE HEADER
--------------------------------------------------- */
+/* Responsive positioning */
 @media (max-width: 700px) {
   .header-with-toggle {
     flex-wrap: wrap;
@@ -188,30 +170,20 @@ html, body {
   }
 }
 
-
-// -----------------------------------------------
-// CALENDAR GRID — Fully responsive + improved spacing
-// -----------------------------------------------
+/* -----------------------------------------------
+   CALENDAR GRID — responsive
+-------------------------------------------------- */
 .calendar {
   display: grid;
   gap: 40px;
   margin: 20px 0;
-
   grid-template-columns: repeat(5, 1fr);
-
-  @media (max-width: 1100px) {
-    grid-template-columns: repeat(4, 1fr);
-  }
-  @media (max-width: 900px) {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  @media (max-width: 650px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @media (max-width: 420px) {
-    grid-template-columns: 1fr;
-  }
 }
+
+@media (max-width: 1100px) { .calendar { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 900px)  { .calendar { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 650px)  { .calendar { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 420px)  { .calendar { grid-template-columns: 1fr; } }
 
 .calendar-day {
   display: flex;
@@ -219,34 +191,22 @@ html, body {
   align-items: center;
   border-radius: 14px;
   padding: 26px 20px;
-  text-decoration: none;
   font-size: 1.25em;
-  color: #fff;
+  text-decoration: none;
   min-height: 90px;
   transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
   position: relative;
+  color: #fff !important; /* FORCE WHITE ALWAYS */
 }
 
-/* Subtle hover animation */
+/* visited links — stays white */
+.calendar-day:visited,
+.calendar-day:active,
 .calendar-day:hover {
-  transform: translateY(-4px) rotate(-1deg);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  color: #fff !important;
 }
 
-.calendar-day:focus {
-  outline: none !important;
-  transform: translateY(-2px);
-  box-shadow:
-    0 0 0 4px var(--focus-outline),
-    0 0 0 6px var(--focus-inner);
-}
-
-/* ACCESSIBLE VISITED STATE */
-.calendar-day:visited {
-  color: #ffffff !important; /* keep white for contrast on red/green */
-}
-
-/* alternating colours */
+/* Alternating colours */
 .calendar-day:nth-child(odd) {
   background-color: #00703c;
   border: 2px solid #00703c;
@@ -257,28 +217,38 @@ html, body {
   border: 2px solid #d4351c;
 }
 
-/* Disabled days */
-.calendar-day-disabled {
-  margin-bottom: 0;
-  color: #555 !important;
+/* Hover effect */
+.calendar-day:hover {
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-.calendar-day-disabled:nth-child(odd) {
-  color: #005a30 !important;
-  background-color: #cce2d8 !important;
-  border-color: #005a30 !important;
-}
-
-.calendar-day-disabled:nth-child(even) {
-  color: #2a0b06 !important;
-  background-color: #f4cdc6 !important;
-  border-color: #2a0b06 !important;
+/* Focus */
+.calendar-day:focus {
+  outline: none !important;
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 4px var(--focus-outline),
+    0 0 0 6px var(--focus-inner);
 }
 
 
-// -----------------------------------------------
-// FOOTER
-// -----------------------------------------------
+/* Disabled days */ .calendar-day-disabled { 
+  margin-bottom: 0; color: #555 !important;
+ } 
+ .calendar-day-disabled:nth-child(odd) { 
+  color: #005a30 !important; 
+    background-color: #cce2d8 !important; 
+    border-color: #005a30 !important; } 
+    
+    .calendar-day-disabled:nth-child(even) { 
+      color: #2a0b06 !important; 
+      background-color: #f4cdc6 !important; 
+      border-color: #2a0b06 !important; }
+
+/* -----------------------------------------------
+   FOOTER
+-------------------------------------------------- */
 .govuk-footer {
   background: var(--midnight-blue) !important;
   border-top: 4px solid var(--festive-red) !important;
@@ -293,26 +263,19 @@ html, body {
 
 .govuk-footer a {
   color: var(--festive-gold) !important;
-
-  &:hover {
-    color: #fff !important;
-  }
-
-  &:focus {
-    outline: none !important;
-    background: #fff !important;
-    color: #000 !important;
-    box-shadow:
-      0 0 0 4px var(--focus-outline),
-      0 0 0 6px var(--focus-inner);
-  }
 }
 
-.govuk-footer__licence-logo,
-.govuk-footer__copyright-logo,
-.govuk-footer__crown,
-.govuk-footer__logo {
-  display: none !important;
+.govuk-footer a:hover {
+  color: #fff !important;
+}
+
+.govuk-footer a:focus {
+  outline: none !important;
+  background: #fff !important;
+  color: #000 !important;
+  box-shadow:
+    0 0 0 4px var(--focus-outline),
+    0 0 0 6px var(--focus-inner);
 }
 
 .govuk-footer__meta {
@@ -320,67 +283,20 @@ html, body {
 }
 
 
-// -----------------------------------------------
-// SNOW IN CONTENT ONLY
-// -----------------------------------------------
-.snow-container {
-  position: relative;
-  z-index: 1;
-}
-
-.snow-container::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("/public/images/snowflake.png");
-  background-repeat: repeat;
-  background-size: 200px;
-  opacity: 0.15;
-  animation: snowfall 40s linear infinite;
-  pointer-events: none;
-  z-index: -1;
-}
-
-body.no-festive .snow-container::before {
-  display: none !important;
-}
-
-@keyframes snowfall {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 1000px; }
-}
-
-
-// -----------------------------------------------
-// CHRISTMAS LIGHTS
-// -----------------------------------------------
+/* -----------------------------------------------
+   CHRISTMAS LIGHTS
+-------------------------------------------------- */
 .govuk-header::after {
   content: "";
   display: block;
   width: 100%;
-  height: 22px;
+  height: 28px;
 
   background-image:
+    radial-gradient(circle at 15px 11px, var(--festive-red) 5px, rgba(179,0,0,0.45) 11px, transparent 13px),
+    radial-gradient(circle at 55px 11px, var(--festive-green) 5px, rgba(11,107,11,0.45) 11px, transparent 13px),
+    radial-gradient(circle at 95px 11px, var(--festive-gold) 5px, rgba(245,197,66,0.45) 11px, transparent 13px);
 
-    /* RED bulb */
-    radial-gradient(circle at 15px 11px,
-      var(--festive-red) 5px,
-      rgba(179, 0, 0, 0.45) 11px,
-      transparent 13px),
-
-    /* GREEN bulb */
-    radial-gradient(circle at 55px 11px,
-      var(--festive-green) 5px,
-      rgba(11, 107, 11, 0.45) 11px,
-      transparent 13px),
-
-    /* GOLD bulb */
-    radial-gradient(circle at 95px 11px,
-      var(--festive-gold) 5px,
-      rgba(245, 197, 66, 0.45) 11px,
-      transparent 13px);
-
-  /* One full pattern = 120px */
   background-size: 120px 22px;
   background-repeat: repeat-x;
 
@@ -389,36 +305,10 @@ body.no-festive .snow-container::before {
 }
 
 @keyframes twinkleGlow {
-  0% {
-    filter: brightness(0.85) drop-shadow(0 0 3px rgba(255,255,255,0.45));
-  }
-  100% {
-    filter: brightness(1.4) drop-shadow(0 0 6px rgba(255,255,255,0.9));
-  }
-}
-
-/* ✨ Glow flicker animation */
-@keyframes twinkleGlow {
-  0% {
-    filter: brightness(0.9) drop-shadow(0 0 3px rgba(255,255,255,0.6));
-  }
-  100% {
-    filter: brightness(1.4) drop-shadow(0 0 6px rgba(255,255,255,0.9));
-  }
+  0% { filter: brightness(0.9) drop-shadow(0 0 3px rgba(255,255,255,0.6)); }
+  100% { filter: brightness(1.4) drop-shadow(0 0 6px rgba(255,255,255,0.9)); }
 }
 
 body.no-festive .govuk-header::after {
   display: none !important;
-}
-
-.festive-toggle-combo {
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
-@media (max-width: 700px) {
-  .festive-toggle-combo {
-    margin-top: 12px;
-    margin-bottom: 16px;
-  }
 }

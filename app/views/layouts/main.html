@@ -4,7 +4,7 @@
 {% block beforeContent %}
   {{ govukPhaseBanner({
     tag: { text: "Training" },
-    html: 'This is not a real service – this is for training purposes only. You can give your feedback on this resource by <a class="govuk-link" href="mailto:lorithomson@hotmail.co.uk">email</a> or <a href="https://www.surveymonkey.com/r/8JZX5KD" class="govuk-link" target="_blank" rel="noopener noreferrer">survey</a>.'
+    html: 'This is not a real service – this is for training purposes only. You can give your feedback on this resource by <a class="govuk-link" href="mailto:lorithomson@hotmail.co.uk">email</a> or <a href="https://www.surveymonkey.com/r/8JZX5KD" class="govuk-link" target="_blank" rel="noopener noreferrer">survey (opens in a new tab)</a>.'
   }) }}
 {% endblock %}
 
@@ -104,9 +104,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 {% block content %}
   <div class="govuk-width-container">
+
+    {% block beforeDayContent %}{% endblock %}
+
     {{ super() }}
+
+    {% block dayNavigation %}{% endblock %}
+
   </div>
 {% endblock %}
+
 
 {% block footer %}
   {{ govukFooter({

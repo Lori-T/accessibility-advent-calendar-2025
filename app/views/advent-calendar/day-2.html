@@ -1,101 +1,120 @@
-{% extends "/layouts/main.html" %} 
+{% extends "/layouts/main.html" %}
 
-{% set pageTitle = "Day 2: Navigate your page using only the keyboard" %}
+{% set pageTitle = "Day 2: Check colour contrast on the Elves’ Control Panel" %}
+{% set currentDayNumber = 2 %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+      text: "Back to calendar",
+      href: "/"
+  }) }}
+{% endblock %}
 
 {% block content %}
 
+<h1 class="govuk-heading-l">Day 2: Check colour contrast on the Elves’ Control Panel</h1>
+
 <p class="govuk-body">
-  Santa HQ has released early tracking data, and you are one of the testers.
-  Before it is approved for Christmas Eve, your job is to check whether the page works
-  for people who rely on a keyboard instead of a mouse or trackpad.
+  Overnight, the <strong>Department of Elfish Affairs</strong> received a ticket from 
+  Santa’s workshop reporting that parts of the <strong>Elves’ Control Panel</strong>
+  are hard to read. Some elves say the text blends into the background, especially
+  during early-morning shifts when lighting is low.
+</p>
+
+<p class="govuk-body">
+  Today, your task is to review a section of the Control Panel and check whether it meets
+  minimum colour contrast requirements.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
 <p class="govuk-body">
-  Check that every interactive element – links, buttons, menus and panels – can be reached
-  and operated using only the keyboard.
+  Check whether text and interactive elements have enough colour contrast to be readable.
 </p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li>click near the top of the page to set a starting point</li>
-  <li>press <strong>Tab</strong> to move forwards through interactive elements</li>
-  <li>press <strong>Shift + Tab</strong> to move backwards</li>
-  <li>make sure nothing is skipped or unreachable</li>
-  <li>check that all controls can be activated using <strong>Enter</strong> or <strong>Space</strong></li>
-  <li>check you never get “stuck” inside a component or panel</li>
+  <li>
+    body text must have a contrast ratio of at least <strong>4.5:1</strong>
+  </li>
+  <li>
+    large text (18px+ or 14px bold) must be at least <strong>3:1</strong>
+  </li>
+  <li>
+    text in buttons, links or controls must also meet these ratios
+  </li>
+  <li>
+    placeholder text often fails contrast - check it carefully
+  </li>
+  <li>
+    avoid testing contrast by eye alone - use a contrast checker tool
+  </li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-<h2 class="govuk-heading-m">Test the Santa tracker info panel</h2>
+<h2 class="govuk-heading-m">Test the Elves’ Control Panel</h2>
 <p class="govuk-body">
-  Below is a simplified “info panel” that the elves are developing.
-  It contains a deliberate accessibility issue: once you open it,
-  you cannot close it using the keyboard.
+  The panel below contains one deliberate contrast failure.
 </p>
 
-<a href="#santa-panel" class="govuk-link govuk-!-margin-bottom-2">
-  Open Santa tracker info panel
-</a>
+<div class="govuk-!-padding-4" style="background: #f1f1f1; border-radius: 8px;">
+  <h3 class="govuk-heading-s">Workshop status</h3>
 
-<div id="santa-panel"
-     class="govuk-inset-text govuk-!-margin-top-3"
-     style="padding: 20px; border-left: 5px solid #d4351c;">
-  <p class="govuk-body">
-    🎅 Santa's sleigh reached 14,500 mph during last night's test flight.
-  </p>
-  <p class="govuk-body">
-    ❌ <strong>Accessibility issue:</strong> this panel cannot be closed using the keyboard.
-    You can only close it with a mouse.
+  <p style="color: #9b9b9b;">
+    ❌ This text is too light and does not meet the minimum 4.5:1 ratio.
   </p>
 
-  {# Deliberate issue: close “button” is a span, not focusable, not operable with keyboard #}
-  <span style="display: inline-block; margin-top: 10px; color: #b30000; cursor: pointer;">
-    Close panel ✖
-  </span>
+  <p style="color: #333;">
+    ✔ This text passes colour contrast requirements.
+  </p>
+
+  <button class="govuk-button" style="background:#c00; color:#fff;">
+    Normal button (passes)
+  </button>
+
+  <button class="govuk-button" style="background:#f5c5c5; color:#c00;">
+    ❌ Low-contrast button (fails)
+  </button>
 </div>
 
-<h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+<h2 class="govuk-heading-m">What this checks for</h2>
 <p class="govuk-body">
-  <strong>2.1.1 keyboard</strong> – everything must be operable using the keyboard.<br>
-  <strong>2.1.2 no keyboard trap</strong> – users must be able to move focus into
-  and out of components.
+  <strong>1.4.3 contrast (minimum)</strong> - text must be easy to read against its background.
 </p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  Many people rely entirely on the keyboard. If controls cannot be reached or activated,
-  the service becomes unusable. Broken keyboard support also affects people using
-  assistive technologies like switch devices or voice recognition.
+  Poor contrast makes content hard or impossible to read for people with 
+  low vision, colour vision deficiencies or when using screens in bright or low light.
 </p>
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
-  After opening the panel, try to continue tabbing through the rest of the page.
-  Does focus behave as you expect, or does it jump or disappear?
+  Use a contrast checker to test the failing examples.  
+  Try adjusting colours until all text and buttons pass.
 </p>
 
+{{ super() }}
 {% endblock %}
 
-{% block sidebar %}
-<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
-  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
-  <nav role="navigation" aria-labelledby="subsection-title">
-    <ul class="govuk-list govuk-!-font-size-16">
-      <li>
-        <a class="govuk-link"
-           href="https://webaim.org/techniques/keyboard/">
-          WebAIM: keyboard accessibility
-        </a>
-      </li>
-      <li>
-        <a class="govuk-link"
-           href="https://www.w3.org/WAI/WCAG22/Understanding/no-keyboard-trap">
-          WCAG 2.2: no keyboard trap (2.1.2)
-        </a>
-      </li>
-    </ul>
+{% block dayNavigation %}
+<div class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+  <nav class="govuk-body" aria-label="Day navigation">
+
+    {% if currentDayNumber > 1 %}
+      <a class="govuk-link govuk-!-margin-right-4"
+         href="/advent-calendar/day-{{ currentDayNumber - 1 }}">
+        ← Previous day
+      </a>
+    {% endif %}
+
+    {% if currentDayNumber < 12 %}
+      <a class="govuk-link"
+         href="/advent-calendar/day-{{ currentDayNumber + 1 }}">
+        Next day →
+      </a>
+    {% endif %}
+
   </nav>
-</aside>
+</div>
 {% endblock %}

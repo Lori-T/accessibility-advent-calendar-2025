@@ -1,96 +1,165 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle = "Day 9: Check forms have proper labels" %}
+{% set pageTitle = "Day 9: Check reflow on the Elf Equipment Dashboard" %}
+{% set currentDayNumber = 9 %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back to calendar", href: "/" }) }}
+{% endblock %}
 
 {% block content %}
 
+<h1 class="govuk-heading-l">Day 9: Check reflow on the Elf Equipment Dashboard</h1>
+
 <p class="govuk-body">
-  New elves have to register for their shifts using an online form. The form was put together
-  quickly using placeholder text instead of proper labels.
+  The <strong>Elf Equipment Dashboard</strong> shows the status of tools and machinery
+  used across Santa HQ. When elves zoom in to make text easier to read, some dashboard
+  panels refuse to resize - forcing sideways scrolling.
+</p>
+
+<p class="govuk-body">
+  Today you'll check whether these cards reflow properly when zoomed, and whether the
+  layout adapts without hiding content.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
 <p class="govuk-body">
-  Check that every input, select and textarea has an explicit, associated label.
+  Make sure content is usable at <strong>between 200% and 400% zoom</strong> without
+  horizontal scrolling.
 </p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li>pick a form page in your service</li>
-  <li>check that each field has a visible label</li>
-  <li>inspect the HTML - labels should be linked to inputs using <code>for</code> and <code>id</code></li>
-  <li>make sure placeholder text is not being used as the only label</li>
+  <li>zoom the page to between 200% and 400%</li>
+  <li>content should reflow into a single column</li>
+  <li>there should be no horizontal scrolling</li>
+  <li>avoid fixed widths that stop elements resizing</li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-<h2 class="govuk-heading-m">Test the elf registration form</h2>
+<h2 class="govuk-heading-m">Test the dashboard</h2>
 <p class="govuk-body">
-  Below is a simplified version of the form. One of the fields relies only on a placeholder
-  and has no proper label.
+  One of the equipment cards below has a deliberate reflow issue.  
+  When zoomed, it will not resize with the rest of the content.
 </p>
 
-<form class="govuk-!-margin-top-2">
+<div class="govuk-!-margin-top-4">
 
-  <div class="govuk-form-group">
-    <label class="govuk-label" for="elf-name">
-      Elf name
-    </label>
-    <input class="govuk-input" id="elf-name" name="elf-name" type="text">
+  {# ----------------------------------------------------------
+     GOOD CARD 1 — reflows properly
+     ---------------------------------------------------------- #}
+  <div class="govuk-!-margin-bottom-4"
+       style="
+         border: 1px solid #b1b4b6;
+         border-radius: 4px;
+         padding: 16px;
+         background: #f3f2f1;
+
+         display: flex;
+         flex-direction: column;     /* Stacks neatly when narrow */
+         gap: 8px;
+
+         width: 700px;
+         max-width: 100%;           /* Shrinks properly at zoom */
+       ">
+    <div style="width: 100%; min-width: 0;">
+      <strong>✔ Wrapping machine</strong><br>
+      This card reflows correctly.
+    </div>
+    <span class="govuk-tag govuk-tag--green"
+          style="align-self: flex-start;">
+      Online
+    </span>
   </div>
 
-  {# ❌ Deliberate issue: no label, only placeholder #}
-  <div class="govuk-form-group">
-    <input class="govuk-input"
-           name="elf-code"
-           type="text"
-           placeholder="Elf ID code (for example E-123)">
+  {# ----------------------------------------------------------
+     FAILING CARD — fixed width, will NOT reflow
+     ---------------------------------------------------------- #}
+  <div class="govuk-!-margin-bottom-4"
+       style="
+         border: 2px solid #d4351c;
+         border-radius: 4px;
+         padding: 16px;
+         background: #fff0f0;
+
+         display: flex;
+         flex-wrap: nowrap;          /* Prevents breaking */
+         justify-content: space-between;
+         align-items: flex-start;
+         gap: 16px;
+
+         width: 700px;               /* Fixed width */
+         max-width: none;            /* Will not shrink */
+         white-space: nowrap;        /* Forces horizontal scroll */
+       ">
+    <div>
+      <strong>❌ Ribbon cutter</strong><br>
+      This card has a fixed width and will not reflow between 200% and 400% zoom.
+    </div>
+    <span class="govuk-tag govuk-tag--red">
+      Offline
+    </span>
   </div>
 
-</form>
+  {# ----------------------------------------------------------
+     GOOD CARD 2 — reflows properly
+     ---------------------------------------------------------- #}
+  <div class="govuk-!-margin-bottom-4"
+       style="
+         border: 1px solid #b1b4b6;
+         border-radius: 4px;
+         padding: 16px;
+         background: #f3f2f1;
 
-<p class="govuk-body">
-  Try navigating this form with a screen reader. “Elf ID code” will not be announced as a label,
-  making the field harder to understand.
-</p>
+         display: flex;
+         flex-direction: column;     /* Stacks neatly when narrow */
+         gap: 8px;
 
-<h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+         width: 700px;
+         max-width: 100%;
+       ">
+    <div style="width: 100%; min-width: 0;">
+      <strong>✔ Sleigh polish station</strong><br>
+      This card reflows correctly.
+    </div>
+    <span class="govuk-tag govuk-tag--blue"
+          style="align-self: flex-start;">
+      Maintenance
+    </span>
+  </div>
+
+</div>
+
+
+<h2 class="govuk-heading-m">What this checks for</h2>
 <p class="govuk-body">
-  <strong>1.3.1 info and relationships</strong> and <strong>3.3.2 labels or instructions</strong> -
-  form controls must be properly labelled and instructions must be clear.
+  <strong>1.4.10 reflow</strong> - content must work without horizontal scrolling,
+  even at narrow widths or high zoom levels.
 </p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  Without labels, form fields can be confusing or unusable, especially for screen reader users,
-  people with cognitive impairments or people using autofill tools.
+  Many people zoom pages to make text readable.  
+  If layouts do not reflow, users can lose content off-screen or be forced to scroll
+  sideways — making tasks much harder.
 </p>
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
-  Inspect a real form in your service. Can you find any fields that only use placeholder text
-  instead of labels?
+  Try narrowing your browser window or viewing this page on a mobile device.  
+  Which card forces horizontal scrolling when space becomes tight?
 </p>
+
+{{ super() }}
 
 {% endblock %}
 
-{% block sidebar %}
-<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
-  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
-  <nav role="navigation" aria-labelledby="subsection-title">
-    <ul class="govuk-list govuk-!-font-size-16">
-      <li>
-        <a class="govuk-link" href="https://design-system.service.gov.uk/components/text-input/">
-          GOV.UK Design System: text input
-        </a>
-      </li>
-      <li>
-        <a class="govuk-link"
-           href="https://www.w3.org/WAI/WCAG22/Understanding/labels-or-instructions">
-          WCAG 2.2: labels or instructions (3.3.2)
-        </a>
-      </li>
-    </ul>
+{% block dayNavigation %}
+<div class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+  <nav class="govuk-body" aria-label="Day navigation">
+    <a class="govuk-link govuk-!-margin-right-4" href="/advent-calendar/day-8">← Previous day</a>
+    <a class="govuk-link" href="/advent-calendar/day-10">Next day →</a>
   </nav>
-</aside>
+</div>
 {% endblock %}

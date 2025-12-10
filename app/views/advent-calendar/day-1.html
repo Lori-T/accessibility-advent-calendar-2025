@@ -12,11 +12,19 @@
 
 {% block content %}
 
+<h1 class="govuk-heading-l">Day 1: Spot missing alt text on Santa’s photo feed</h1>
+
 <p class="govuk-body">
-  The elves at Santa HQ have launched a new “North Pole photo feed” that shows
-  images captured during test flights. Before it goes live, they need your help
-  checking whether the images are accessible to everyone — including people who
-  rely on screen readers.
+  As part of your induction into the <strong>Department of Elfish Affairs</strong> (DEA),
+  you've been assigned to Santa HQ to help with this year's festive accessibility review.
+  With Christmas Eve fast approaching, the DEA must make sure every digital system
+  the elves rely on is accessible to all users.
+</p>
+
+<p class="govuk-body">
+  Today, you're assessing the new <strong>North Pole photo feed</strong>,
+  which shows images captured during Santa’s test flights. The elves need your help
+  checking whether these images are accessible - especially for people who use screen readers.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
@@ -37,7 +45,8 @@
 
 <h2 class="govuk-heading-m">Test Santa’s photo feed</h2>
 <p class="govuk-body">
-  Below is a simplified version of the North Pole photo feed. One image has a deliberate accessibility issue.
+  Below is a simplified version of the North Pole photo feed.
+  One image has a deliberate accessibility issue.
 </p>
 
 <div class="govuk-grid-row govuk-!-margin-top-2">
@@ -72,7 +81,7 @@
 
 </div>
 
-<h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+<h2 class="govuk-heading-m">What this checks for</h2>
 <p class="govuk-body">
   <strong>1.1.1 non-text content</strong> – meaningful images must have accessible alternatives.
 </p>
@@ -84,40 +93,31 @@
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
-  Open your browser’s accessibility tree or use a screen reader.  
+  Open your browser’s accessibility tree or use a screen reader.
   Which images are announced clearly, and which cause confusion?
 </p>
 
 {{ super() }}
-
 {% endblock %}
 
 {% block dayNavigation %}
-<div class="govuk-!-margin-top-6">
+<div class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
   <nav class="govuk-body" aria-label="Day navigation">
-    <a class="govuk-link" href="/advent-calendar/day-2">
-      Next day →
-    </a>
+
+    {% if currentDayNumber > 1 %}
+      <a class="govuk-link govuk-!-margin-right-4"
+         href="/advent-calendar/day-{{ currentDayNumber - 1 }}">
+        ← Previous day
+      </a>
+    {% endif %}
+
+    {% if currentDayNumber < 12 %}
+      <a class="govuk-link"
+         href="/advent-calendar/day-{{ currentDayNumber + 1 }}">
+        Next day →
+      </a>
+    {% endif %}
+
   </nav>
 </div>
-{% endblock %}
-
-{% block sidebar %}
-<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
-  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
-  <nav role="navigation" aria-labelledby="subsection-title">
-    <ul class="govuk-list govuk-!-font-size-16">
-      <li>
-        <a class="govuk-link" href="https://webaim.org/techniques/alttext/">
-          WebAIM: alternative text
-        </a>
-      </li>
-      <li>
-        <a class="govuk-link" href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-content">
-          WCAG 2.2: non-text content (1.1.1)
-        </a>
-      </li>
-    </ul>
-  </nav>
-</aside>
 {% endblock %}

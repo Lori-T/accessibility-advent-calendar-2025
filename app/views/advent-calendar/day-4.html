@@ -1,114 +1,100 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle = "Day 4: Check colour contrast on the naughty or nice meter" %}
+{% set pageTitle = "Day 4: Check link purpose on the Naughty & Nice List Viewer" %}
+{% set currentDayNumber = 4 %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+      text: "Back to calendar",
+      href: "/"
+  }) }}
+{% endblock %}
 
 {% block content %}
 
+<h1 class="govuk-heading-l">Day 4: Check link purpose on the Naughty & Nice List Viewer</h1>
+
 <p class="govuk-body">
-  Santa’s “naughty or nice meter” shows how well different regions are doing.
-  It looks fun and colourful, but some of the labels are hard to read.
+  The <strong>Department of Elfish Affairs</strong> has been reviewing the 
+  <strong>Naughty & Nice List Viewer</strong>, a key tool used by Santa’s analysts.  
+  Unfortunately, several links simply say <q>Click here</q> or <q>More</q> - which does not
+  tell users what the link actually does.
+</p>
+
+<p class="govuk-body">
+  Today, your task is to check whether each link has a clear purpose from its text alone 
+  or from the surrounding context.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
 <p class="govuk-body">
-  Check that text and essential icons have enough contrast against their background.
+  Identify links that do not explain their purpose.
 </p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li>pick a page with coloured panels, tags or charts</li>
-  <li>identify text that sits on coloured backgrounds</li>
-  <li>use a colour contrast checker to test text against its background</li>
-  <li>make sure normal text meets at least a 4.5:1 contrast ratio</li>
-  <li>check small icons or symbols if they convey meaning</li>
+  <li>link text must describe the destination or action</li>
+  <li>avoid vague labels like <q>here</q>, <q>more</q>, <q>details</q></li>
+  <li>screen reader users often browse links out of context</li>
+  <li>use descriptive text or <code>aria-label</code> when necessary</li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-<h2 class="govuk-heading-m">Test the naughty or nice meter</h2>
+<h2 class="govuk-heading-m">Test the Naughty & Nice List Viewer</h2>
 <p class="govuk-body">
-  Below is a simple version of Santa’s meter. One of the labels has poor contrast
-  against its background.
+  One link below contains a deliberate accessibility issue.
 </p>
 
-<div class="govuk-grid-row govuk-!-margin-top-2">
+<div class="govuk-!-padding-4 govuk-!-margin-bottom-4" style="background:#f7f7f7; border-radius:8px;">
+  <p>
+    Review <a href="#">Eve Snowball’s behaviour record</a> ✔
+  </p>
 
-  <div class="govuk-grid-column-one-third">
-    <div class="govuk-!-margin-bottom-2"
-         style="padding: 16px; background: #005a30; color: #ffffff;">
-      <p class="govuk-body govuk-!-margin-bottom-1">
-        North Pole - nice
-      </p>
-      <p class="govuk-body govuk-!-margin-bottom-0">
-        Contrast is good here.
-      </p>
-    </div>
-  </div>
-
-  <div class="govuk-grid-column-one-third">
-    {# ❌ Deliberate issue: poor contrast between text (#777) and background (#f2f2f2) #}
-    <div class="govuk-!-margin-bottom-2"
-         style="padding: 16px; background: #f2f2f2; color: #777777;">
-      <p class="govuk-body govuk-!-margin-bottom-1">
-        Midlands - borderline
-      </p>
-      <p class="govuk-body govuk-!-margin-bottom-0">
-        ❌ Text contrast here is too low.
-      </p>
-    </div>
-  </div>
-
-  <div class="govuk-grid-column-one-third">
-    <div class="govuk-!-margin-bottom-2"
-         style="padding: 16px; background: #b10e1e; color: #ffffff;">
-      <p class="govuk-body govuk-!-margin-bottom-1">
-        South Pole - naughty
-      </p>
-      <p class="govuk-body govuk-!-margin-bottom-0">
-        Contrast is good here.
-      </p>
-    </div>
-  </div>
-
+  <p>
+    <a href="#">Click here</a> to see more details ❌  
+    (purpose unclear)
+  </p>
 </div>
 
-<h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+<h2 class="govuk-heading-m">What this checks for</h2>
 <p class="govuk-body">
-  <strong>1.4.3 contrast (minimum)</strong> - text and images of text must have
-  enough contrast with their background.
+  <strong>2.4.4 link purpose (in context)</strong> - users must understand what a link does.
 </p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  Low contrast text is hard to read for many people, especially in bright light
-  or on lower quality screens. It particularly affects users with low vision or
-  colour vision deficiency.
+  Vague link text creates barriers for screen reader users who browse links in a list 
+  without surrounding context.
 </p>
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
-  Use a colour picker to sample the text and background colours from the “borderline”
-  panel. Put the values into a contrast checker - does it pass?
+  Use your screen reader’s shortcut to list all links.  
+  Can you identify the unhelpful one without seeing the page?
 </p>
 
+{{ super() }}
 {% endblock %}
 
-{% block sidebar %}
-<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
-  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
-  <nav role="navigation" aria-labelledby="subsection-title">
-    <ul class="govuk-list govuk-!-font-size-16">
-      <li>
-        <a class="govuk-link" href="https://webaim.org/resources/contrastchecker/">
-          WebAIM: contrast checker
-        </a>
-      </li>
-      <li>
-        <a class="govuk-link" href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum">
-          WCAG 2.2: contrast (minimum) (1.4.3)
-        </a>
-      </li>
-    </ul>
+{% block dayNavigation %}
+<div class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+  <nav class="govuk-body" aria-label="Day navigation">
+
+    {% if currentDayNumber > 1 %}
+      <a class="govuk-link govuk-!-margin-right-4"
+         href="/advent-calendar/day-{{ currentDayNumber - 1 }}">
+        ← Previous day
+      </a>
+    {% endif %}
+
+    {% if currentDayNumber < 12 %}
+      <a class="govuk-link"
+         href="/advent-calendar/day-{{ currentDayNumber + 1 }}">
+        Next day →
+      </a>
+    {% endif %}
+
   </nav>
-</aside>
+</div>
 {% endblock %}

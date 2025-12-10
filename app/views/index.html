@@ -6,12 +6,33 @@
 
 {% block content %}
 
+<h1 class="govuk-heading-xl">12 days of digital accessibility tips</h1>
+
 <p class="govuk-body">
-  Open a door each day to reveal a new accessibility tip you can complete in under five minutes.
-  {% if (currentDay and currentYear == "2025" and currentDay <= 12) %}
-    Today is <strong>Day {{ currentDay }}</strong>.
-  {% endif %}
+  Welcome to the annual festive review led by the 
+  <strong>Department of Elfish Affairs</strong> (DEA). In the run-up to Christmas,
+  the DEA carries out a series of quick accessibility checks across the systems
+  used by Santa HQ - from the Workshop Log to the Reindeer Health Monitor.
 </p>
+
+<p class="govuk-body">
+  This year, you’ve been recruited as an <strong>Elf-cessability Specialist</strong>.  
+  Each day, you'll open a new door to uncover a short, practical task that helps 
+  make North Pole digital services more inclusive. Every task takes less than five minutes 
+  and highlights a common accessibility issue found in real services.
+</p>
+
+<p class="govuk-body">
+  By completing all 12 days, you'll build the knowledge needed for your final 
+  assignment: reviewing the <strong>Record a Santa Sighting</strong> service - a full 
+  user journey with intentional accessibility issues to spot.
+</p>
+
+{% if (currentDay and currentYear == "2025" and currentDay <= 12) %}
+  <p class="govuk-body">
+    Today is <strong>Day {{ currentDay }}</strong>. Your next mission awaits.
+  </p>
+{% endif %}
 
 <p class="govuk-body">
   If you'd like to explore all the tips at once, you can also use the 
@@ -24,7 +45,6 @@
 
     {# -------------------------
        UNLOCKED DOORS
-       (Opens based on real date)
        ------------------------- #}
     {% if (currentYear > 2025) or (currentYear == 2025 and day <= currentDay) %}
       <a

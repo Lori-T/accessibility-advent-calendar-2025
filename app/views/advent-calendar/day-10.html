@@ -1,95 +1,73 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle = "Day 10: Check content when text is resized" %}
+{% set pageTitle = "Day 10: Check captions on Santa’s video message" %}
+{% set currentDayNumber = 10 %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back to calendar", href: "/" }) }}
+{% endblock %}
 
 {% block content %}
 
+<h1 class="govuk-heading-l">Day 10: Check captions on Santa’s video message</h1>
+
 <p class="govuk-body">
-  The North Pole weather widget tells Santa whether it is safe to fly. It works at normal
-  zoom, but when users increase the text size, some of the content becomes hidden.
+  Every year, Santa records a short video message for the elves. But this year’s
+  message has been uploaded without captions or any form of transcript.
+</p>
+
+<p class="govuk-body">
+  Today’s task is to check whether the video provides accessible alternatives
+  for people who cannot hear the audio.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
-<p class="govuk-body">
-  Check that people can increase text size to at least 200% without losing content or functionality.
-</p>
+<p class="govuk-body">Check whether the video includes captions or a transcript.</p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li>open a page in your service</li>
-  <li>use the browser zoom or system text size settings to increase text to around 200%</li>
-  <li>check that all content is still visible and readable</li>
-  <li>make sure important controls are not pushed off-screen or overlapped</li>
+  <li>videos with audio must have captions</li>
+  <li>captions should include speech and meaningful sounds</li>
+  <li>provide a transcript if captions are not available</li>
+  <li>auto-generated captions often contain errors</li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-<h2 class="govuk-heading-m">Test the North Pole weather widget</h2>
-<p class="govuk-body">
-  Below is a small widget. It uses a fixed height, which can cause problems when text size
-  is increased.
-</p>
+<h2 class="govuk-heading-m">Test Santa’s video</h2>
+<p class="govuk-body">This video contains a deliberate accessibility issue.</p>
 
-<div style="border: 1px solid #b1b4b6;
-            max-width: 320px;
-            height: 90px;             /* ❌ Deliberate issue: fixed height */
-            overflow: hidden;
-            padding: 8px;
-            background: #f3f2f1;">
-
-  <p class="govuk-body-s govuk-!-margin-bottom-1">
-    North Pole weather - Christmas Eve
-  </p>
-  <p class="govuk-body-s govuk-!-margin-bottom-1">
-    Visibility: excellent<br>
-    Wind: light tailwind<br>
-    Temperature: very cold, but manageable<br>
-    Backup route: available through Lapland air corridor
-  </p>
-</div>
+<video controls style="width:100%; border-radius:8px;">
+  <source src="/public/videos/santa-message.mp4" type="video/mp4">
+  ❌ No captions available
+</video>
 
 <p class="govuk-body govuk-!-margin-top-2">
-  Increase the browser zoom or text size. Some of the text may become clipped or require
-  awkward scrolling.
+  ❌ <strong>Accessibility issue:</strong> no captions or transcript provided.
 </p>
 
-<h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
-<p class="govuk-body">
-  <strong>1.4.4 resize text</strong> - users must be able to resize text up to 200%
-  without loss of content or functionality.
-</p>
+<h2 class="govuk-heading-m">What this checks for</h2>
+<p class="govuk-body"><strong>1.2.2 captions (prerecorded)</strong> - videos must provide captions.</p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  Many people increase text size to read comfortably. Fixed-height containers can cause
-  important information to disappear or become hard to reach.
+  Without captions, people who are D/deaf or hard of hearing miss important content.
 </p>
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
-  Try removing the fixed height from the widget in dev tools. How does it behave when zoomed in?
+  Turn off your sound and watch the video.  
+  How much can you understand without captions?
 </p>
 
+{{ super() }}
 {% endblock %}
 
-{% block sidebar %}
-<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
-  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
-  <nav role="navigation" aria-labelledby="subsection-title">
-    <ul class="govuk-list govuk-!-font-size-16">
-      <li>
-        <a class="govuk-link"
-           href="https://www.w3.org/WAI/WCAG22/Understanding/resize-text">
-          WCAG 2.2: resize text (1.4.4)
-        </a>
-      </li>
-      <li>
-        <a class="govuk-link"
-           href="https://www.w3.org/WAI/people-use-web/user-stories/">
-          W3C: user stories - low vision
-        </a>
-      </li>
-    </ul>
+{% block dayNavigation %}
+<div class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+  <nav class="govuk-body" aria-label="Day navigation">
+    <a class="govuk-link govuk-!-margin-right-4" href="/advent-calendar/day-9">← Previous day</a>
+    <a class="govuk-link" href="/advent-calendar/day-11">Next day →</a>
   </nav>
-</aside>
+</div>
 {% endblock %}

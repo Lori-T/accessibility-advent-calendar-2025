@@ -1,95 +1,82 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle = "Day 11: Check reflow on small screens" %}
+{% set pageTitle = "Day 11: Check table structure in the Present Inventory" %}
+{% set currentDayNumber = 11 %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back to calendar", href: "/" }) }}
+{% endblock %}
 
 {% block content %}
 
+<h1 class="govuk-heading-l">Day 11: Check table structure in the Present Inventory</h1>
+
 <p class="govuk-body">
-  The toy factory dashboard looks great on a wide monitor, but the elves noticed that
-  on smaller screens it introduces a horizontal scrollbar and some content becomes hard to read.
+  The <strong>Present Inventory Spreadsheet</strong> tracks all gifts being 
+  prepared for delivery. But one of the tables has been built using bold text 
+  and colours instead of proper table headers.
+</p>
+
+<p class="govuk-body">
+  Today you’ll check the table structure to ensure headers are marked up correctly.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
-<p class="govuk-body">
-  Check that content reflows without requiring horizontal scrolling on smaller viewports.
-</p>
+<p class="govuk-body">Check that tables use semantic headers.</p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li>open a page and resize the browser window to a mobile width (around 320px)</li>
-  <li>check whether you need to scroll horizontally to read lines of text</li>
-  <li>look for tables or dashboards that are too wide to fit</li>
-  <li>make sure buttons and labels are not cut off at the edges</li>
+  <li>use <code>&lt;th&gt;</code> for column and row headers</li>
+  <li>use <code>scope="col"</code> or <code>scope="row"</code> where needed</li>
+  <li>avoid using <code>&lt;td&gt;</code> with bold text pretending to be headings</li>
+  <li>screen readers rely on proper associations</li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-<h2 class="govuk-heading-m">Test the toy factory dashboard</h2>
-<p class="govuk-body">
-  Below is a sample dashboard container. It uses a fixed width that can cause horizontal
-  scrolling on small screens.
-</p>
+<h2 class="govuk-heading-m">Test the Present Inventory</h2>
+<p class="govuk-body">One column header below has incorrect markup.</p>
 
-<div style="border: 1px solid #b1b4b6;
-            padding: 12px;
-            width: 600px;   /* ❌ Deliberate issue: fixed wide width */
-            overflow-x: auto;">
+<table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Gift</th>
+      <th scope="col" class="govuk-table__header">Quantity</th>
+      <td class="govuk-table__cell"><strong>❌ Destination</strong></td>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell">Train set</td>
+      <td class="govuk-table__cell">20</td>
+      <td class="govuk-table__cell">Berlin</td>
+    </tr>
+  </tbody>
+</table>
 
-  <h3 class="govuk-heading-s">
-    Toy factory production overview
-  </h3>
-  <p class="govuk-body-s govuk-!-margin-bottom-1">
-    Today’s production: 12,450 toys - slightly above target.
-  </p>
-  <p class="govuk-body-s govuk-!-margin-bottom-0">
-    Watch out for bottlenecks in the painting line and packaging area.
-  </p>
-</div>
-
-<p class="govuk-body govuk-!-margin-top-2">
-  On a small screen or narrow window, this container will force horizontal scrolling.
-  Try narrowing your browser and see what happens.
-</p>
-
-<h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
-<p class="govuk-body">
-  <strong>1.4.10 reflow</strong> - content should reflow on small viewports without
-  requiring users to scroll in two directions.
-</p>
+<h2 class="govuk-heading-m">What this checks for</h2>
+<p class="govuk-body"><strong>1.3.1 info and relationships</strong> - tables must expose proper header associations.</p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  Many people use services on mobile devices or small screens. Two-dimensional scrolling
-  makes reading and completing tasks much harder, especially for people with motor
-  or visual impairments.
+  Screen reader users rely on table headers to understand which data belongs 
+  to which column or row.
 </p>
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
-  Use your browser’s responsive design mode to test a real page on a 320px wide viewport.
-  Do any sections force you to scroll horizontally to read text?
+  Use a screen reader to navigate the cells.  
+  Which header is not announced?
 </p>
 
+{{ super() }}
 {% endblock %}
 
-{% block sidebar %}
-<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
-  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
-  <nav role="navigation" aria-labelledby="subsection-title">
-    <ul class="govuk-list govuk-!-font-size-16">
-      <li>
-        <a class="govuk-link"
-           href="https://www.w3.org/WAI/WCAG22/Understanding/reflow">
-          WCAG 2.2: reflow (1.4.10)
-        </a>
-      </li>
-      <li>
-        <a class="govuk-link"
-           href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design">
-          MDN: responsive design basics
-        </a>
-      </li>
-    </ul>
+{% block dayNavigation %}
+<div class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+  <nav class="govuk-body" aria-label="Day navigation">
+    <a class="govuk-link govuk-!-margin-right-4" href="/advent-calendar/day-10">← Previous day</a>
+    <a class="govuk-link" href="/advent-calendar/day-12">Next day →</a>
   </nav>
-</aside>
+</div>
 {% endblock %}

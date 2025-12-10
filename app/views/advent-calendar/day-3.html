@@ -1,97 +1,100 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle = "Day 3: Check that focus is always visible" %}
+{% set pageTitle = "Day 3: Fix headings on the Workshop Log" %}
+{% set currentDayNumber = 3 %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+      text: "Back to calendar",
+      href: "/"
+  }) }}
+{% endblock %}
 
 {% block content %}
 
+<h1 class="govuk-heading-l">Day 3: Fix headings on the Workshop Log</h1>
+
 <p class="govuk-body">
-  The elves have built a “present packing dashboard” to track gift wrapping progress.
-  It looks festive, but some of the buttons lose their outline when you tab to them.
+  This morning, the <strong>Department of Elfish Affairs</strong> received an alert from 
+  Santa’s Workshop. The digital <strong>Workshop Log</strong> - used by elves across 
+  multiple teams - has become chaotic. Headings are out of order, skipped entirely, 
+  or styled to look like headings without actually being one.
+</p>
+
+<p class="govuk-body">
+  Your task today is to review a snippet of the Workshop Log and check whether the 
+  heading structure is logical and accessible.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
 <p class="govuk-body">
-  Check that it is always clear which element currently has keyboard focus.
+  Make sure headings follow a clear and logical hierarchy.
 </p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li>use <strong>Tab</strong> and <strong>Shift + Tab</strong> to move around the page</li>
-  <li>at each step, check you can clearly see where focus is</li>
-  <li>make sure focus is not hidden behind colour alone (shape, border or outline all help)</li>
-  <li>ensure focus is visible on links, buttons, form controls and custom components</li>
+  <li>there should only be one <code>h1</code> on a page</li>
+  <li>heading levels must not be skipped (for example, from <code>h2</code> to <code>h4</code>)</li>
+  <li>visual styling should not replace proper HTML headings</li>
+  <li>screen reader users must be able to navigate easily using headings</li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-<h2 class="govuk-heading-m">Test the present packing dashboard</h2>
+<h2 class="govuk-heading-m">Test the Workshop Log</h2>
 <p class="govuk-body">
-  Below is a row of controls used by the elves. One of the buttons has a deliberate
-  accessibility issue: the focus outline has been removed for aesthetic reasons.
+  Below is an example with one deliberate issue.
 </p>
 
-<div class="govuk-button-group">
+<div class="govuk-!-padding-4 govuk-!-margin-bottom-4" style="background:#f7f7f7; border-radius:8px;">
+  <h2 class="govuk-heading-s">Toy production</h2>
+  <h4 class="govuk-heading-s">
+    ❌ Production schedule  
+    (skips from h2 to h4 - incorrect)
+  </h4>
 
-  <button class="govuk-button" type="button">
-    Mark as wrapped
-  </button>
-
-  <button class="govuk-button govuk-button--secondary" type="button">
-    Mark as delayed
-  </button>
-
-  {# ❌ Deliberate issue: inline style removes the focus outline #}
-  <button class="govuk-button govuk-button--secondary"
-          type="button"
-          style="outline: none !important; box-shadow: none !important;">
-    Mark as urgent
-  </button>
-
+  <h3 class="govuk-heading-s">✔ Materials and supplies</h3>
 </div>
 
-<p class="govuk-body govuk-!-margin-top-3">
-  Try tabbing through the buttons. Can you see focus on all three,
-  or does one disappear?
-</p>
-
-<h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
+<h2 class="govuk-heading-m">What this checks for</h2>
 <p class="govuk-body">
-  <strong>2.4.7 focus visible</strong> - keyboard focus must always be visible.
+  <strong>1.3.1 info and relationships</strong> - structure must be conveyed programmatically.
 </p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  Users who navigate with the keyboard need a clear visual indicator of where they are.
-  If focus is not visible, it is easy to activate the wrong control or lose track
-  of progress on a page.
+  Users of screen readers navigate by heading.  
+  Incorrect structure makes content confusing or impossible to follow.
 </p>
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
-  Use your browser’s dev tools to temporarily remove the inline styles from the
-  “Mark as urgent” button. How does the focus indicator change?
+  Turn on your browser’s accessibility tree or use a screen reader to navigate by
+  headings only.  
+  Can you find the incorrect jump in structure?
 </p>
 
+{{ super() }}
 {% endblock %}
 
-{% block sidebar %}
-<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
-  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
-  <nav role="navigation" aria-labelledby="subsection-title">
-    <ul class="govuk-list govuk-!-font-size-16">
-      <li>
-        <a class="govuk-link"
-           href="https://www.w3.org/WAI/WCAG22/Understanding/focus-visible">
-          WCAG 2.2: focus visible (2.4.7)
-        </a>
-      </li>
-      <li>
-        <a class="govuk-link"
-           href="https://design-system.service.gov.uk/styles/focus-states/">
-          GOV.UK Design System: focus states
-        </a>
-      </li>
-    </ul>
+{% block dayNavigation %}
+<div class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+  <nav class="govuk-body" aria-label="Day navigation">
+
+    {% if currentDayNumber > 1 %}
+      <a class="govuk-link govuk-!-margin-right-4"
+         href="/advent-calendar/day-{{ currentDayNumber - 1 }}">
+        ← Previous day
+      </a>
+    {% endif %}
+
+    {% if currentDayNumber < 12 %}
+      <a class="govuk-link"
+         href="/advent-calendar/day-{{ currentDayNumber + 1 }}">
+        Next day →
+      </a>
+    {% endif %}
+
   </nav>
-</aside>
+</div>
 {% endblock %}

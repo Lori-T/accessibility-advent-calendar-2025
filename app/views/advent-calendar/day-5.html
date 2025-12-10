@@ -1,98 +1,74 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle = "Day 5: Check the page title makes sense" %}
+{% set pageTitle = "Day 5: Check keyboard access on the Gift Tracker" %}
+{% set currentDayNumber = 5 %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back to calendar", href: "/" }) }}
+{% endblock %}
 
 {% block content %}
 
+<h1 class="govuk-heading-l">Day 5: Check keyboard access on the Gift Tracker</h1>
+
 <p class="govuk-body">
-  Santa’s reindeer health team has put together a “status report” page, but they
-  forgot to update the page title from a default value.
+  The <strong>Department of Elfish Affairs</strong> has received a report that the
+  <strong>Gift Tracker</strong> - the system elves use to update toy progress -
+  can only be used properly with a mouse. This makes it inaccessible for many
+  users, including people who rely on keyboard navigation.
+</p>
+
+<p class="govuk-body">
+  Today you’ll check a small section of the Gift Tracker to see which controls
+  can (and cannot) be reached using only a keyboard.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
-<p class="govuk-body">
-  Check that each page has a clear, unique and descriptive title shown in the browser tab.
-</p>
+<p class="govuk-body">Identify any controls that cannot be accessed using the keyboard.</p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li>open your page in a browser</li>
-  <li>look at the title shown in the browser tab or window</li>
-  <li>check that the title describes the page’s purpose or main content</li>
-  <li>make sure different pages do not all use the same generic title</li>
-  <li>ensure that error pages or confirmation pages also use specific titles</li>
+  <li>use the <kbd>Tab</kbd> key to move forward through controls</li>
+  <li>use <kbd>Shift</kbd> + <kbd>Tab</kbd> to move backwards</li>
+  <li>buttons, links and form fields must all receive focus</li>
+  <li>custom widgets must be keyboard operable</li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-<h2 class="govuk-heading-m">Test the reindeer health report</h2>
-<p class="govuk-body">
-  Below is a “mock browser tab” showing the title that has been set on a page.
-  The title is deliberately too generic.
-</p>
+<h2 class="govuk-heading-m">Test the Gift Tracker</h2>
+<p class="govuk-body">One control below cannot be accessed with a keyboard.</p>
 
-<div class="govuk-!-margin-top-3 govuk-!-margin-bottom-3"
-     style="border: 1px solid #b1b4b6; border-radius: 6px;">
+<div style="background:#f7f7f7; padding:16px; border-radius:8px;">
+  <button class="govuk-button">✔ Update status</button>
 
-  <div style="background: #f3f2f1; padding: 8px 12px; border-bottom: 1px solid #b1b4b6;">
-    <span class="govuk-body-s govuk-!-margin-right-2">
-      {# ❌ Deliberate issue: generic page title #}
-      <strong>Page</strong>
-    </span>
-    <span class="govuk-body-s" style="color: #505a5f;">
-      - example browser tab
-    </span>
+  <div
+    style="display:inline-block; padding:10px 16px; background:#c5f5d3; margin-left:10px; cursor:pointer;"
+    onclick="alert('Clicked!')">
+    ❌ Custom toggle (mouse only)
   </div>
-
-  <div style="padding: 16px;">
-    <h3 class="govuk-heading-s govuk-!-margin-bottom-1">
-      Reindeer health report
-    </h3>
-    <p class="govuk-body-s govuk-!-margin-bottom-0">
-      ❌ <strong>Accessibility issue:</strong> the page title in the tab just says “Page”.
-      It should describe this screen, for example “Reindeer health report - Santa HQ”.
-    </p>
-  </div>
-
 </div>
 
-<h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
-<p class="govuk-body">
-  <strong>2.4.2 page titled</strong> - pages must have titles that describe topic or purpose.
-</p>
+<h2 class="govuk-heading-m">What this checks for</h2>
+<p class="govuk-body"><strong>2.1.1 keyboard</strong> - all functionality must be operable through a keyboard.</p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  Many users navigate using browser tabs, history or screen reader shortcuts that list page
-  titles. Generic titles like “Home” or “Page” make it hard to find the right content.
+  Many users rely on keyboard navigation. If controls cannot be reached or operated,
+  they cannot use the service at all.
 </p>
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
-<p class="govuk-body">
-  Open a few pages from your own service and list their titles. Can a user guess the content
-  of each page just from its title?
-</p>
+<p class="govuk-body">Try the page using only the keyboard. Which control stops you?</p>
 
+{{ super() }}
 {% endblock %}
 
-{% block sidebar %}
-<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
-  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
-  <nav role="navigation" aria-labelledby="subsection-title">
-    <ul class="govuk-list govuk-!-font-size-16">
-      <li>
-        <a class="govuk-link"
-           href="https://www.w3.org/WAI/WCAG22/Understanding/page-titled">
-          WCAG 2.2: page titled (2.4.2)
-        </a>
-      </li>
-      <li>
-        <a class="govuk-link"
-           href="https://design-system.service.gov.uk/styles/page-template/">
-          GOV.UK Design System: page template
-        </a>
-      </li>
-    </ul>
+{% block dayNavigation %}
+<div class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+  <nav class="govuk-body" aria-label="Day navigation">
+    <a class="govuk-link govuk-!-margin-right-4" href="/advent-calendar/day-4">← Previous day</a>
+    <a class="govuk-link" href="/advent-calendar/day-6">Next day →</a>
   </nav>
-</aside>
+</div>
 {% endblock %}

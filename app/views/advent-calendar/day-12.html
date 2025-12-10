@@ -1,95 +1,75 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle = "Day 12: Check focus order follows the visual layout" %}
+{% set pageTitle = "Day 12: Check ARIA use on the Sleigh Launch Dashboard" %}
+{% set currentDayNumber = 12 %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back to calendar", href: "/" }) }}
+{% endblock %}
 
 {% block content %}
 
+<h1 class="govuk-heading-l">Day 12: Check ARIA use on the Sleigh Launch Dashboard</h1>
+
 <p class="govuk-body">
-  Santa’s route planner helps him check each stop on Christmas Eve. On screen it looks logical,
-  but the keyboard focus jumps around in a confusing order.
+  The <strong>Sleigh Launch Dashboard</strong> brings together all the checks 
+  needed before Santa takes off - fuel status, wind speed, reindeer readiness 
+  and more. But a developer elf has added lots of unnecessary ARIA roles, and 
+  even broken one of the widgets by giving it the wrong role entirely.
+</p>
+
+<p class="govuk-body">
+  Today you’ll review a small slice of the interface and look for incorrect 
+  or over-engineered ARIA.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
-<p class="govuk-body">
-  Check that the order of focus matches the visual reading order of the page.
-</p>
+<p class="govuk-body">Identify incorrect or unnecessary ARIA attributes.</p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li>press <strong>Tab</strong> repeatedly from the top of the page</li>
-  <li>check whether focus moves left-to-right and top-to-bottom in a logical way</li>
-  <li>ensure you do not jump unexpectedly between sections</li>
-  <li>watch out for tabindex attributes that override the natural order</li>
+  <li>do not add ARIA where native HTML is enough</li>
+  <li>ARIA roles must describe the element’s purpose</li>
+  <li>incorrect ARIA can break accessibility</li>
+  <li>use ARIA only when absolutely necessary</li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-<h2 class="govuk-heading-m">Test the route planner</h2>
-<p class="govuk-body">
-  Below is a row of “stops” on Santa’s route. The tab order has been deliberately
-  changed so that focus jumps in a non-visual order.
-</p>
+<h2 class="govuk-heading-m">Test the Sleigh Launch Dashboard</h2>
+<p class="govuk-body">One widget has a deliberate ARIA issue.</p>
 
-<div class="govuk-button-group govuk-!-margin-top-2">
+<div style="background:#eef7ff; padding:16px; border-radius:8px;">
+  <button class="govuk-button">✔ Check reindeer readiness</button>
 
-  {# ❌ Deliberate issue: tabindex values change the natural order #}
-  <button class="govuk-button govuk-button--secondary" type="button" tabindex="3">
-    Stop 1 - Lapland
-  </button>
-
-  <button class="govuk-button govuk-button--secondary" type="button" tabindex="1">
-    Stop 2 - Europe
-  </button>
-
-  <button class="govuk-button govuk-button--secondary" type="button" tabindex="2">
-    Stop 3 - North America
-  </button>
-
+  <div role="button" style="background:#ffecec; padding:12px; margin-top:16px;">
+    ❌ This is a div with <code>role="button"</code> but no keyboard support.
+  </div>
 </div>
 
-<p class="govuk-body govuk-!-margin-top-2">
-  Try tabbing across these buttons. Focus does not move from left to right.
-  This can be confusing and disorientating for keyboard users.
-</p>
-
-<h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
-<p class="govuk-body">
-  <strong>2.4.3 focus order</strong> - focus should move in an order that preserves
-  meaning and operability.
-</p>
+<h2 class="govuk-heading-m">What this checks for</h2>
+<p class="govuk-body"><strong>4.1.2 name, role, value</strong> - ARIA must correctly expose the purpose of controls.</p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  People using keyboards or assistive technologies rely on a predictable focus order
-  to understand content and complete tasks. Unexpected jumps can cause errors and frustration.
+  Misusing ARIA can make controls seem interactive when they are not,
+  confusing users and assistive technologies.
 </p>
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
-  Remove the tabindex attributes in dev tools so the buttons follow the natural DOM order.
-  How does this change the focus order?
+  Try navigating with a screen reader.  
+  Which element pretends to be a button but doesn’t behave like one?
 </p>
 
+{{ super() }}
 {% endblock %}
 
-{% block sidebar %}
-<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
-  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
-  <nav role="navigation" aria-labelledby="subsection-title">
-    <ul class="govuk-list govuk-!-font-size-16">
-      <li>
-        <a class="govuk-link"
-           href="https://www.w3.org/WAI/WCAG22/Understanding/focus-order">
-          WCAG 2.2: focus order (2.4.3)
-        </a>
-      </li>
-      <li>
-        <a class="govuk-link"
-           href="https://webaim.org/techniques/keyboard/tabindex">
-          WebAIM: tabindex
-        </a>
-      </li>
-    </ul>
+{% block dayNavigation %}
+<div class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+  <nav class="govuk-body" aria-label="Day navigation">
+    <a class="govuk-link govuk-!-margin-right-4" href="/advent-calendar/day-11">← Previous day</a>
+    <!-- No next link because day 12 is final -->
   </nav>
-</aside>
+</div>
 {% endblock %}

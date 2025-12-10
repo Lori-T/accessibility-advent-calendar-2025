@@ -1,99 +1,79 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle = "Day 7: Make link purpose clear in context" %}
+{% set pageTitle = "Day 7: Check form labels on the Elf Task Submission Form" %}
+{% set currentDayNumber = 7 %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back to calendar", href: "/" }) }}
+{% endblock %}
 
 {% block content %}
 
+<h1 class="govuk-heading-l">Day 7: Check form labels on the Elf Task Submission Form</h1>
+
 <p class="govuk-body">
-  Santa’s logistics team share updates through a dashboard of important links.
-  Unfortunately, several of the links just say “click here”, which is not very helpful.
+  Elves submit daily tasks through a central DEA-managed form. However, some input
+  fields are missing labels, which means screen reader users cannot understand
+  what information is expected.
+</p>
+
+<p class="govuk-body">
+  Today you’ll review a simplified version of the form and spot the missing label.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
-<p class="govuk-body">
-  Check that link text makes sense out of context and clearly describes the destination
-  or action.
-</p>
+<p class="govuk-body">Check that every form field has a clear, programmatic label.</p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li>scan the page for links that say things like “click here” or “more”</li>
-  <li>check whether the link text alone explains what will happen</li>
-  <li>if it does not, consider rewriting the link text</li>
-  <li>avoid repeating the same link text for different destinations</li>
+  <li>every input must have a descriptive label</li>
+  <li>placeholder text must not be used instead of labels</li>
+  <li>associate labels using <code>for</code> and <code>id</code></li>
+  <li>screen readers should announce the label naturally</li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-<h2 class="govuk-heading-m">Test the Santa logistics links</h2>
-<p class="govuk-body">
-  Below is a list of links used by Santa’s logistics team. There is a deliberate
-  accessibility issue: several links use the same vague wording.
-</p>
+<h2 class="govuk-heading-m">Test the Task Submission Form</h2>
+<p class="govuk-body">One field below has a deliberate accessibility issue.</p>
 
-<ul class="govuk-list">
-  <li>
-    Reindeer flight schedule -
-    {# ❌ Deliberate issue: vague link text #}
-    <a href="#" class="govuk-link">click here</a>
-  </li>
-  <li>
-    Toy factory maintenance log -
-    <a href="#" class="govuk-link">click here</a>
-  </li>
-  <li>
-    View weather conditions for Christmas Eve -
-    <a href="#" class="govuk-link">view</a>
-  </li>
-  <li>
-    Check toy quality control results -
-    <a href="#" class="govuk-link">more</a>
-  </li>
-</ul>
+<div style="background:#fafafa; padding:16px; border-radius:8px;">
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="task-name">Task name</label>
+    <input class="govuk-input" id="task-name">
+  </div>
 
-<p class="govuk-body govuk-!-margin-top-2">
-  Imagine using a screen reader shortcut that lists links out of context - “click here”,
-  “click here”, “view”, “more”. It is not clear which link does what.
-</p>
+  <div class="govuk-form-group">
+    <input class="govuk-input" placeholder="❌ Missing label">
+  </div>
 
-<h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
-<p class="govuk-body">
-  <strong>2.4.4 link purpose (in context)</strong> - the purpose of each link should
-  be clear from its text, or from its text together with nearby context.
-</p>
+  <div class="govuk-form-group">
+    <label class="govuk-label" for="hours">Hours spent</label>
+    <input class="govuk-input" id="hours" type="number">
+  </div>
+</div>
+
+<h2 class="govuk-heading-m">What this checks for</h2>
+<p class="govuk-body"><strong>4.1.2 name, role, value</strong> - form fields must expose correct labels to assistive technologies.</p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  Clear link text helps everyone scan a page quickly. It is especially important for
-  people who use screen readers or voice input, and people with some cognitive impairments.
+  Without labels, users who rely on screen readers cannot complete forms accurately
+  or confidently.
 </p>
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
-<p class="govuk-body">
-  On one of your own pages, copy and paste just the links into a list. Would they still
-  make sense without the surrounding paragraphs?
-</p>
+<p class="govuk-body">Turn on a screen reader and tab through the form.  
+Which field is confusing?</p>
 
+{{ super() }}
 {% endblock %}
 
-{% block sidebar %}
-<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
-  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
-  <nav role="navigation" aria-labelledby="subsection-title">
-    <ul class="govuk-list govuk-!-font-size-16">
-      <li>
-        <a class="govuk-link"
-           href="https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context">
-          WCAG 2.2: link purpose (2.4.4)
-        </a>
-      </li>
-      <li>
-        <a class="govuk-link"
-           href="https://design-system.service.gov.uk/styles/typography/#links">
-          GOV.UK Design System: links
-        </a>
-      </li>
-    </ul>
+{% block dayNavigation %}
+<div class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+  <nav class="govuk-body" aria-label="Day navigation">
+    <a class="govuk-link govuk-!-margin-right-4" href="/advent-calendar/day-6">← Previous day</a>
+    <a class="govuk-link" href="/advent-calendar/day-8">Next day →</a>
   </nav>
-</aside>
+</div>
 {% endblock %}

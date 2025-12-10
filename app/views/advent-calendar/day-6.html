@@ -1,101 +1,73 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle = "Day 6: Check heading levels and structure" %}
+{% set pageTitle = "Day 6: Check focus visibility in the Reindeer Health Monitor" %}
+{% set currentDayNumber = 6 %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back to calendar", href: "/" }) }}
+{% endblock %}
 
 {% block content %}
 
+<h1 class="govuk-heading-l">Day 6: Check focus visibility in the Reindeer Health Monitor</h1>
+
 <p class="govuk-body">
-  The elves have created a “workshop status board” to show all the tasks they are working on.
-  In a hurry, they picked heading styles that looked good rather than following a logical order.
+  The <strong>Reindeer Health Monitor</strong> helps Santa HQ keep an eye on
+  each reindeer’s wellbeing. But some controls in the interface have no visible
+  focus styles, making keyboard navigation difficult.
+</p>
+
+<p class="govuk-body">
+  Today you’ll review part of the interface to check whether focus is clear and
+  easy to see as you tab around the page.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
-<p class="govuk-body">
-  Check that headings follow a clear, logical structure and reflect the hierarchy of the content.
-</p>
+<p class="govuk-body">Check whether interactive elements show a visible focus outline.</p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li>identify the main page heading - there should usually be only one</li>
-  <li>check that subheadings follow a logical order (for example, h2 then h3)</li>
-  <li>make sure headings are not skipped just to achieve a visual style</li>
-  <li>avoid using headings for text that is not really a section heading</li>
+  <li>every focusable element must show a visible outline</li>
+  <li>the outline must not rely only on colour changes</li>
+  <li>removing focus styles entirely is a WCAG failure</li>
+  <li>GOV.UK focus styles are a good baseline</li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-<h2 class="govuk-heading-m">Test the workshop status board</h2>
-<p class="govuk-body">
-  Below is a simplified status board. There is a deliberate accessibility issue:
-  the heading levels jump around instead of following a logical nesting order.
-</p>
+<h2 class="govuk-heading-m">Test the Reindeer Health Monitor</h2>
+<p class="govuk-body">One element below has no visible focus.</p>
 
-<div class="govuk-!-margin-top-2 govuk-!-margin-bottom-3 govuk-inset-text">
+<div style="background:#f0f8ff; padding:16px; border-radius:8px;">
+  <a href="#" class="govuk-link">✔ View Comet’s health</a><br><br>
 
-  <h1 class="govuk-heading-l">
-    Elf workshop status
-  </h1>
+  <button class="govuk-button">✔ Update feeding log</button><br><br>
 
-  {# ❌ Deliberate issue: skipping from h1 to h4 for visual style #}
-  <h4 class="govuk-heading-s">
-    Urgent tasks
-  </h4>
-
-  <ul class="govuk-list govuk-list--bullet">
-    <li>wrap presents for northern region</li>
-    <li>repair sleigh navigation system</li>
-  </ul>
-
-  {# ❌ Deliberate issue: going back up to h2 after h4 #}
-  <h2 class="govuk-heading-m">
-    Completed tasks
-  </h2>
-
-  <ul class="govuk-list govuk-list--bullet">
-    <li>test flight over Lapland</li>
-    <li>reindeer health checks</li>
-  </ul>
-
+  <button style="background:#ddd; border:none; padding:10px 16px;">
+    ❌ Hidden focus button
+  </button>
 </div>
 
-<h2 class="govuk-heading-m">The WCAG 2.2 skill behind this</h2>
-<p class="govuk-body">
-  <strong>1.3.1 info and relationships</strong> - information, structure and
-  relationships must be conveyed programmatically, not just visually.
-</p>
+<h2 class="govuk-heading-m">What this checks for</h2>
+<p class="govuk-body"><strong>2.4.7 focus visible</strong> - users must be able to see which element is focused.</p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  Many screen reader users navigate by headings. If levels are inconsistent or used
-  purely for appearance, it becomes hard to understand the structure of the page.
+  Without a clear focus indicator, users navigating by keyboard can become disoriented
+  or stuck.
 </p>
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
-<p class="govuk-body">
-  Use a browser extension or dev tools to view a list of headings on a real page.
-  Does the order make sense without seeing the visual layout?
-</p>
+<p class="govuk-body">Use the <kbd>Tab</kbd> key. Can you spot which button fails?</p>
 
+{{ super() }}
 {% endblock %}
 
-{% block sidebar %}
-<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
-  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
-  <nav role="navigation" aria-labelledby="subsection-title">
-    <ul class="govuk-list govuk-!-font-size-16">
-      <li>
-        <a class="govuk-link"
-           href="https://www.w3.org/WAI/tutorials/page-structure/headings/">
-          W3C tutorial: headings
-        </a>
-      </li>
-      <li>
-        <a class="govuk-link"
-           href="https://www.w3.org/WAI/WCAG22/Understanding/info-and-relationships">
-          WCAG 2.2: info and relationships (1.3.1)
-        </a>
-      </li>
-    </ul>
+{% block dayNavigation %}
+<div class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+  <nav class="govuk-body" aria-label="Day navigation">
+    <a class="govuk-link govuk-!-margin-right-4" href="/advent-calendar/day-5">← Previous day</a>
+    <a class="govuk-link" href="/advent-calendar/day-7">Next day →</a>
   </nav>
-</aside>
+</div>
 {% endblock %}

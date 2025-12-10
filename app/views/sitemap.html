@@ -1,45 +1,38 @@
 {% extends "/layouts/main.html" %}
 
 {% set pageTitle = "Accessibility advent calendar sitemap" %}
-{% block calendar %}
 
-  <p class="govuk-body">
-    This website has been designed like an advent calendar. To experience it as intended, you can open each door and enjoy one accessibility tip a day throughout December. If you're keen to explore everything at once, you can also find all 25 days listed on this sitemap.
-  </p>
+{% block content %}
 
-  <h2 class="govuk-heading-m">Sitemap</h2>
-  <ul class="govuk-list">
-      <li><a href="/" class="govuk-link">Home</a></li>
-      <li><a href="/advent-calendar/about.html" class="govuk-link">About</a></li>
-      <li><a href="/accessibility.html" class="govuk-link">Accessibility statement</a></li>
-      <li><a href="/sitemap" class="govuk-link">Sitemap</a></li>
+<p class="govuk-body">
+  This website has been designed like an advent calendar. To experience it as intended, 
+  you can open each door and enjoy one accessibility tip a day throughout December. 
+  If you're keen to explore everything at once, you can also find all 12 days listed on this sitemap.
+</p>
 
-      <li><a href="/advent-calendar/day-1" class="govuk-link">Day 1: Check your colour contrast</a></li>
-      <li><a href="/advent-calendar/day-2" class="govuk-link">Day 2: Navigate your page using only the keyboard</a></li>
-      <li><a href="/advent-calendar/day-3" class="govuk-link">Day 3: Check your page title</a></li>
-      <li><a href="/advent-calendar/day-4" class="govuk-link">Day 4: Resize text to 200%</a></li>
-      <li><a href="/advent-calendar/day-5" class="govuk-link">Day 5: Check your heading structure</a></li>
-      <li><a href="/advent-calendar/day-6" class="govuk-link">Day 6: Check that link text makes sense</a></li>
-      <li><a href="/advent-calendar/day-7" class="govuk-link">Day 7: Check image alt text</a></li>
-      <li><a href="/advent-calendar/day-8" class="govuk-link">Day 8: Turn off CSS to check structure</a></li>
-      <li><a href="/advent-calendar/day-9" class="govuk-link">Day 9: Zoom to 400% to check reflow</a></li>
-      <li><a href="/advent-calendar/day-10" class="govuk-link">Day 10: Check visible focus styles</a></li>
-      <li><a href="/advent-calendar/day-11" class="govuk-link">Day 11: Check your form labels</a></li>
-      <li><a href="/advent-calendar/day-12" class="govuk-link">Day 12: Check your page using WAVE</a></li>
-      <li><a href="/advent-calendar/day-13" class="govuk-link">Day 13: Check your touch target size</a></li>
-      <li><a href="/advent-calendar/day-14" class="govuk-link">Day 14: Check reduced motion settings</a></li>
-      <li><a href="/advent-calendar/day-15" class="govuk-link">Day 15: Check your video captions</a></li>
-      <li><a href="/advent-calendar/day-16" class="govuk-link">Day 16: Check for plain language</a></li>
-      <li><a href="/advent-calendar/day-17" class="govuk-link">Day 17: Check the focus order</a></li>
-      <li><a href="/advent-calendar/day-18" class="govuk-link">Day 18: Check accessible names on controls</a></li>
-      <li><a href="/advent-calendar/day-19" class="govuk-link">Day 19: Check your error messages</a></li>
-      <li><a href="/advent-calendar/day-20" class="govuk-link">Day 20: Check icons and SVGs for accessibility</a></li>
-      <li><a href="/advent-calendar/day-21" class="govuk-link">Day 21: Check content on hover or focus</a></li>
-      <li><a href="/advent-calendar/day-22" class="govuk-link">Day 22: Check pointer gestures</a></li>
-      <li><a href="/advent-calendar/day-23" class="govuk-link">Day 23: Check motion actuation</a></li>
-      <li><a href="/advent-calendar/day-24" class="govuk-link">Day 24: Check text spacing</a></li>
-      <li><a href="/advent-calendar/day-25" class="govuk-link">Day 25: The 5-minute accessibility mindset</a></li>
-  </ul>
+<h2 class="govuk-heading-m">Sitemap</h2>
+
+<ul class="govuk-list">
+
+  <li><a href="/" class="govuk-link">Home</a></li>
+  <li><a href="/advent-calendar/about.html" class="govuk-link">About</a></li>
+  <li><a href="/accessibility.html" class="govuk-link">Accessibility statement</a></li>
+  <li><a href="/sitemap" class="govuk-link">Sitemap</a></li>
+
+  <li><a href="/advent-calendar/day-1" class="govuk-link">Day 1: Spot missing alt text</a></li>
+  <li><a href="/advent-calendar/day-2" class="govuk-link">Day 2: Navigate using only the keyboard</a></li>
+  <li><a href="/advent-calendar/day-3" class="govuk-link">Day 3: Check your colour contrast</a></li>
+  <li><a href="/advent-calendar/day-4" class="govuk-link">Day 4: Avoid keyboard traps</a></li>
+  <li><a href="/advent-calendar/day-5" class="govuk-link">Day 5: Check your page title</a></li>
+  <li><a href="/advent-calendar/day-6" class="govuk-link">Day 6: Check link purpose</a></li>
+  <li><a href="/advent-calendar/day-7" class="govuk-link">Day 7: Check heading structure</a></li>
+  <li><a href="/advent-calendar/day-8" class="govuk-link">Day 8: Resize text to 200%</a></li>
+  <li><a href="/advent-calendar/day-9" class="govuk-link">Day 9: Check reflow at 400%</a></li>
+  <li><a href="/advent-calendar/day-10" class="govuk-link">Day 10: Check focus visibility</a></li>
+  <li><a href="/advent-calendar/day-11" class="govuk-link">Day 11: Check accessible names</a></li>
+  <li><a href="/advent-calendar/day-12" class="govuk-link">Day 12: Final accessibility challenge</a></li>
+
+</ul>
 
 {% endblock %}
 

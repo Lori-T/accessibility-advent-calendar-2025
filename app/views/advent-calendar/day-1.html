@@ -52,9 +52,8 @@
 <div class="govuk-grid-row govuk-!-margin-top-2">
 
   <div class="govuk-grid-column-one-third govuk-!-margin-bottom-4">
-    
-     <img src="{{ asset_path }}images/sleigh-flight.jpg"
-             alt="Santa's sleigh flying over a snowy village"
+    <img src="{{ asset_path }}images/north-pole-map.png"
+         alt="Santa's Christmas navigation map showing his planned route from the North Pole"
          style="width: 100%; border-radius: 8px;">
     <p class="govuk-body govuk-!-margin-top-1">
       ✔ Correct alt text.
@@ -72,7 +71,7 @@
   </div>
 
   <div class="govuk-grid-column-one-third govuk-!-margin-bottom-4">
-    <img src="{{ asset_path }}images/north-pole-map.png"
+    <img src="{{ asset_path }}images/sleigh-flight.jpg"
          alt=""
          style="width: 100%; border-radius: 8px;">
     <p class="govuk-body govuk-!-margin-top-1">
@@ -82,9 +81,25 @@
 
 </div>
 
+<h2 class="govuk-heading-m">Finding this issue using the special elf testing tool</h2>
+<p class="govuk-body">
+  The elves often use their special testing tool to help spot image accessibility issues.
+</p>
+
+<p class="govuk-body">
+  When the tool is run on a page like this, it highlights images that are missing
+  alternative text or have empty <code>alt</code> attributes.
+</p>
+
+<p class="govuk-body">
+  This can help you find potential problems quickly, but it is still important to
+  review each image yourself and decide whether the text alternative makes sense
+  for the information being shown.
+</p>
+
 <h2 class="govuk-heading-m">What this checks for</h2>
 <p class="govuk-body">
-  <strong>1.1.1 non-text content</strong> – meaningful images must have accessible alternatives.
+  <strong>1.1.1 non-text content</strong> - meaningful images must have accessible alternatives.
 </p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
@@ -94,8 +109,8 @@
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
-  Open your browser’s accessibility tree or use a screen reader.
-  Which images are announced clearly, and which cause confusion?
+  Compare what you noticed visually with what a testing tool or screen reader reports.
+  Do they highlight the same issue?
 </p>
 
 {{ super() }}

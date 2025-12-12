@@ -6,46 +6,70 @@
 
 {% block content %}
 
-<h1 class="govuk-heading-xl">12 days of digital accessibility tips</h1>
-
+<h1 class="govuk-heading-xl">The 12 days of accessibility at Santa HQ</h1>
 <p class="govuk-body">
-  Welcome to the annual festive review led by the 
+  Welcome to the annual festive review led by the
   <strong>Department of Elfish Affairs</strong> (DEA). In the run-up to Christmas,
   the DEA carries out a series of quick accessibility checks across the systems
-  used by Santa HQ - from the Workshop Log to the Reindeer Health Monitor.
+  used by Santa HQ, from the Workshop Log to the Reindeer Health Monitor.
 </p>
 
 <p class="govuk-body">
-  This year, you’ve been recruited as an <strong>Elf-cessability Specialist</strong>.  
-  Each day, you'll open a new door to uncover a short, practical task that helps 
-  make North Pole digital services more inclusive. Every task takes less than five minutes 
-  and highlights a common accessibility issue found in real services.
+  This year, you have been recruited as an <strong>Elf-cessability Specialist</strong>.
+  Each day, you will open a new door to uncover a short, practical task that helps
+  make North Pole digital services more inclusive.
 </p>
 
 <p class="govuk-body">
-  By completing all 12 days, you'll build the knowledge needed for your final 
-  assignment: reviewing the <strong>Record a Santa Sighting</strong> service - a full 
-  user journey with intentional accessibility issues to spot.
+  Each task takes less than five minutes and focuses on a common accessibility issue
+  found in real services. Some days you will spot issues by eye, and on other days
+  you will use simple testing tools to help you.
+</p>
+
+<h2 class="govuk-heading-m">The special elf testing tool</h2>
+
+<p class="govuk-body">
+  The elves use a special testing tool called the
+  <strong>Workshop Accessibility Verification Engine (WAVE)</strong>.
+</p>
+
+<p class="govuk-body">
+  WAVE is a browser extension that highlights potential accessibility issues on a page,
+  such as missing text alternatives, poor contrast, or structural problems.
+</p>
+
+<p class="govuk-body">
+  You can install the WAVE browser extension from the
+  <a href="https://wave.webaim.org/extension/" class="govuk-link">WAVE website</a>.
+</p>
+
+<p class="govuk-body">
+  Automated tools like WAVE are helpful for finding issues quickly, but they do not
+  catch everything. Throughout the 12 days, you will learn when tools are useful
+  and when human judgement is essential.
+</p>
+
+<!-- <p class="govuk-body">
+  By completing all 12 days, you will build the knowledge needed for your final
+  assignment, reviewing the <strong>Record a Santa Sighting</strong> service.
+  This is a full user journey with intentional accessibility issues to identify.
 </p>
 
 {% if (currentDay and currentYear == "2025" and currentDay <= 12) %}
   <p class="govuk-body">
     Today is <strong>Day {{ currentDay }}</strong>. Your next mission awaits.
   </p>
-{% endif %}
+<!-- {% endif %} 
 
 <p class="govuk-body">
-  If you'd like to explore all the tips at once, you can also use the 
+  If you would like to explore all the tips at once, you can also use the
   <a href="/sitemap" class="govuk-link">site map</a>.
-</p>
+</p>-- -->
 
 <div class="calendar">
 
   {% for day in range(1, 13) %}
 
-    {# -------------------------
-       UNLOCKED DOORS
-       ------------------------- #}
     {% if (currentYear > 2025) or (currentYear == 2025 and day <= currentDay) %}
       <a
         href="/advent-calendar/day-{{ day }}"
@@ -55,10 +79,6 @@
       >
         Day {{ day }}
       </a>
-
-    {# -------------------------
-       LOCKED DOORS
-       ------------------------- #}
     {% else %}
       <p class="calendar-day calendar-day-disabled" aria-hidden="true">
         Opens {{ day }} December

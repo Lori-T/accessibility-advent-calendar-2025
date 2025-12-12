@@ -52,8 +52,9 @@
 <div class="govuk-grid-row govuk-!-margin-top-2">
 
   <div class="govuk-grid-column-one-third govuk-!-margin-bottom-4">
-    <img src="/public/images/sleigh-flight.jpg"
-         alt="Santa's sleigh flying over a snowy village"
+    
+     <img src="{{ asset_path }}images/sleigh-flight.jpg"
+             alt="Santa's sleigh flying over a snowy village"
          style="width: 100%; border-radius: 8px;">
     <p class="govuk-body govuk-!-margin-top-1">
       ✔ Correct alt text.
@@ -62,7 +63,7 @@
 
   <div class="govuk-grid-column-one-third govuk-!-margin-bottom-4">
     {# ❌ Deliberate accessibility issue: no alt attribute #}
-    <img src="/public/images/reindeer-closeup.jpg"
+    <img src="{{ asset_path }}images/reindeer-closeup.jpg"
          style="width: 100%; border-radius: 8px;">
     <p class="govuk-body govuk-!-margin-top-1">
       ❌ <strong>Accessibility issue:</strong> missing alt text.  
@@ -71,7 +72,7 @@
   </div>
 
   <div class="govuk-grid-column-one-third govuk-!-margin-bottom-4">
-    <img src="/public/images/north-pole-map.png"
+    <img src="{{ asset_path }}images/north-pole-map.png"
          alt=""
          style="width: 100%; border-radius: 8px;">
     <p class="govuk-body govuk-!-margin-top-1">

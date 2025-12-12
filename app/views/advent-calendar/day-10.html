@@ -12,52 +12,79 @@
 <h1 class="govuk-heading-l">Day 10: Check captions on Santa’s video message</h1>
 
 <p class="govuk-body">
-  Every year, Santa records a short video message for the elves. But this year’s
-  message has been uploaded without captions or any form of transcript.
+  Each December, Santa records a short message for the elves using the
+  <strong>Elf Communications Console</strong>. But this year’s upload is causing
+  problems - it appears on the dashboard without captions or a transcript.
 </p>
 
 <p class="govuk-body">
-  Today’s task is to check whether the video provides accessible alternatives
+  Today you’ll check whether media content provides accessible alternatives
   for people who cannot hear the audio.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
-<p class="govuk-body">Check whether the video includes captions or a transcript.</p>
+<p class="govuk-body">
+  Check whether Santa’s message includes captions or an accessible transcript.
+</p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li>videos with audio must have captions</li>
-  <li>captions should include speech and meaningful sounds</li>
-  <li>provide a transcript if captions are not available</li>
-  <li>auto-generated captions often contain errors</li>
+  <li>videos with speech must have captions</li>
+  <li>captions should include both spoken words and meaningful sounds</li>
+  <li>a transcript must be provided if captions are missing</li>
+  <li>auto-generated captions are not always accurate</li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-<h2 class="govuk-heading-m">Test Santa’s video</h2>
-<p class="govuk-body">This video contains a deliberate accessibility issue.</p>
-
-<video controls style="width:100%; border-radius:8px;">
-  <source src="/public/videos/santa-message.mp4" type="video/mp4">
-  ❌ No captions available
-</video>
-
-<p class="govuk-body govuk-!-margin-top-2">
-  ❌ <strong>Accessibility issue:</strong> no captions or transcript provided.
+<h2 class="govuk-heading-m">Review Santa’s message</h2>
+<p class="govuk-body">
+  Below is a message from the Elf Communications Console.
+  One accessibility issue has been deliberately introduced.
 </p>
 
+<div style="
+  border: 1px solid #b1b4b6;
+  background: #f3f2f1;
+  border-radius: 4px;
+  padding: 20px;
+  max-width: 620px;
+">
+
+  <video
+    controls
+    style="width:100%; border-radius:4px;"
+  >
+    <source src="/public/images/santavideo.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div style="margin-top: 16px; display:flex; justify-content: space-between; align-items:center;">
+    <strong>Santa’s annual message</strong>
+    <span class="govuk-tag govuk-tag--red">No captions</span>
+  </div>
+
+  <p class="govuk-body govuk-!-margin-top-2">
+    ❌ <strong>Accessibility issue:</strong> this video has no captions and no transcript.
+  </p>
+</div>
+
 <h2 class="govuk-heading-m">What this checks for</h2>
-<p class="govuk-body"><strong>1.2.2 captions (prerecorded)</strong> - videos must provide captions.</p>
+<p class="govuk-body">
+  <strong>1.2.2 Captions (Prerecorded)</strong> - prerecorded videos with speech must
+  have captions so that users who cannot hear the audio can still access the content.
+</p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  Without captions, people who are D/deaf or hard of hearing miss important content.
+  Captions make video content accessible to D/deaf and hard of hearing users.
+  They also help people in noisy environments or situations where sound cannot be played.
 </p>
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
-  Turn off your sound and watch the video.  
-  How much can you understand without captions?
+  Mute the video or turn your sound off.  
+  How much of Santa’s message can you understand?
 </p>
 
 {{ super() }}

@@ -1,6 +1,6 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle = "Day 11: Check table structure in the Present Inventory" %}
+{% set pageTitle = "Day 11: Check table structure in the Reindeer Flight Schedule" %}
 {% set currentDayNumber = 11 %}
 
 {% block beforeContent %}
@@ -9,64 +9,83 @@
 
 {% block content %}
 
-<h1 class="govuk-heading-l">Day 11: Check table structure in the Present Inventory</h1>
+<h1 class="govuk-heading-l">Day 11: Check table structure in the Reindeer Flight Schedule</h1>
 
 <p class="govuk-body">
-  The <strong>Present Inventory Spreadsheet</strong> tracks all gifts being 
-  prepared for delivery. But one of the tables has been built using bold text 
-  and colours instead of proper table headers.
+  The <strong>Reindeer Flight Operations Team</strong> publishes a daily schedule showing which 
+  reindeer are taking off, when, and with which pilot elf. But in today’s update, one of the 
+  elves formatted a header using visual styling only — so it <em>looks</em> wrong and is not 
+  announced correctly by screen readers.
 </p>
 
 <p class="govuk-body">
-  Today you’ll check the table structure to ensure headers are marked up correctly.
+  Your mission is to check whether each column header has been marked up semantically.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
-<p class="govuk-body">Check that tables use semantic headers.</p>
+<p class="govuk-body">Find the column that visually looks like a header but isn’t one.</p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li>use <code>&lt;th&gt;</code> for column and row headers</li>
-  <li>use <code>scope="col"</code> or <code>scope="row"</code> where needed</li>
-  <li>avoid using <code>&lt;td&gt;</code> with bold text pretending to be headings</li>
-  <li>screen readers rely on proper associations</li>
+  <li>column headers must use <code>&lt;th&gt;</code></li>
+  <li>headers must have <code>scope="col"</code> or <code>row</code></li>
+  <li>visual styling alone does not make something a header</li>
+  <li>screen readers rely on semantic structure, not appearance</li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-<h2 class="govuk-heading-m">Test the Present Inventory</h2>
-<p class="govuk-body">One column header below has incorrect markup.</p>
+<h2 class="govuk-heading-m">Review the flight schedule</h2>
+<p class="govuk-body">
+  One of the column “headers” is actually marked up as a normal cell. It even looks slightly wrong.
+</p>
 
 <table class="govuk-table">
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
-      <th scope="col" class="govuk-table__header">Gift</th>
-      <th scope="col" class="govuk-table__header">Quantity</th>
-      <td class="govuk-table__cell"><strong>❌ Destination</strong></td>
+      <th scope="col" class="govuk-table__header">Reindeer</th>
+      <th scope="col" class="govuk-table__header">Take-off time</th>
+
+      <!-- Incorrect header that also looks visually off -->
+      <td class="govuk-table__cell" style="background: #f7d7d7;">
+        <strong>❌ Pilot elf</strong><br>
+        <span style="font-size: 14px; color:#d4351c;">
+          (styled like a header, but not a real header)
+        </span>
+      </td>
+
     </tr>
   </thead>
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
-      <td class="govuk-table__cell">Train set</td>
-      <td class="govuk-table__cell">20</td>
-      <td class="govuk-table__cell">Berlin</td>
+      <td class="govuk-table__cell">Dasher</td>
+      <td class="govuk-table__cell">18:00</td>
+      <td class="govuk-table__cell">Fig</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell">Dancer</td>
+      <td class="govuk-table__cell">18:10</td>
+      <td class="govuk-table__cell">Mistle</td>
     </tr>
   </tbody>
 </table>
 
 <h2 class="govuk-heading-m">What this checks for</h2>
-<p class="govuk-body"><strong>1.3.1 info and relationships</strong> - tables must expose proper header associations.</p>
+<p class="govuk-body">
+  <strong>1.3.1 Info and relationships</strong> – structure must be conveyed in markup, 
+  not just visually.
+</p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  Screen reader users rely on table headers to understand which data belongs 
-  to which column or row.
+  People using screen readers rely on proper table headers to understand how data relates 
+  to the rest of the table. When a header is only styled visually, the structure becomes unclear.
 </p>
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
-  Use a screen reader to navigate the cells.  
-  Which header is not announced?
+  Turn on a screen reader.  
+  Which column name is not announced before each cell?
 </p>
 
 {{ super() }}

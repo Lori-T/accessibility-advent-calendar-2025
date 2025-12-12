@@ -12,64 +12,119 @@
 <h1 class="govuk-heading-l">Day 12: Check ARIA use on the Sleigh Launch Dashboard</h1>
 
 <p class="govuk-body">
-  The <strong>Sleigh Launch Dashboard</strong> brings together all the checks 
-  needed before Santa takes off - fuel status, wind speed, reindeer readiness 
-  and more. But a developer elf has added lots of unnecessary ARIA roles, and 
-  even broken one of the widgets by giving it the wrong role entirely.
+  Before Santa takes off, the elves run a series of dashboard checks — including fuel levels, 
+  reindeer readiness and the all-important <strong>Christmas spirit</strong>.  
+  But a developer elf has added ARIA roles in all the wrong places.
 </p>
 
 <p class="govuk-body">
-  Today you’ll review a small slice of the interface and look for incorrect 
-  or over-engineered ARIA.
+  Your job today is to find the control that only <em>pretends</em> to be a button.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
-<p class="govuk-body">Identify incorrect or unnecessary ARIA attributes.</p>
+<p class="govuk-body">Identify which “button” is not a real button.</p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li>do not add ARIA where native HTML is enough</li>
-  <li>ARIA roles must describe the element’s purpose</li>
-  <li>incorrect ARIA can break accessibility</li>
-  <li>use ARIA only when absolutely necessary</li>
+  <li>real buttons must use the <code>&lt;button&gt;</code> element</li>
+  <li>DIVs or SPANs cannot behave like buttons without extra coding</li>
+  <li>ARIA roles don't magically add accessibility</li>
+  <li>keyboard users must be able to activate all controls</li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-<h2 class="govuk-heading-m">Test the Sleigh Launch Dashboard</h2>
-<p class="govuk-body">One widget has a deliberate ARIA issue.</p>
+<h2 class="govuk-heading-m">Test the dashboard</h2>
+<p class="govuk-body">One of these controls is real. The other only looks like a button.</p>
 
 <div style="background:#eef7ff; padding:16px; border-radius:8px;">
-  <button class="govuk-button">✔ Check reindeer readiness</button>
 
-  <div role="button" style="background:#ffecec; padding:12px; margin-top:16px;">
-    ❌ This is a div with <code>role="button"</code> but no keyboard support.
+  {# REAL BUTTON WITH TOGGLE BEHAVIOUR #}
+  <div style="margin-bottom: 20px;">
+    <button
+      class="govuk-button"
+      id="spirit-btn"
+      onclick="toggleSpiritCheck()">
+      ✔ Start Christmas spirit check
+    </button>
+
+    <p id="spirit-status"
+       class="govuk-body"
+       style="display:none; margin-top:8px; color:#00703c;">
+       Christmas spirit levels are rising — looking good! 🎄✨
+    </p>
   </div>
+
+  <script>
+    function toggleSpiritCheck() {
+      const btn = document.getElementById('spirit-btn');
+      const status = document.getElementById('spirit-status');
+
+      if (btn.dataset.state === 'running') {
+        // Stop state
+        btn.dataset.state = 'stopped';
+        btn.textContent = '⏹ Stop Christmas spirit check';
+        status.style.display = 'none';
+      } else {
+        // Start state
+        btn.dataset.state = 'running';
+        btn.textContent = '✔ Start Christmas spirit check';
+        status.style.display = 'block';
+      }
+    }
+  </script>
+
+  {# FAKE BUTTON (LOOKS REAL, NOT ACCESSIBLE) #}
+  <div
+    role="button"
+    style="
+      background:#d4351c;
+      color:white;
+      padding:10px 16px;
+      margin-top:16px;
+      display:inline-block;
+      border-radius:4px;
+      cursor:pointer;
+      font-weight:600;
+      width:auto;
+      user-select:none;
+    ">
+    ✖ Launch fuel scan
+  </div>
+
+  <p class="govuk-body" style="margin-top:8px; color:#d4351c;">
+    This looks like a button, but it isn't one.  
+    It cannot be activated using a keyboard, and ARIA role alone does not make it behave correctly.
+  </p>
+
 </div>
 
 <h2 class="govuk-heading-m">What this checks for</h2>
-<p class="govuk-body"><strong>4.1.2 name, role, value</strong> - ARIA must correctly expose the purpose of controls.</p>
+<p class="govuk-body">
+  <strong>4.1.2 Name, role, value</strong> — interactive elements must expose their correct behaviour 
+  to assistive technologies.
+</p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  Misusing ARIA can make controls seem interactive when they are not,
-  confusing users and assistive technologies.
+  If something looks like a button but isn’t one, people using keyboards or screen readers 
+  may not be able to activate it — blocking them from completing tasks.
 </p>
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
-  Try navigating with a screen reader.  
-  Which element pretends to be a button but doesn’t behave like one?
+  Try using only your keyboard.  
+  Which control can you activate?
 </p>
 
 {{ super() }}
+
 {% endblock %}
 
 {% block dayNavigation %}
 <div class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
   <nav class="govuk-body" aria-label="Day navigation">
     <a class="govuk-link govuk-!-margin-right-4" href="/advent-calendar/day-11">← Previous day</a>
-    <!-- No next link because day 12 is final -->
   </nav>
 </div>
 {% endblock %}

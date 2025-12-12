@@ -13,142 +13,90 @@
 
 <p class="govuk-body">
   The <strong>Elf Equipment Dashboard</strong> shows the status of tools and machinery
-  used across Santa HQ. When elves zoom in to make text easier to read, some dashboard
-  panels refuse to resize - forcing sideways scrolling.
+  used across Santa HQ. Today, you're checking how well this layout adapts when users
+  use <strong>screen magnification</strong> or zoom in.
 </p>
 
 <p class="govuk-body">
-  Today you'll check whether these cards reflow properly when zoomed, and whether the
-  layout adapts without hiding content.
+  Two of these dashboard tiles reflow properly. One has a deliberate reflow failure -
+  and will break the layout when zoomed.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
 <p class="govuk-body">
-  Make sure content is usable at <strong>between 200% and 400% zoom</strong> without
-  horizontal scrolling.
+  Zoom the page between 200% and 400% and observe what happens when reflow isn't properly implemented.
 </p>
 
-<h2 class="govuk-heading-m">Quick 5-minute check</h2>
-<ul class="govuk-list govuk-list--bullet">
-  <li>zoom the page to between 200% and 400%</li>
-  <li>content should reflow into a single column</li>
-  <li>there should be no horizontal scrolling</li>
-  <li>avoid fixed widths that stop elements resizing</li>
-</ul>
+<h2 class="govuk-heading-m">Dashboard tiles</h2>
 
-<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+<div style="
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  column-gap: 32px;   /* NEW: more breathing room horizontally */
+  row-gap: 24px;      /* NEW: cleaner vertical spacing */
+  align-items: stretch;
+">
 
-<h2 class="govuk-heading-m">Test the dashboard</h2>
-<p class="govuk-body">
-  One of the equipment cards below has a deliberate reflow issue.  
-  When zoomed, it will not resize with the rest of the content.
-</p>
-
-<div class="govuk-!-margin-top-4">
-
-  {# ----------------------------------------------------------
-     GOOD CARD 1 — reflows properly
-     ---------------------------------------------------------- #}
-  <div class="govuk-!-margin-bottom-4"
-       style="
-         border: 1px solid #b1b4b6;
-         border-radius: 4px;
-         padding: 16px;
-         background: #f3f2f1;
-
-         display: flex;
-         flex-direction: column;     /* Stacks neatly when narrow */
-         gap: 8px;
-
-         width: 700px;
-         max-width: 100%;           /* Shrinks properly at zoom */
-       ">
-    <div style="width: 100%; min-width: 0;">
-      <strong>✔ Wrapping machine</strong><br>
-      This card reflows correctly.
-    </div>
-    <span class="govuk-tag govuk-tag--green"
-          style="align-self: flex-start;">
-      Online
-    </span>
+  <!-- GOOD TILE -->
+  <div style="
+    border: 1px solid #b1b4b6;
+    background: #f3f2f1;
+    padding: 16px;
+    border-radius: 4px;
+  ">
+    <strong>✔ Wrapping machine</strong>
+    <p class="govuk-body">This tile reflows correctly.</p>
+    <span class="govuk-tag govuk-tag--green">Online</span>
   </div>
 
-  {# ----------------------------------------------------------
-     FAILING CARD — fixed width, will NOT reflow
-     ---------------------------------------------------------- #}
-  <div class="govuk-!-margin-bottom-4"
-       style="
-         border: 2px solid #d4351c;
-         border-radius: 4px;
-         padding: 16px;
-         background: #fff0f0;
+  <!-- BAD TILE (deliberate reflow failure) -->
+  <div style="
+    border: 2px solid #d4351c;
+    background: #fff0f0;
+    padding: 16px;
+    border-radius: 4px;
 
-         display: flex;
-         flex-wrap: nowrap;          /* Prevents breaking */
-         justify-content: space-between;
-         align-items: flex-start;
-         gap: 16px;
-
-         width: 700px;               /* Fixed width */
-         max-width: none;            /* Will not shrink */
-         white-space: nowrap;        /* Forces horizontal scroll */
-       ">
-    <div>
-      <strong>❌ Ribbon cutter</strong><br>
-      This card has a fixed width and will not reflow between 200% and 400% zoom.
-    </div>
-    <span class="govuk-tag govuk-tag--red">
-      Offline
-    </span>
+    width: 600px;        /* FIXED oversized width (breaks at zoom) */
+    max-width: 100%;     /* NEW: keeps initial layout tidy at 100% */
+    white-space: nowrap;
+    overflow-x: auto;
+  ">
+    <strong>❌ Ribbon cutter</strong>
+    <p class="govuk-body">
+      This tile has a fixed oversized width and will not reflow properly.
+    </p>
+    <span class="govuk-tag govuk-tag--red">Offline</span>
   </div>
 
-  {# ----------------------------------------------------------
-     GOOD CARD 2 — reflows properly
-     ---------------------------------------------------------- #}
-  <div class="govuk-!-margin-bottom-4"
-       style="
-         border: 1px solid #b1b4b6;
-         border-radius: 4px;
-         padding: 16px;
-         background: #f3f2f1;
-
-         display: flex;
-         flex-direction: column;     /* Stacks neatly when narrow */
-         gap: 8px;
-
-         width: 700px;
-         max-width: 100%;
-       ">
-    <div style="width: 100%; min-width: 0;">
-      <strong>✔ Sleigh polish station</strong><br>
-      This card reflows correctly.
-    </div>
-    <span class="govuk-tag govuk-tag--blue"
-          style="align-self: flex-start;">
-      Maintenance
-    </span>
+  <!-- GOOD TILE -->
+  <div style="
+    border: 1px solid #b1b4b6;
+    background: #f3f2f1;
+    padding: 16px;
+    border-radius: 4px;
+  ">
+    <strong>✔ Sleigh polish station</strong>
+    <p class="govuk-body">This tile reflows correctly.</p>
+    <span class="govuk-tag govuk-tag--blue">Maintenance</span>
   </div>
 
 </div>
 
-
-<h2 class="govuk-heading-m">What this checks for</h2>
+<h2 class="govuk-heading-m govuk-!-margin-top-6">What this checks for</h2>
 <p class="govuk-body">
-  <strong>1.4.10 reflow</strong> - content must work without horizontal scrolling,
-  even at narrow widths or high zoom levels.
+  <strong>1.4.10 Reflow</strong> -content must adapt at narrow widths and high zoom
+  without forcing horizontal scrolling.
 </p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  Many people zoom pages to make text readable.  
-  If layouts do not reflow, users can lose content off-screen or be forced to scroll
-  sideways — making tasks much harder.
+  Many users zoom pages to read comfortably.  
+  If layouts do not adapt, information becomes hidden or unusable.
 </p>
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
-  Try narrowing your browser window or viewing this page on a mobile device.  
-  Which card forces horizontal scrolling when space becomes tight?
+  Compare the dashboard at 100%, 200%, 300% and 400% on your device and observe how it behaves. You could also try it on a mobile phone or tablet.
 </p>
 
 {{ super() }}

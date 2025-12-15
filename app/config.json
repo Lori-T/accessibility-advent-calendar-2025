@@ -1,5 +1,5 @@
 {
-  "serviceName": "Accessibility Advent Calendar 2025",
+  "serviceName": "12 Days of Accessibility",
   "plugins": {
     "govuk-frontend": {
       "rebrand": true

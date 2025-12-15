@@ -13,53 +13,78 @@
 
 <p class="govuk-body">
   The <strong>Department of Elfish Affairs</strong> has received a report that the
-  <strong>Gift Tracker</strong> - the system elves use to update toy progress -
-  can only be used properly with a mouse. This makes it inaccessible for many
-  users, including people who rely on keyboard navigation.
+  <strong>Gift Tracker</strong>, the system elves use to update toy progress,
+  cannot be fully used without a mouse.
 </p>
 
 <p class="govuk-body">
-  Today you’ll check a small section of the Gift Tracker to see which controls
-  can (and cannot) be reached using only a keyboard.
+  Some controls appear interactive but cannot be reached or operated using a keyboard,
+  creating a barrier for users who rely on keyboard navigation.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
-<p class="govuk-body">Identify any controls that cannot be accessed using the keyboard.</p>
+<p class="govuk-body">
+  Check that all interactive controls can be accessed and used with a keyboard.
+</p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
   <li>use the <kbd>Tab</kbd> key to move forward through controls</li>
   <li>use <kbd>Shift</kbd> + <kbd>Tab</kbd> to move backwards</li>
   <li>buttons, links and form fields must all receive focus</li>
-  <li>custom widgets must be keyboard operable</li>
+  <li>interactive elements must be usable without a mouse</li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
 <h2 class="govuk-heading-m">Test the Gift Tracker</h2>
-<p class="govuk-body">One control below cannot be accessed with a keyboard.</p>
+<p class="govuk-body">
+  One control below has a deliberate accessibility issue.
+</p>
 
 <div style="background:#f7f7f7; padding:16px; border-radius:8px;">
-  <button class="govuk-button">✔ Update status</button>
+
+  <button class="govuk-button">
+    ✔ Update gift status
+  </button>
 
   <div
-    style="display:inline-block; padding:10px 16px; background:#c5f5d3; margin-left:10px; cursor:pointer;"
-    onclick="alert('Clicked!')">
-    ❌ Custom toggle (mouse only)
+    style="
+      display:inline-block;
+      padding:10px 16px;
+      background:#c5f5d3;
+      margin-left:10px;
+      cursor:pointer;
+      border-radius:4px;
+    "
+    onclick="alert('🎄 Candy cane ribbon added. This gift is now extra festive!')">
+    ❌ Add candy cane ribbon
   </div>
+
+  <p class="govuk-body govuk-!-margin-top-2">
+    The option above looks like a button, but it cannot be reached or activated
+    using the keyboard.
+  </p>
+
 </div>
 
 <h2 class="govuk-heading-m">What this checks for</h2>
-<p class="govuk-body"><strong>2.1.1 keyboard</strong> - all functionality must be operable through a keyboard.</p>
+<p class="govuk-body">
+  <strong>2.1.1 keyboard</strong> – all functionality must be operable through a keyboard.
+</p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  Many users rely on keyboard navigation. If controls cannot be reached or operated,
-  they cannot use the service at all.
+  Many users rely on keyboards instead of a mouse.
+  If interactive elements cannot be reached or activated, users are blocked from
+  completing tasks.
 </p>
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
-<p class="govuk-body">Try the page using only the keyboard. Which control stops you?</p>
+<p class="govuk-body">
+  Try using only the keyboard to interact with the Gift Tracker.
+  Which control stops you from continuing?
+</p>
 
 {{ super() }}
 {% endblock %}
@@ -67,8 +92,12 @@
 {% block dayNavigation %}
 <div class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
   <nav class="govuk-body" aria-label="Day navigation">
-    <a class="govuk-link govuk-!-margin-right-4" href="/advent-calendar/day-4">← Previous day</a>
-    <a class="govuk-link" href="/advent-calendar/day-6">Next day →</a>
+    <a class="govuk-link govuk-!-margin-right-4" href="/advent-calendar/day-4">
+      ← Previous day
+    </a>
+    <a class="govuk-link" href="/advent-calendar/day-6">
+      Next day →
+    </a>
   </nav>
 </div>
 {% endblock %}

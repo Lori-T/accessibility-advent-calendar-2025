@@ -4,7 +4,10 @@
 {% set currentDayNumber = 6 %}
 
 {% block beforeContent %}
-  {{ govukBackLink({ text: "Back to calendar", href: "/" }) }}
+  {{ govukBackLink({
+      text: "Back to calendar",
+      href: "/"
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -12,53 +15,99 @@
 <h1 class="govuk-heading-l">Day 6: Check focus visibility in the Reindeer Health Monitor</h1>
 
 <p class="govuk-body">
-  The <strong>Reindeer Health Monitor</strong> helps Santa HQ keep an eye on
-  each reindeer’s wellbeing. But some controls in the interface have no visible
-  focus styles, making keyboard navigation difficult.
+  The <strong>Reindeer Health Monitor</strong> is used by Santa HQ to keep track of
+  each reindeer’s wellbeing during the busiest time of year. Some elves have reported
+  losing their place when navigating the system using only a keyboard.
 </p>
 
 <p class="govuk-body">
-  Today you’ll review part of the interface to check whether focus is clear and
-  easy to see as you tab around the page.
+  Today, you will check whether it is always clear which element is currently selected
+  when moving through the page using the keyboard.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
-<p class="govuk-body">Check whether interactive elements show a visible focus outline.</p>
+<p class="govuk-body">
+  Check that all interactive elements show a clear and visible focus indicator.
+</p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li>every focusable element must show a visible outline</li>
-  <li>the outline must not rely only on colour changes</li>
-  <li>removing focus styles entirely is a WCAG failure</li>
-  <li>GOV.UK focus styles are a good baseline</li>
+  <li>use the <kbd>Tab</kbd> key to move through the page</li>
+  <li>check that focus is always visible</li>
+  <li>focus should be easy to see and not subtle</li>
+  <li>focus must not rely on colour alone</li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
 <h2 class="govuk-heading-m">Test the Reindeer Health Monitor</h2>
-<p class="govuk-body">One element below has no visible focus.</p>
+<p class="govuk-body">
+  The section below contains one deliberate focus visibility issue.
+</p>
 
-<div style="background:#f0f8ff; padding:16px; border-radius:8px;">
-  <a href="#" class="govuk-link">✔ View Comet’s health</a><br><br>
+<div class="govuk-!-padding-4 govuk-!-margin-bottom-4" style="background:#f7f7f7; border-radius:8px;">
 
-  <button class="govuk-button">✔ Update feeding log</button><br><br>
+  <p class="govuk-body">
+    <a href="#" class="govuk-link">
+      ✔ View Blitzen’s health record
+    </a>
+  </p>
 
-  <button style="background:#ddd; border:none; padding:10px 16px;">
-    ❌ Hidden focus button
-  </button>
+  <p class="govuk-body">
+    <button class="govuk-button">
+      ✔ Update feeding schedule
+    </button>
+  </p>
+
+  <p class="govuk-body">
+    <button style="background:#e0e0e0; border:0; padding:10px 16px;">
+      ❌ Record festive energy level
+    </button>
+  </p>
+
+  <p class="govuk-hint">
+    Try using the keyboard only. Is it always clear where focus is?
+  </p>
+
 </div>
 
 <h2 class="govuk-heading-m">What this checks for</h2>
-<p class="govuk-body"><strong>2.4.7 focus visible</strong> - users must be able to see which element is focused.</p>
+<p class="govuk-body">
+  <strong>2.4.7 focus visible</strong> - users must be able to see which element
+  currently has keyboard focus.
+</p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  Without a clear focus indicator, users navigating by keyboard can become disoriented
-  or stuck.
+  Keyboard users rely on visible focus to understand where they are on a page.
+  If focus is missing or unclear, users can become disoriented or unable to
+  complete tasks.
 </p>
 
+<h2 class="govuk-heading-m">How to check this</h2>
+<p class="govuk-body">
+  Focus visibility issues are best found using manual testing.
+  Automated tools such as the Workshop Accessibility Verification Engine (WAVE)
+  are not reliable for checking focus visibility.
+</p>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>use <kbd>Tab</kbd> and <kbd>Shift</kbd> + <kbd>Tab</kbd> to move through the page</li>
+  <li>check that focus is always clearly visible</li>
+  <li>pay close attention to custom styled buttons and controls</li>
+  <li>
+      <a href="https://accessibility-advent.lorithomson.co.uk/advent-calendar/day-11" class="govuk-link">
+      find out more about keyboard accessibility in last year’s advent calendar, Day 11
+    </a>
+  </li>
+</ul>
+
+
 <h2 class="govuk-heading-m">Bonus challenge</h2>
-<p class="govuk-body">Use the <kbd>Tab</kbd> key. Can you spot which button fails?</p>
+<p class="govuk-body">
+  Zoom the page to 200 percent and then 400 percent and repeat the keyboard test.
+  Is the focus indicator still easy to see?
+</p>
 
 {{ super() }}
 {% endblock %}
@@ -66,8 +115,21 @@
 {% block dayNavigation %}
 <div class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
   <nav class="govuk-body" aria-label="Day navigation">
-    <a class="govuk-link govuk-!-margin-right-4" href="/advent-calendar/day-5">← Previous day</a>
-    <a class="govuk-link" href="/advent-calendar/day-7">Next day →</a>
+
+    {% if currentDayNumber > 1 %}
+      <a class="govuk-link govuk-!-margin-right-4"
+         href="/advent-calendar/day-{{ currentDayNumber - 1 }}">
+        ← Previous day
+      </a>
+    {% endif %}
+
+    {% if currentDayNumber < 12 %}
+      <a class="govuk-link"
+         href="/advent-calendar/day-{{ currentDayNumber + 1 }}">
+        Next day →
+      </a>
+    {% endif %}
+
   </nav>
 </div>
 {% endblock %}

@@ -1,6 +1,6 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle = "Day 4: Check link purpose on the Naughty & Nice List Viewer" %}
+{% set pageTitle = "Day 4: Check link purpose on the Naughty and Nice List Viewer" %}
 {% set currentDayNumber = 4 %}
 
 {% block beforeContent %}
@@ -12,66 +12,99 @@
 
 {% block content %}
 
-<h1 class="govuk-heading-l">Day 4: Check link purpose on the Naughty & Nice List Viewer</h1>
+<h1 class="govuk-heading-l">Day 4: Check link purpose on the Naughty and Nice List Viewer</h1>
 
 <p class="govuk-body">
-  The <strong>Department of Elfish Affairs</strong> has been reviewing the 
-  <strong>Naughty & Nice List Viewer</strong>, a key tool used by Santa’s analysts.  
-  Unfortunately, several links simply say <q>Click here</q> or <q>More</q> - which does not
-  tell users what the link actually does.
+  The <strong>Department of Elfish Affairs</strong> has been reviewing the
+  <strong>Naughty and Nice List Viewer</strong>, a tool used by Santa’s team to
+  review behaviour records from across the year.
 </p>
 
 <p class="govuk-body">
-  Today, your task is to check whether each link has a clear purpose from its text alone 
-  or from the surrounding context.
+  During testing, several elves reported that it was hard to understand where
+  some links would take them. Many links use vague wording that only makes sense
+  if you can see the surrounding content.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
 <p class="govuk-body">
-  Identify links that do not explain their purpose.
+  Check that links clearly describe their purpose.
 </p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li>link text must describe the destination or action</li>
-  <li>avoid vague labels like <q>here</q>, <q>more</q>, <q>details</q></li>
-  <li>screen reader users often browse links out of context</li>
-  <li>use descriptive text or <code>aria-label</code> when necessary</li>
+  <li>link text should describe the destination or action</li>
+  <li>avoid vague text like <q>click here</q> or <q>more</q></li>
+  <li>assume users may encounter links out of context</li>
+  <li>surrounding text can help, but links should still be meaningful</li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-<h2 class="govuk-heading-m">Test the Naughty & Nice List Viewer</h2>
+<h2 class="govuk-heading-m">Examine the Naughty and Nice List Viewer</h2>
 <p class="govuk-body">
-  One link below contains a deliberate accessibility issue.
+  Below is a simplified extract from the Naughty and Nice List Viewer.
+  One link has a deliberate accessibility issue.
 </p>
 
-<div class="govuk-!-padding-4 govuk-!-margin-bottom-4" style="background:#f7f7f7; border-radius:8px;">
-  <p>
-    Review <a href="#">Eve Snowball’s behaviour record</a> ✔
+<div class="govuk-!-padding-4 govuk-!-margin-bottom-4"
+     style="background:#f7f7f7; border-radius:8px;">
+
+  <p class="govuk-body">
+    <strong>Eve Snowball</strong><br>
+    Behaviour rating: Mostly nice<br>
+    <a href="#">View Eve Snowball’s full behaviour record</a>
   </p>
 
-  <p>
-    <a href="#">Click here</a> to see more details ❌  
-    (purpose unclear)
+  <p class="govuk-body">
+    <strong>Buddy the Elf</strong><br>
+    Behaviour rating: Under review<br>
+    <a href="#">Click here</a> ❌
   </p>
+
+  <p class="govuk-body">
+    <strong>Holly Tinseltoe Frost</strong><br>
+    Behaviour rating: Nice<br>
+    <a href="#">View Peppermint Frost’s behaviour notes</a>
+  </p>
+
 </div>
 
 <h2 class="govuk-heading-m">What this checks for</h2>
 <p class="govuk-body">
-  <strong>2.4.4 link purpose (in context)</strong> - users must understand what a link does.
+  <strong>2.4.4 link purpose (in context)</strong> - users must be able to
+  understand what a link does from its text or context.
 </p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  Vague link text creates barriers for screen reader users who browse links in a list 
-  without surrounding context.
+  Screen reader users often navigate by listing links on a page.
+  If several links are called <q>click here</q>, it becomes impossible to tell
+  them apart.
 </p>
+
+<h2 class="govuk-heading-m">
+  Finding this issue using the Workshop Accessibility Verification Engine (WAVE)
+</h2>
+
+<p class="govuk-body">
+  When <a href="https://wave.webaim.org/extension/" class="govuk-link">WAVE</a> is run on a page like this,
+  it can highlight links with vague or repeated text.
+</p>
+
+<p class="govuk-body">
+  WAVE helps flag potential problems, but you still need to decide whether the
+  link text makes sense to users when read on its own.
+</p>
+
+<img src="{{ asset_path }}images/wave4.png"
+     alt="Screenshot of the WAVE accessibility tool highlighting links with unclear purpose"
+     style="width: 25%; border-radius: 8px;">
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
-  Use your screen reader’s shortcut to list all links.  
-  Can you identify the unhelpful one without seeing the page?
+  Use a screen reader or browser tool to view a list of all links on the page.
+  Can you immediately tell what each link does?
 </p>
 
 {{ super() }}

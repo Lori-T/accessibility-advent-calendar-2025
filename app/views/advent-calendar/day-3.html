@@ -1,6 +1,6 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle = "Day 3: Fix headings on the Workshop Log" %}
+{% set pageTitle = "Day 3: Check headings in the Workshop Log" %}
 {% set currentDayNumber = 3 %}
 
 {% block beforeContent %}
@@ -12,66 +12,103 @@
 
 {% block content %}
 
-<h1 class="govuk-heading-l">Day 3: Fix headings on the Workshop Log</h1>
+<h1 class="govuk-heading-l">Day 3: Check headings in the Workshop Log</h1>
 
 <p class="govuk-body">
-  This morning, the <strong>Department of Elfish Affairs</strong> received an alert from 
-  Santa’s Workshop. The digital <strong>Workshop Log</strong> - used by elves across 
-  multiple teams - has become chaotic. Headings are out of order, skipped entirely, 
-  or styled to look like headings without actually being one.
+  This morning, the <strong>Department of Elfish Affairs</strong> received an alert from
+  Santa’s Workshop. The digital <strong>Workshop Log</strong>, used by elves across
+  multiple teams, has become difficult to navigate.
 </p>
 
 <p class="govuk-body">
-  Your task today is to review a snippet of the Workshop Log and check whether the 
-  heading structure is logical and accessible.
+  Some sections look like headings but are not marked up correctly.
+  Others jump between levels, making the page confusing for people who rely on
+  assistive technology.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
 <p class="govuk-body">
-  Make sure headings follow a clear and logical hierarchy.
+  Check that headings follow a clear and logical structure.
 </p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
   <li>there should only be one <code>h1</code> on a page</li>
-  <li>heading levels must not be skipped (for example, from <code>h2</code> to <code>h4</code>)</li>
+  <li>heading levels must not be skipped</li>
+  <li>headings should describe the content that follows</li>
   <li>visual styling should not replace proper HTML headings</li>
-  <li>screen reader users must be able to navigate easily using headings</li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-<h2 class="govuk-heading-m">Test the Workshop Log</h2>
+<h2 class="govuk-heading-m">Examine the Workshop Log</h2>
 <p class="govuk-body">
-  Below is an example with one deliberate issue.
+  Below is a simplified extract from the Workshop Log.
+  One heading has been marked up incorrectly.
 </p>
 
-<div class="govuk-!-padding-4 govuk-!-margin-bottom-4" style="background:#f7f7f7; border-radius:8px;">
+<div class="govuk-!-padding-4 govuk-!-margin-bottom-4"
+     style="background:#f7f7f7; border-radius:8px;">
+
   <h2 class="govuk-heading-s">Toy production</h2>
+
+  <p class="govuk-body">
+    The toy production team is currently working at full capacity.
+    Several new toy designs have entered the assembly phase.
+  </p>
+
   <h4 class="govuk-heading-s">
-    ❌ Production schedule  
-    (skips from h2 to h4 - incorrect)
+    ❌ Production schedule
   </h4>
 
+  <p class="govuk-body">
+    This week’s schedule includes extended shifts and additional quality checks.
+    Materials are arriving later than planned.
+  </p>
+
   <h3 class="govuk-heading-s">✔ Materials and supplies</h3>
+
+  <p class="govuk-body">
+    Stock levels are stable. Replacement parts for wooden toys have been reordered
+    and are expected to arrive by the end of the week.
+  </p>
+
 </div>
 
 <h2 class="govuk-heading-m">What this checks for</h2>
 <p class="govuk-body">
-  <strong>1.3.1 info and relationships</strong> - structure must be conveyed programmatically.
+  <strong>1.3.1 info and relationships</strong> - content structure must be conveyed
+  programmatically, not just visually.
 </p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  Users of screen readers navigate by heading.  
-  Incorrect structure makes content confusing or impossible to follow.
+  Screen reader users often navigate pages using headings.
+  If the structure is incorrect, content can feel disorganised or impossible to follow.
 </p>
+
+<h2 class="govuk-heading-m">
+  Finding this issue using the Workshop Accessibility Verification Engine (WAVE)
+</h2>
+
+<p class="govuk-body">
+  When <a href="https://wave.webaim.org/extension/" class="govuk-link">WAVE</a> is run on a page like this,
+  it highlights heading structure issues such as skipped levels or missing headings.
+</p>
+
+<p class="govuk-body">
+  WAVE can help you spot structural problems quickly, but it cannot tell you whether
+  the heading order makes sense for users.
+</p>
+
+<img src="{{ asset_path }}images/wave3.png"
+     alt="Screenshot of the WAVE accessibility tool highlighting heading structure issues"
+     style="width: 25%; border-radius: 8px;">
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
-  Turn on your browser’s accessibility tree or use a screen reader to navigate by
-  headings only.  
-  Can you find the incorrect jump in structure?
+  Use your browser’s accessibility tree or a screen reader to navigate by headings only.
+  Does the page flow in a way that makes sense?
 </p>
 
 {{ super() }}

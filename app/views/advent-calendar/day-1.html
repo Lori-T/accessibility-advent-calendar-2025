@@ -1,7 +1,7 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle = "Day 1: Spot missing alt text on Santa’s photo feed" %}
-{% set currentDayNumber = 1 %}
+{% set pageTitle = "Day 2: Check colour contrast on the Elves’ control panel" %}
+{% set currentDayNumber = 2 %}
 
 {% block beforeContent %}
   {{ govukBackLink({
@@ -12,105 +12,97 @@
 
 {% block content %}
 
-<h1 class="govuk-heading-l">Day 1: Spot missing alt text on Santa’s photo feed</h1>
+<h1 class="govuk-heading-l">Day 2: Check colour contrast on the Elves’ control panel</h1>
 
 <p class="govuk-body">
-  As part of your induction into the <strong>Department of Elfish Affairs</strong> (DEA),
-  you've been assigned to Santa HQ to help with this year's festive accessibility review.
-  With Christmas Eve fast approaching, the DEA must make sure every digital system
-  the elves rely on is accessible to all users.
+  As part of your ongoing work with the <strong>Department of Elfish Affairs</strong> (DEA),
+  you have been asked to review part of the <strong>Elves’ control panel</strong>.
+  Some elves have reported that parts of the panel are difficult to read during long shifts
+  in the workshop.
 </p>
 
 <p class="govuk-body">
-  Today, you're assessing the new <strong>North Pole photo feed</strong>,
-  which shows images captured during Santa’s test flights. The elves need your help
-  checking whether these images are accessible - especially for people who use screen readers.
+  Today, you are checking whether text and controls on the panel have enough contrast
+  to be readable for everyone, including people with low vision or colour vision differences.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
 <p class="govuk-body">
-  Check that every meaningful image has an appropriate text alternative.
+  Check that text and interactive elements have sufficient colour contrast.
 </p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li>look at each image and decide whether it is meaningful or decorative</li>
-  <li>for meaningful images, check they have clear, concise <strong>alt text</strong></li>
-  <li>for decorative images, check they use <code>alt=""</code></li>
-  <li>make sure any text shown inside an image appears as real text elsewhere</li>
-  <li>icons used as links or buttons must have an accessible name</li>
+  <li>body text must have a contrast ratio of at least <strong>4.5 to 1</strong></li>
+  <li>large text must have a contrast ratio of at least <strong>3 to 1</strong></li>
+  <li>buttons, links and form controls must also meet contrast requirements</li>
+  <li>do not rely on colour alone to communicate important information</li>
+  <li>use a contrast checker rather than judging by eye</li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-<h2 class="govuk-heading-m">Test Santa’s photo feed</h2>
+<h2 class="govuk-heading-m">Examine the Elves’ control panel</h2>
 <p class="govuk-body">
-  Below is a simplified version of the North Pole photo feed.
-  One image has a deliberate accessibility issue.
+  Below is a simplified section of the control panel.
+  One example has a deliberate colour contrast issue.
 </p>
 
-<div class="govuk-grid-row govuk-!-margin-top-2">
+<div class="govuk-!-padding-4 govuk-!-margin-bottom-4" style="background:#f3f2f1; border-radius:8px;">
 
-  <div class="govuk-grid-column-one-third govuk-!-margin-bottom-4">
-    <img src="{{ asset_path }}images/north-pole-map.png"
-         alt="Santa's Christmas navigation map showing his planned route from the North Pole"
-         style="width: 100%; border-radius: 8px;">
-    <p class="govuk-body govuk-!-margin-top-1">
-      ✔ Correct alt text.
-    </p>
-  </div>
+  <h3 class="govuk-heading-s">Workshop status</h3>
 
-  <div class="govuk-grid-column-one-third govuk-!-margin-bottom-4">
-    {# ❌ Deliberate accessibility issue: no alt attribute #}
-    <img src="{{ asset_path }}images/reindeer-closeup.jpg"
-         style="width: 100%; border-radius: 8px;">
-    <p class="govuk-body govuk-!-margin-top-1">
-      ❌ <strong>Accessibility issue:</strong> missing alt text.  
-      Screen readers will not announce this image.
-    </p>
-  </div>
+  <p style="color:#9b9b9b;">
+    ❌ This text is too light against the background and does not meet minimum contrast requirements.
+  </p>
 
-  <div class="govuk-grid-column-one-third govuk-!-margin-bottom-4">
-    <img src="{{ asset_path }}images/sleigh-flight.jpg"
-         alt=""
-         style="width: 100%; border-radius: 8px;">
-    <p class="govuk-body govuk-!-margin-top-1">
-      ⚠ Decorative image: correctly marked with <code>alt=""</code>.
-    </p>
-  </div>
+  <p style="color:#0b0c0c;">
+    ✔ This text has sufficient contrast and is easy to read.
+  </p>
+
+  <button class="govuk-button">
+    ✔ Normal button (passes)
+  </button>
+
+  <button class="govuk-button" style="background:#f5c5c5; color:#c00;">
+    ❌ Low contrast button (fails)
+  </button>
 
 </div>
 
-<h2 class="govuk-heading-m">Finding this issue using the special elf testing tool</h2>
-<p class="govuk-body">
-  The elves often use their special testing tool to help spot image accessibility issues.
-</p>
-
-<p class="govuk-body">
-  When the tool is run on a page like this, it highlights images that are missing
-  alternative text or have empty <code>alt</code> attributes.
-</p>
-
-<p class="govuk-body">
-  This can help you find potential problems quickly, but it is still important to
-  review each image yourself and decide whether the text alternative makes sense
-  for the information being shown.
-</p>
-
 <h2 class="govuk-heading-m">What this checks for</h2>
 <p class="govuk-body">
-  <strong>1.1.1 non-text content</strong> - meaningful images must have accessible alternatives.
+  <strong>1.4.3 contrast (minimum)</strong> - text and controls must be readable against their background.
 </p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  Without alt text, people who are blind or have very low vision miss essential information.
+  Poor colour contrast can make content difficult or impossible to read for people with
+  low vision, colour vision deficiencies, or when using screens in bright or low light conditions.
 </p>
+
+<h2 class="govuk-heading-m">Finding this issue using the Workshop Accessibility Verification Engine (WAVE)</h2>
+
+<p class="govuk-body">
+  When <a href="https://wave.webaim.org/extension/" class="govuk-link">WAVE</a> is run on a page like this,
+  it flags text and controls that may not meet colour contrast requirements.
+</p>
+
+<p class="govuk-body">
+  WAVE can quickly highlight potential contrast failures, but you should always confirm
+  results using a colour contrast checker and consider the context of the content.
+</p>
+
+<img
+  src="{{ asset_path }}images/wave2.png"
+  alt="Screenshot of WAVE accessibility tool highlighting colour contrast issues"
+  style="width: 25%; border-radius: 8px;"
+>
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
-  Compare what you noticed visually with what a testing tool or screen reader reports.
-  Do they highlight the same issue?
+  Use a contrast checker to test the failing examples.
+  What colour changes would make them pass?
 </p>
 
 {{ super() }}
@@ -120,19 +112,15 @@
 <div class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
   <nav class="govuk-body" aria-label="Day navigation">
 
-    {% if currentDayNumber > 1 %}
-      <a class="govuk-link govuk-!-margin-right-4"
-         href="/advent-calendar/day-{{ currentDayNumber - 1 }}">
-        ← Previous day
-      </a>
-    {% endif %}
+    <a class="govuk-link govuk-!-margin-right-4"
+       href="/advent-calendar/day-1">
+      ← Previous day
+    </a>
 
-    {% if currentDayNumber < 12 %}
-      <a class="govuk-link"
-         href="/advent-calendar/day-{{ currentDayNumber + 1 }}">
-        Next day →
-      </a>
-    {% endif %}
+    <a class="govuk-link"
+       href="/advent-calendar/day-3">
+      Next day →
+    </a>
 
   </nav>
 </div>

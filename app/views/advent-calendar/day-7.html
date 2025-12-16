@@ -44,7 +44,8 @@
 <h2 class="govuk-heading-m">Test the Elf Task Submission Form</h2>
 <p class="govuk-body">
   This simplified example shows part of the form elves use to log their daily
-  workshop duties. One field has a deliberate accessibility issue where the label is missing and the placeholder text dissappears when typing starts.
+  workshop duties. One field has a deliberate accessibility issue — it appears
+  labelled visually, but has no accessible name at all.
 </p>
 
 <div class="govuk-!-padding-4 govuk-!-margin-bottom-4"
@@ -57,11 +58,22 @@
     <input class="govuk-input" id="toy-type" type="text">
   </div>
 
+  <!-- ❌ DELIBERATE ACCESSIBILITY ISSUE -->
   <div class="govuk-form-group">
+    <!-- Looks like a label, but hidden from assistive tech -->
+    <p class="govuk-label" aria-hidden="true">
+      Festive task completed
+    </p>
+
+    <!-- Empty accessible name -->
+    <span id="missing-label" class="govuk-visually-hidden"></span>
+
     <input
       class="govuk-input"
       type="text"
-      placeholder="❌ What festive task did you complete?">
+      aria-labelledby="missing-label"
+      aria-label=" "
+      placeholder="❌ for example, 1, 100, 1 million?">
   </div>
 
   <div class="govuk-form-group">
@@ -73,7 +85,6 @@
 
 </div>
 
-
 <h2 class="govuk-heading-m">What this checks for</h2>
 <p class="govuk-body">
   <strong>1.3.1 info and relationships</strong> and
@@ -83,7 +94,7 @@
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
   Screen reader users rely on labels to understand what information is expected.
-  Without them, forms become confusing, frustrating or impossible to complete.
+  When a field has no accessible name, it becomes confusing or impossible to complete.
 </p>
 
 <h2 class="govuk-heading-m">
@@ -96,8 +107,8 @@
 </p>
 
 <p class="govuk-body">
-  WAVE is useful for spotting missing labels quickly, but it is still important to
-  test forms with a screen reader or accessibility tree to confirm how fields are announced.
+  WAVE is useful for spotting missing labels quickly, but testing with a screen reader
+  confirms how fields are actually announced to users.
 </p>
 
 <img
@@ -108,7 +119,7 @@
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
   Turn on a screen reader and move through the form fields.
-  Which field is unclear, and why?
+  Which field is announced simply as “edit blank”, and why?
 </p>
 
 {{ super() }}

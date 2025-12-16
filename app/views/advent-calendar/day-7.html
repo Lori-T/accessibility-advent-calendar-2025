@@ -4,7 +4,10 @@
 {% set currentDayNumber = 7 %}
 
 {% block beforeContent %}
-  {{ govukBackLink({ text: "Back to calendar", href: "/" }) }}
+  {{ govukBackLink({
+      text: "Back to calendar",
+      href: "/"
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -12,59 +15,101 @@
 <h1 class="govuk-heading-l">Day 7: Check form labels on the Elf Task Submission Form</h1>
 
 <p class="govuk-body">
-  Elves submit daily tasks through a central DEA-managed form. However, some input
-  fields are missing labels, which means screen reader users cannot understand
-  what information is expected.
+  Elves across Santa HQ submit daily updates using the
+  <strong>Elf Task Submission Form</strong>, managed by the
+  <strong>Department of Elfish Affairs</strong> (DEA).
+  Recently, some elves reported difficulty completing the form using assistive technology.
 </p>
 
 <p class="govuk-body">
-  Today you’ll review a simplified version of the form and spot the missing label.
+  Initial checks suggest that not all form fields have clear labels,
+  making it difficult for screen reader users to understand what information is required.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
-<p class="govuk-body">Check that every form field has a clear, programmatic label.</p>
+<p class="govuk-body">
+  Check that every form field has a clear, programmatic label.
+</p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li>every input must have a descriptive label</li>
-  <li>placeholder text must not be used instead of labels</li>
-  <li>associate labels using <code>for</code> and <code>id</code></li>
-  <li>screen readers should announce the label naturally</li>
+  <li>every input must have a visible and descriptive label</li>
+  <li>labels should be correctly associated using <code>for</code> and <code>id</code></li>
+  <li>placeholder text must not be used instead of a label</li>
+  <li>screen readers should announce the label automatically</li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-<h2 class="govuk-heading-m">Test the Task Submission Form</h2>
-<p class="govuk-body">One field below has a deliberate accessibility issue.</p>
+<h2 class="govuk-heading-m">Test the Elf Task Submission Form</h2>
+<p class="govuk-body">
+  This simplified example shows part of the form elves use to log their daily
+  workshop duties. One field has a deliberate accessibility issue where the label is missing and the placeholder text dissappears when typing starts.
+</p>
 
-<div style="background:#fafafa; padding:16px; border-radius:8px;">
+<div class="govuk-!-padding-4 govuk-!-margin-bottom-4"
+     style="background:#f7f7f7; border-radius:8px; max-width: 640px;">
+
   <div class="govuk-form-group">
-    <label class="govuk-label" for="task-name">Task name</label>
-    <input class="govuk-input" id="task-name">
+    <label class="govuk-label" for="toy-type">
+      Toy worked on
+    </label>
+    <input class="govuk-input" id="toy-type" type="text">
   </div>
 
   <div class="govuk-form-group">
-    <input class="govuk-input" placeholder="❌ Missing label">
+    <input
+      class="govuk-input"
+      type="text"
+      placeholder="❌ What festive task did you complete?">
   </div>
 
   <div class="govuk-form-group">
-    <label class="govuk-label" for="hours">Hours spent</label>
-    <input class="govuk-input" id="hours" type="number">
+    <label class="govuk-label" for="shift-hours">
+      Hours spent in the workshop
+    </label>
+    <input class="govuk-input" id="shift-hours" type="number">
   </div>
+
 </div>
 
+
 <h2 class="govuk-heading-m">What this checks for</h2>
-<p class="govuk-body"><strong>4.1.2 name, role, value</strong> - form fields must expose correct labels to assistive technologies.</p>
+<p class="govuk-body">
+  <strong>1.3.1 info and relationships</strong> and
+  <strong>4.1.2 name, role, value</strong> – form fields must expose clear labels to assistive technologies.
+</p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  Without labels, users who rely on screen readers cannot complete forms accurately
-  or confidently.
+  Screen reader users rely on labels to understand what information is expected.
+  Without them, forms become confusing, frustrating or impossible to complete.
 </p>
 
+<h2 class="govuk-heading-m">
+  Finding this issue using the Workshop Accessibility Verification Engine (WAVE)
+</h2>
+
+<p class="govuk-body">
+  When <a href="https://wave.webaim.org/extension/" class="govuk-link">WAVE</a>
+  is run on a page like this, it highlights form controls that are missing associated labels.
+</p>
+
+<p class="govuk-body">
+  WAVE is useful for spotting missing labels quickly, but it is still important to
+  test forms with a screen reader or accessibility tree to confirm how fields are announced.
+</p>
+
+<img
+  src="{{ asset_path }}images/wave7.png"
+  alt="Screenshot of the WAVE tool highlighting a form field with a missing label"
+  style="width: 25%; border-radius: 8px;">
+
 <h2 class="govuk-heading-m">Bonus challenge</h2>
-<p class="govuk-body">Turn on a screen reader and tab through the form.  
-Which field is confusing?</p>
+<p class="govuk-body">
+  Turn on a screen reader and move through the form fields.
+  Which field is unclear, and why?
+</p>
 
 {{ super() }}
 {% endblock %}
@@ -72,8 +117,21 @@ Which field is confusing?</p>
 {% block dayNavigation %}
 <div class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
   <nav class="govuk-body" aria-label="Day navigation">
-    <a class="govuk-link govuk-!-margin-right-4" href="/advent-calendar/day-6">← Previous day</a>
-    <a class="govuk-link" href="/advent-calendar/day-8">Next day →</a>
+
+    {% if currentDayNumber > 1 %}
+      <a class="govuk-link govuk-!-margin-right-4"
+         href="/advent-calendar/day-{{ currentDayNumber - 1 }}">
+        ← Previous day
+      </a>
+    {% endif %}
+
+    {% if currentDayNumber < 12 %}
+      <a class="govuk-link"
+         href="/advent-calendar/day-{{ currentDayNumber + 1 }}">
+        Next day →
+      </a>
+    {% endif %}
+
   </nav>
 </div>
 {% endblock %}

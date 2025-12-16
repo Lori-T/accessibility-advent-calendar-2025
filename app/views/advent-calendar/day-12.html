@@ -4,7 +4,10 @@
 {% set currentDayNumber = 12 %}
 
 {% block beforeContent %}
-  {{ govukBackLink({ text: "Back to calendar", href: "/" }) }}
+  {{ govukBackLink({
+      text: "Back to calendar",
+      href: "/"
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -12,109 +15,160 @@
 <h1 class="govuk-heading-l">Day 12: Check ARIA use on the Sleigh Launch Dashboard</h1>
 
 <p class="govuk-body">
-  Before Santa takes off, the elves run a series of dashboard checks — including fuel levels, 
-  reindeer readiness and the all-important <strong>Christmas spirit</strong>.  
-  But a developer elf has added ARIA roles in all the wrong places.
+  Before Santa takes off, the elves run final checks on the
+  <strong>Sleigh Launch Dashboard</strong> – fuel levels, reindeer readiness
+  and Christmas spirit.
 </p>
 
 <p class="govuk-body">
-  Your job today is to find the control that only <em>pretends</em> to be a button.
+  A developer elf has added ARIA in the wrong places.
+  One control looks right, but does not behave like a real button.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
-<p class="govuk-body">Identify which “button” is not a real button.</p>
+<p class="govuk-body">
+  Identify which control is not built correctly, even though it looks like a button.
+</p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li>real buttons must use the <code>&lt;button&gt;</code> element</li>
-  <li>DIVs or SPANs cannot behave like buttons without extra coding</li>
-  <li>ARIA roles don't magically add accessibility</li>
-  <li>keyboard users must be able to activate all controls</li>
+  <li>use native HTML elements wherever possible</li>
+  <li><code>&lt;button&gt;</code> elements work without extra ARIA</li>
+  <li>ARIA roles do not add keyboard behaviour</li>
+  <li>controls must work with <kbd>Tab</kbd>, <kbd>Enter</kbd> and <kbd>Space</kbd></li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-<h2 class="govuk-heading-m">Test the dashboard</h2>
-<p class="govuk-body">One of these controls is real. The other only looks like a button.</p>
+<h2 class="govuk-heading-m">Test the Sleigh Launch Dashboard</h2>
+<p class="govuk-body">
+  One of the controls below is built correctly.
+  The other only looks like a button.
+</p>
 
-<div style="background:#eef7ff; padding:16px; border-radius:8px;">
+<div class="govuk-!-padding-4 govuk-!-margin-bottom-4"
+     style="background:#eef7ff; border-radius:8px;">
 
-  {# REAL BUTTON WITH TOGGLE BEHAVIOUR #}
-  <div style="margin-bottom: 20px;">
+  <h3 class="govuk-heading-s">Pre-launch checks</h3>
+
+  <div style="display:flex; gap:16px; flex-wrap:wrap;">
+
+    <!-- REAL BUTTON -->
     <button
       class="govuk-button"
-      id="spirit-btn"
-      onclick="toggleSpiritCheck()">
-      ✔ Start Christmas spirit check
+      type="button"
+      onclick="openDialog()">
+      ✓ Start Christmas spirit check
     </button>
 
-    <p id="spirit-status"
-       class="govuk-body"
-       style="display:none; margin-top:8px; color:#00703c;">
-       Christmas spirit levels are rising — looking good! 🎄✨
-    </p>
+    <!-- FAKE BUTTON (LINK + ARIA MISUSE) -->
+    <a
+      href="#"
+      role="button"
+      aria-pressed="false"
+      onclick="return false;"
+      style="
+        background:#d4351c;
+        color:#ffffff;
+        padding:10px 16px;
+        border-radius:4px;
+        text-decoration:none;
+        font-weight:600;
+        display:inline-block;
+      ">
+      ✖ Launch fuel scan
+    </a>
+
   </div>
 
-  <script>
-    function toggleSpiritCheck() {
-      const btn = document.getElementById('spirit-btn');
-      const status = document.getElementById('spirit-status');
-
-      if (btn.dataset.state === 'running') {
-        // Stop state
-        btn.dataset.state = 'stopped';
-        btn.textContent = '⏹ Stop Christmas spirit check';
-        status.style.display = 'none';
-      } else {
-        // Start state
-        btn.dataset.state = 'running';
-        btn.textContent = '✔ Start Christmas spirit check';
-        status.style.display = 'block';
-      }
-    }
-  </script>
-
-  {# FAKE BUTTON (LOOKS REAL, NOT ACCESSIBLE) #}
-  <div
-    role="button"
-    style="
-      background:#d4351c;
-      color:white;
-      padding:10px 16px;
-      margin-top:16px;
-      display:inline-block;
-      border-radius:4px;
-      cursor:pointer;
-      font-weight:600;
-      width:auto;
-      user-select:none;
-    ">
-    ✖ Launch fuel scan
-  </div>
-
-  <p class="govuk-body" style="margin-top:8px; color:#d4351c;">
-    This looks like a button, but it isn't one.  
-    It cannot be activated using a keyboard, and ARIA role alone does not make it behave correctly.
+  <p class="govuk-body govuk-!-margin-top-3">
+    One of these controls can be activated using a keyboard and announced correctly.
+    The other cannot.
   </p>
 
 </div>
 
+<!-- ACCESSIBLE DIALOG -->
+<div id="spirit-dialog" hidden>
+  <div
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="dialog-title"
+    aria-describedby="dialog-description"
+    style="
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    "
+  >
+    <div style="background:#ffffff; padding:24px; border-radius:8px; max-width:400px;">
+      <h2 id="dialog-title" class="govuk-heading-m">
+        Christmas spirit check running
+      </h2>
+      <p id="dialog-description" class="govuk-body">
+        Festive levels are high. Reindeer are cheerful and ready for take-off 🎄✨
+      </p>
+
+      <button
+        class="govuk-button govuk-button--secondary"
+        type="button"
+        onclick="closeDialog()">
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openDialog() {
+    document.getElementById('spirit-dialog').removeAttribute('hidden');
+  }
+
+  function closeDialog() {
+    document.getElementById('spirit-dialog').setAttribute('hidden', '');
+  }
+</script>
+
+<h2 class="govuk-heading-m">
+  Finding this using the Workshop Accessibility Verification Engine (WAVE)
+</h2>
+
+<p class="govuk-body">
+  When you run
+  <a href="https://wave.webaim.org/extension/" class="govuk-link">WAVE</a>
+  on this page, it highlights that one control uses ARIA to override native behaviour.
+</p>
+
+<p class="govuk-body">
+  WAVE can flag the ARIA misuse, but it cannot confirm whether the control behaves
+  correctly for keyboard or screen reader users.
+  Manual testing is still essential.
+</p>
+
+<img
+  src="{{ asset_path }}images/wave12.png"
+  alt="WAVE highlighting a link styled as a button with an ARIA role"
+  style="width: 40%; border-radius: 8px;">
+
 <h2 class="govuk-heading-m">What this checks for</h2>
 <p class="govuk-body">
-  <strong>4.1.2 Name, role, value</strong> — interactive elements must expose their correct behaviour 
-  to assistive technologies.
+  <strong>4.1.2 name, role, value</strong> – interactive components must expose
+  their correct role and behaviour to assistive technologies.
 </p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  If something looks like a button but isn’t one, people using keyboards or screen readers 
-  may not be able to activate it — blocking them from completing tasks.
+  If something looks like a button but behaves differently, users may be unable
+  to complete critical tasks – even though the interface appears usable.
 </p>
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
-  Try using only your keyboard.  
-  Which control can you activate?
+  Try using only your keyboard.
+  Which control works as expected?
 </p>
 
 {{ super() }}
@@ -124,7 +178,10 @@
 {% block dayNavigation %}
 <div class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
   <nav class="govuk-body" aria-label="Day navigation">
-    <a class="govuk-link govuk-!-margin-right-4" href="/advent-calendar/day-11">← Previous day</a>
+    <a class="govuk-link govuk-!-margin-right-4"
+       href="/advent-calendar/day-11">
+      ← Previous day
+    </a>
   </nav>
 </div>
 {% endblock %}

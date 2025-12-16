@@ -4,7 +4,10 @@
 {% set currentDayNumber = 8 %}
 
 {% block beforeContent %}
-  {{ govukBackLink({ text: "Back to calendar", href: "/" }) }}
+  {{ govukBackLink({
+      text: "Back to calendar",
+      href: "/"
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -12,59 +15,78 @@
 <h1 class="govuk-heading-l">Day 8: Check error messages on the Gift Labelling Machine</h1>
 
 <p class="govuk-body">
-  The <strong>Gift Labelling Machine</strong> applies tags to presents automatically.
-  But when an elf enters something incorrectly, the error messages are easy to miss
-  - or not linked to the input they relate to.
+  The <strong>Gift Labelling Machine</strong> applies tags to presents as they move
+  through Santa’s workshop. When something goes wrong, elves rely on clear error
+  messages to understand what needs fixing.
 </p>
 
 <p class="govuk-body">
-  Today you’ll check whether errors are clear, accessible and connected to fields.
+  Some elves have reported that error messages are easy to miss or unclear,
+  especially when using assistive technologies like screen readers.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
-<p class="govuk-body">Check whether users can easily spot and understand errors.</p>
+<p class="govuk-body">
+  Check that error messages are easy to spot, clearly explained and linked to
+  the fields they relate to.
+</p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li>errors must appear next to the relevant field</li>
-  <li>screen readers must be able to announce the error</li>
-  <li>error text must explain what went wrong and how to fix it</li>
-  <li>error summary must link to fields when used</li>
+  <li>errors should appear next to the field that needs fixing</li>
+  <li>error messages must explain what went wrong and how to fix it</li>
+  <li>errors must be programmatically linked to the input</li>
+  <li>screen readers should announce errors when focus moves to the field</li>
+  <li>
+    automated tools such as the <strong>Workshop Accessibility Verification Engine (WAVE)</strong>
+    can help, but manual testing or code inspection is essential for this check
+  </li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-<h2 class="govuk-heading-m">Test the Gift Labelling Form</h2>
-<p class="govuk-body">One error below has a deliberate accessibility issue.</p>
+<h2 class="govuk-heading-m">Test the Gift Labelling Machine</h2>
+<p class="govuk-body">
+  The form below contains one deliberate accessibility issue related to error messaging.
+</p>
 
-<div style="background:#fff8f8; padding:16px; border-radius:8px;">
+<div class="govuk-!-padding-4 govuk-!-margin-bottom-4" style="background:#fff8f8; border-radius:8px;">
+
   <div class="govuk-form-group govuk-form-group--error">
     <label class="govuk-label" for="gift-id">Gift ID</label>
-    <span class="govuk-error-message">Enter a valid ID</span>
+    <span class="govuk-error-message">
+      Enter a valid gift ID
+    </span>
     <input class="govuk-input govuk-input--error" id="gift-id">
   </div>
 
   <div class="govuk-form-group">
-    <label class="govuk-label" for="label-text">Label text</label>
-    <span style="color:#d4351c;">
-      ❌ Error message displayed but not linked to the input
+    <label class="govuk-label" for="label-text">Festive label text</label>
+    <span class="govuk-body" style="color:#d4351c;">
+      ❌ Error message shown, but not linked to the input
     </span>
     <input class="govuk-input" id="label-text">
   </div>
+
 </div>
 
 <h2 class="govuk-heading-m">What this checks for</h2>
-<p class="govuk-body"><strong>1.3.1 info and relationships</strong> - errors must be programmatically linked to inputs.</p>
+<p class="govuk-body">
+  <strong>1.3.1 info and relationships</strong> – error messages must be
+  programmatically linked to the fields they describe.
+</p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  If users cannot find or understand errors, they cannot correct them - creating 
-  a blocker in the journey.
+  If users cannot find or understand an error message, they cannot correct it.
+  This can completely block people from completing a task.
 </p>
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
-<p class="govuk-body">Try using a screen reader.  
-Which error is not announced correctly?</p>
+<p class="govuk-body">
+  Try completing the form using only a screen reader.
+  Which error message is hardest to find or understand?
+</p>
 
 {{ super() }}
 {% endblock %}
@@ -72,8 +94,21 @@ Which error is not announced correctly?</p>
 {% block dayNavigation %}
 <div class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
   <nav class="govuk-body" aria-label="Day navigation">
-    <a class="govuk-link govuk-!-margin-right-4" href="/advent-calendar/day-7">← Previous day</a>
-    <a class="govuk-link" href="/advent-calendar/day-9">Next day →</a>
+
+    {% if currentDayNumber > 1 %}
+      <a class="govuk-link govuk-!-margin-right-4"
+         href="/advent-calendar/day-{{ currentDayNumber - 1 }}">
+        ← Previous day
+      </a>
+    {% endif %}
+
+    {% if currentDayNumber < 12 %}
+      <a class="govuk-link"
+         href="/advent-calendar/day-{{ currentDayNumber + 1 }}">
+        Next day →
+      </a>
+    {% endif %}
+
   </nav>
 </div>
 {% endblock %}

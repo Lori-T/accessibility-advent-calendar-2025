@@ -4,7 +4,10 @@
 {% set currentDayNumber = 5 %}
 
 {% block beforeContent %}
-  {{ govukBackLink({ text: "Back to calendar", href: "/" }) }}
+  {{ govukBackLink({
+      text: "Back to calendar",
+      href: "/"
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -12,57 +15,67 @@
 <h1 class="govuk-heading-l">Day 5: Check keyboard access on the Gift Tracker</h1>
 
 <p class="govuk-body">
-  The <strong>Department of Elfish Affairs</strong> has received a report that the
-  <strong>Gift Tracker</strong>, the system elves use to update toy progress,
-  cannot be fully used without a mouse.
+  The <strong>Department of Elfish Affairs</strong> has received a report about the
+  <strong>Gift Tracker</strong>, the system elves use to update toy progress and delivery
+  status across Santa HQ.
 </p>
 
 <p class="govuk-body">
-  Some controls appear interactive but cannot be reached or operated using a keyboard,
-  creating a barrier for users who rely on keyboard navigation.
+  Several elves have reported that parts of the tracker only work with a mouse.
+  This creates barriers for people who rely on keyboards or alternative input devices.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
 <p class="govuk-body">
-  Check that all interactive controls can be accessed and used with a keyboard.
+  Check that all interactive elements can be reached and used with a keyboard.
 </p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li>use the <kbd>Tab</kbd> key to move forward through controls</li>
+  <li>use the <kbd>Tab</kbd> key to move through interactive elements</li>
   <li>use <kbd>Shift</kbd> + <kbd>Tab</kbd> to move backwards</li>
-  <li>buttons, links and form fields must all receive focus</li>
-  <li>interactive elements must be usable without a mouse</li>
+  <li>links, buttons and form controls must receive focus</li>
+  <li>custom controls must be keyboard operable</li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-<h2 class="govuk-heading-m">Test the Gift Tracker</h2>
+<h2 class="govuk-heading-m">Examine the Gift Tracker</h2>
 <p class="govuk-body">
-  One control below has a deliberate accessibility issue.
+  Below is a simplified section of the Gift Tracker.
+  One control has a deliberate keyboard accessibility issue.
 </p>
 
-<div style="background:#f7f7f7; padding:16px; border-radius:8px;">
+<div class="govuk-!-padding-4 govuk-!-margin-bottom-4"
+     style="background:#f7f7f7; border-radius:8px;">
+
+  <p class="govuk-body">
+    <strong>Train set</strong><br>
+    Status: In production
+  </p>
 
   <button class="govuk-button">
-    ✔ Update gift status
+    ✔ Mark as ready for Christmas Eve
   </button>
 
   <div
     style="
       display:inline-block;
       padding:10px 16px;
-      background:#c5f5d3;
       margin-left:10px;
-      cursor:pointer;
+      background:#8b0000;
+      color:#ffffff;
+      border:2px solid #5c0000;
       border-radius:4px;
+      box-shadow:0 2px 0 #5c0000;
+      cursor:pointer;
     "
-    onclick="alert('🎄 Candy cane ribbon added. This gift is now extra festive!')">
-    ❌ Add candy cane ribbon
+    onclick="alert('Ho ho ho! This gift is running behind schedule!')">
+    ❌ Mark as delayed by snow
   </div>
 
   <p class="govuk-body govuk-!-margin-top-2">
-    The option above looks like a button, but it cannot be reached or activated
+    The control above looks like a button, but it cannot be reached or activated
     using the keyboard.
   </p>
 
@@ -70,20 +83,39 @@
 
 <h2 class="govuk-heading-m">What this checks for</h2>
 <p class="govuk-body">
-  <strong>2.1.1 keyboard</strong> – all functionality must be operable through a keyboard.
+  <strong>2.1.1 keyboard</strong> – all functionality must be operable using a keyboard.
 </p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  Many users rely on keyboards instead of a mouse.
-  If interactive elements cannot be reached or activated, users are blocked from
-  completing tasks.
+  Many users cannot use a mouse. If interactive elements are not keyboard accessible,
+  those users are completely blocked from completing tasks.
 </p>
+
+<h2 class="govuk-heading-m">
+  Finding this issue using the Workshop Accessibility Verification Engine (WAVE)
+</h2>
+
+<p class="govuk-body">
+  When <a href="https://wave.webaim.org/extension/" class="govuk-link">WAVE</a> is run on a page like this,
+  it may highlight elements that look interactive but are not built using semantic
+  HTML controls.
+</p>
+
+<p class="govuk-body">
+  WAVE can help point you towards potential issues, but keyboard testing is essential.
+  The fastest way to find this problem is to try using the <kbd>Tab</kbd> key yourself.
+</p>
+
+<img
+  src="{{ asset_path }}images/wave5.png"
+  alt="Screenshot of the WAVE accessibility tool highlighting a non keyboard accessible control"
+  style="width: 25%; border-radius: 8px;">
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
-  Try using only the keyboard to interact with the Gift Tracker.
-  Which control stops you from continuing?
+  Try navigating this page using only your keyboard.
+  Which element prevents you from completing the task?
 </p>
 
 {{ super() }}
@@ -92,12 +124,21 @@
 {% block dayNavigation %}
 <div class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
   <nav class="govuk-body" aria-label="Day navigation">
-    <a class="govuk-link govuk-!-margin-right-4" href="/advent-calendar/day-4">
-      ← Previous day
-    </a>
-    <a class="govuk-link" href="/advent-calendar/day-6">
-      Next day →
-    </a>
+
+    {% if currentDayNumber > 1 %}
+      <a class="govuk-link govuk-!-margin-right-4"
+         href="/advent-calendar/day-{{ currentDayNumber - 1 }}">
+        ← Previous day
+      </a>
+    {% endif %}
+
+    {% if currentDayNumber < 12 %}
+      <a class="govuk-link"
+         href="/advent-calendar/day-{{ currentDayNumber + 1 }}">
+        Next day →
+      </a>
+    {% endif %}
+
   </nav>
 </div>
 {% endblock %}

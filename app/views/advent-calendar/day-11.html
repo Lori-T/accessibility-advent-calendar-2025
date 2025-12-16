@@ -4,7 +4,10 @@
 {% set currentDayNumber = 11 %}
 
 {% block beforeContent %}
-  {{ govukBackLink({ text: "Back to calendar", href: "/" }) }}
+  {{ govukBackLink({
+      text: "Back to calendar",
+      href: "/"
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -12,80 +15,132 @@
 <h1 class="govuk-heading-l">Day 11: Check table structure in the Reindeer Flight Schedule</h1>
 
 <p class="govuk-body">
-  The <strong>Reindeer Flight Operations Team</strong> publishes a daily schedule showing which 
-  reindeer are taking off, when, and with which pilot elf. But in today’s update, one of the 
-  elves formatted a header using visual styling only — so it <em>looks</em> wrong and is not 
-  announced correctly by screen readers.
+  The <strong>Reindeer Flight Operations Team</strong> publishes a daily schedule showing
+  which reindeer are flying, their cruising speed and which pilot elf is assigned.
+  In today’s update, one column has been styled to look like a header, but is not
+  marked up correctly.
 </p>
 
 <p class="govuk-body">
-  Your mission is to check whether each column header has been marked up semantically.
+  Today, you’ll check whether table headers are defined semantically so that screen
+  reader users can understand how the data is structured.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
-<p class="govuk-body">Find the column that visually looks like a header but isn’t one.</p>
+<p class="govuk-body">
+  Identify the column that visually looks like a header but is not marked up as one.
+</p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li>column headers must use <code>&lt;th&gt;</code></li>
-  <li>headers must have <code>scope="col"</code> or <code>row</code></li>
-  <li>visual styling alone does not make something a header</li>
-  <li>screen readers rely on semantic structure, not appearance</li>
+  <li>column headers must use <code>&lt;th&gt;</code>, not <code>&lt;td&gt;</code></li>
+  <li>headers must include <code>scope="col"</code> or <code>scope="row"</code></li>
+  <li>visual styling alone does not create structure</li>
+  <li>screen readers rely on markup, not appearance</li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
 <h2 class="govuk-heading-m">Review the flight schedule</h2>
 <p class="govuk-body">
-  One of the column “headers” is actually marked up as a normal cell. It even looks slightly wrong.
+  One of the column “headers” below is actually marked up as a normal table cell.
+  It also looks slightly out of place compared to the real headers.
 </p>
 
 <table class="govuk-table">
   <thead class="govuk-table__head">
     <tr class="govuk-table__row">
       <th scope="col" class="govuk-table__header">Reindeer</th>
-      <th scope="col" class="govuk-table__header">Take-off time</th>
+      <th scope="col" class="govuk-table__header">Cruising speed</th>
 
-      <!-- Incorrect header that also looks visually off -->
-      <td class="govuk-table__cell" style="background: #f7d7d7;">
+      {# ❌ Deliberate accessibility issue #}
+      <td class="govuk-table__cell" style="background:#f7d7d7;">
         <strong>❌ Pilot elf</strong><br>
-        <span style="font-size: 14px; color:#d4351c;">
-          (styled like a header, but not a real header)
+        <span style="font-size:14px; color:#000;">
+          Styled like a header, but not a real header
         </span>
       </td>
-
     </tr>
   </thead>
+
   <tbody class="govuk-table__body">
     <tr class="govuk-table__row">
       <td class="govuk-table__cell">Dasher</td>
-      <td class="govuk-table__cell">18:00</td>
-      <td class="govuk-table__cell">Fig</td>
+      <td class="govuk-table__cell">900 km/h</td>
+      <td class="govuk-table__cell">Buddy the Elf</td>
     </tr>
     <tr class="govuk-table__row">
       <td class="govuk-table__cell">Dancer</td>
-      <td class="govuk-table__cell">18:10</td>
-      <td class="govuk-table__cell">Mistle</td>
+      <td class="govuk-table__cell">900 km/h</td>
+      <td class="govuk-table__cell">Papa Elf</td>
     </tr>
   </tbody>
 </table>
 
+<h2 class="govuk-heading-m">
+  Finding this using the Workshop Accessibility Verification Engine (WAVE)
+</h2>
+
+<p class="govuk-body">
+  When the <strong>Workshop Accessibility Verification Engine (WAVE)</strong> is run on a page like this,
+  it correctly detects that a data table is present.
+</p>
+
+<p class="govuk-body">
+  However, because the “Pilot elf” column is marked up as a <code>&lt;td&gt;</code>
+  instead of a <code>&lt;th&gt;</code>, WAVE only reports <strong>2 column headers</strong>,
+  even though <strong>3 columns are visible</strong> on the page.
+</p>
+
+<p class="govuk-body">
+  This is a useful clue that the visual layout and the underlying structure do not match.
+</p>
+
+<img
+  src="{{ asset_path }}images/wave11.png"
+  alt="WAVE accessibility tool showing a data table with two column headers detected despite three visible columns"
+  style="width: 35%; border-radius: 8px;">
+
+<h2 class="govuk-heading-m">Checking the markup directly</h2>
+
+<p class="govuk-body">
+  You can confirm this issue by inspecting the table markup.
+</p>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>right click on the table and select <strong>Inspect</strong></li>
+  <li>or open your browser’s developer tools and use the inspect tool</li>
+</ul>
+
+<p class="govuk-body">
+  When you inspect the table headers, you’ll see that the “Pilot elf” column is
+  marked up as a <code>&lt;td&gt;</code> instead of a <code>&lt;th&gt;</code>.
+  Although it visually looks like a header because it uses <code>&lt;strong&gt;</code>,
+  assistive technologies do not recognise it as one.
+</p>
+
+<img
+  src="{{ asset_path }}images/inspecttable.png"
+  alt="Browser inspection tools showing a table cell marked up as td instead of th"
+  style="width: 35%; border-radius: 8px;">
+
 <h2 class="govuk-heading-m">What this checks for</h2>
 <p class="govuk-body">
-  <strong>1.3.1 Info and relationships</strong> – structure must be conveyed in markup, 
-  not just visually.
+  <strong>1.3.1 info and relationships</strong> – relationships in data must be conveyed
+  programmatically, not just visually.
 </p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
-  People using screen readers rely on proper table headers to understand how data relates 
-  to the rest of the table. When a header is only styled visually, the structure becomes unclear.
+  Screen reader users rely on table headers to understand how each piece of data
+  relates to the rest of the table. If headers are missing or incorrect, the
+  information becomes confusing or unusable.
 </p>
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
-  Turn on a screen reader.  
-  Which column name is not announced before each cell?
+  Turn on a screen reader and move through the table by cell.
+  Which column name is not announced?
 </p>
 
 {{ super() }}
@@ -94,8 +149,14 @@
 {% block dayNavigation %}
 <div class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
   <nav class="govuk-body" aria-label="Day navigation">
-    <a class="govuk-link govuk-!-margin-right-4" href="/advent-calendar/day-10">← Previous day</a>
-    <a class="govuk-link" href="/advent-calendar/day-12">Next day →</a>
+    <a class="govuk-link govuk-!-margin-right-4"
+       href="/advent-calendar/day-10">
+      ← Previous day
+    </a>
+    <a class="govuk-link"
+       href="/advent-calendar/day-12">
+      Next day →
+    </a>
   </nav>
 </div>
 {% endblock %}

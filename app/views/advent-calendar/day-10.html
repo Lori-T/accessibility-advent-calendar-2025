@@ -4,7 +4,10 @@
 {% set currentDayNumber = 10 %}
 
 {% block beforeContent %}
-  {{ govukBackLink({ text: "Back to calendar", href: "/" }) }}
+  {{ govukBackLink({
+      text: "Back to calendar",
+      href: "/"
+  }) }}
 {% endblock %}
 
 {% block content %}
@@ -13,26 +16,30 @@
 
 <p class="govuk-body">
   Each December, Santa records a short message for the elves using the
-  <strong>Elf Communications Console</strong>. But this year’s upload is causing
-  problems - it appears on the dashboard without captions or a transcript.
+  <strong>Elf Communications Console</strong>. This year’s message has been uploaded
+  to the dashboard, but some elves are struggling to access the information.
 </p>
 
 <p class="govuk-body">
-  Today you’ll check whether media content provides accessible alternatives
-  for people who cannot hear the audio.
+  Today, you’ll check whether video content includes captions or an accessible
+  alternative for people who cannot hear the audio.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
 <p class="govuk-body">
-  Check whether Santa’s message includes captions or an accessible transcript.
+  Check whether Santa’s message includes captions or a transcript.
 </p>
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
   <li>videos with speech must have captions</li>
-  <li>captions should include both spoken words and meaningful sounds</li>
-  <li>a transcript must be provided if captions are missing</li>
-  <li>auto-generated captions are not always accurate</li>
+  <li>captions should include spoken words and meaningful sounds</li>
+  <li>a transcript can be provided as an alternative</li>
+  <li>do not rely on auto-generated captions without checking accuracy</li>
+  <li>
+    automated tools such as the <strong>Workshop Accessibility Verification Engine (WAVE)</strong>
+    can help identify media, but manual checks are essential
+  </li>
 </ul>
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
@@ -69,22 +76,40 @@
   </p>
 </div>
 
+<h2 class="govuk-heading-m">Finding this using the Workshop Accessibility Verification Engine (WAVE)</h2>
+
+<p class="govuk-body">
+  When <a href="https://wave.webaim.org/extension/" class="govuk-link">WAVE</a> is run on a page like this,
+  it will flag that a video is present.
+</p>
+
+<p class="govuk-body">
+  However, WAVE cannot reliably tell whether a video has accurate captions or
+  a suitable transcript. This means you must manually check the video itself.
+</p>
+
+<img
+  src="{{ asset_path }}images/wave10.png"
+  alt="Screenshot of the WAVE accessibility tool highlighting that a video is present on the page"
+  style="width: 25%; border-radius: 8px;">
+
 <h2 class="govuk-heading-m">What this checks for</h2>
 <p class="govuk-body">
-  <strong>1.2.2 Captions (Prerecorded)</strong> - prerecorded videos with speech must
-  have captions so that users who cannot hear the audio can still access the content.
+  <strong>1.2.2 captions (prerecorded)</strong> – prerecorded videos with speech must
+  include captions or an accessible alternative.
 </p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
   Captions make video content accessible to D/deaf and hard of hearing users.
-  They also help people in noisy environments or situations where sound cannot be played.
+  They also support users in noisy environments or situations where audio cannot
+  be played.
 </p>
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
-  Mute the video or turn your sound off.  
-  How much of Santa’s message can you understand?
+  Mute the video or turn your sound off.
+  How much of Santa’s message can you understand without captions?
 </p>
 
 {{ super() }}
@@ -93,8 +118,14 @@
 {% block dayNavigation %}
 <div class="govuk-!-margin-top-6 govuk-!-margin-bottom-6">
   <nav class="govuk-body" aria-label="Day navigation">
-    <a class="govuk-link govuk-!-margin-right-4" href="/advent-calendar/day-9">← Previous day</a>
-    <a class="govuk-link" href="/advent-calendar/day-11">Next day →</a>
+    <a class="govuk-link govuk-!-margin-right-4"
+       href="/advent-calendar/day-9">
+      ← Previous day
+    </a>
+    <a class="govuk-link"
+       href="/advent-calendar/day-11">
+      Next day →
+    </a>
   </nav>
 </div>
 {% endblock %}

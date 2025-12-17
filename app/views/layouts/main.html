@@ -14,9 +14,11 @@
   <link rel="icon" href="" type="image/x-icon">
   <link rel="shortcut icon" href="" type="image/x-icon">
 
-  <link rel="icon"
-        type="image/svg+xml"
-        href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🎅</text></svg>'>
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🎅</text></svg>'
+  >
 {% endblock %}
 
 {% block header %}
@@ -26,9 +28,11 @@
     <!-- Logo -->
     <div class="govuk-header__logo">
       <a href="/" class="govuk-header__link govuk-header__link--homepage">
-        <img src="{{ asset_path }}images/DEA_logo_full.png"
-             alt="Department for Elfish Affairs"
-             class="santa-logo">
+        <img
+          src="{{ asset_path }}images/DEA_logo_full.png"
+          alt="Department for Elfish Affairs"
+          class="santa-logo"
+        >
       </a>
     </div>
 
@@ -41,12 +45,26 @@
     </div>
     {% endif %}
 
-    <!-- FESTIVE SWITCH -->
-    <button id="festive-toggle" class="festive-toggle-combo" aria-pressed="false">
+    <!-- FESTIVE TOGGLE -->
+    <button
+      id="festive-toggle"
+      class="festive-toggle-combo"
+      aria-pressed="false"
+    >
       <span class="switch-track">
         <span class="switch-knob"></span>
       </span>
+
       <span class="switch-text">Festive effects</span>
+
+      <!-- Screen reader announcement -->
+      <span
+        id="festive-toggle-announcement"
+        class="govuk-visually-hidden"
+        aria-live="polite"
+      >
+        Festive effects are off
+      </span>
     </button>
 
   </div>
@@ -60,9 +78,10 @@
 document.addEventListener("DOMContentLoaded", function () {
   const body = document.body;
   const btn = document.getElementById("festive-toggle");
-  const label = btn.querySelector(".switch-text");
-
   if (!btn) return;
+
+  const label = btn.querySelector(".switch-text");
+  const announcement = document.getElementById("festive-toggle-announcement");
 
   function updateState(isOn) {
     if (isOn) {
@@ -70,8 +89,10 @@ document.addEventListener("DOMContentLoaded", function () {
       btn.setAttribute("aria-pressed", "true");
       btn.classList.add("is-on");
 
-      // ❄️ Emoji when ON
       label.textContent = "❄️ Festive effects off";
+
+      announcement.textContent =
+        "Festive effects on. Festive fairy lights appear across the headers and presents and stockings are displayed on the page.";
 
       localStorage.setItem("festiveEffects", "on");
     } else {
@@ -79,14 +100,16 @@ document.addEventListener("DOMContentLoaded", function () {
       btn.setAttribute("aria-pressed", "false");
       btn.classList.remove("is-on");
 
-      // 🎄 Emoji when OFF
       label.textContent = "🎄 Festive effects on";
+
+      announcement.textContent =
+        "Festive effects off. Decorative animations and festive visuals are hidden.";
 
       localStorage.setItem("festiveEffects", "off");
     }
   }
 
-  // Restore saved setting
+  // Restore saved preference
   const pref = localStorage.getItem("festiveEffects");
   updateState(pref !== "off");
 
@@ -97,23 +120,23 @@ document.addEventListener("DOMContentLoaded", function () {
     updateState(!isOn);
   });
 });
-
 </script>
 
 {% endblock %}
 
 {% block content %}
-  <div class="govuk-width-container">
+  <main id="main-content" class="govuk-main-wrapper" role="main">
+    <div class="govuk-width-container">
 
-    {% block beforeDayContent %}{% endblock %}
+      {% block beforeDayContent %}{% endblock %}
 
-    {{ super() }}
+      {{ super() }}
 
-    {% block dayNavigation %}{% endblock %}
+      {% block dayNavigation %}{% endblock %}
 
-  </div>
+    </div>
+  </main>
 {% endblock %}
-
 
 {% block footer %}
   {{ govukFooter({
@@ -121,13 +144,15 @@ document.addEventListener("DOMContentLoaded", function () {
       items: [
         { href: "/manage-prototype/clear-data", text: "Clear data" },
         { href: "/sitemap", text: "Site map" },
-              { href: "/accessibility", text: "Accessibility statement" },
+        { href: "/accessibility", text: "Accessibility statement" },
         { href: "/about", text: "About this service" },
         { href: "https://www.surveymonkey.com/r/8JZX5KD", text: "Feedback survey" },
         { href: "https://github.com/Lori-T/accessibility-advent-2025", text: "GitHub" }
       ],
       visuallyHiddenTitle: "Footer links"
     },
-    contentLicence: { text: "© 2025 Department for Elfish Affairs" }
+    contentLicence: {
+      text: "© 2025 Department for Elfish Affairs"
+    }
   }) }}
 {% endblock %}

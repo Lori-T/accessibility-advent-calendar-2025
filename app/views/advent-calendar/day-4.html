@@ -146,7 +146,11 @@
         width:calc(100% - 40px);
       "
     >
-      <h2 id="result-title" class="govuk-heading-m"></h2>
+      <!-- Placeholder text prevents empty heading warning -->
+      <h2 id="result-title" class="govuk-heading-m">
+        Behaviour record
+      </h2>
+
       <p id="result-description" class="govuk-body"></p>
 
       <button
@@ -192,8 +196,8 @@
     dialog.removeAttribute('hidden');
     page.setAttribute('aria-hidden', 'true');
     page.setAttribute('inert', '');
-    content.focus();
 
+    content.focus();
     document.addEventListener('keydown', trapFocus, true);
   }
 

@@ -1,0 +1,86 @@
+{% extends "/layouts/main.html" %}
+
+{% set pageTitle = "You’ve completed the Elf-cessability induction" %}
+{% set hideBackLink = true %}
+
+{% block content %}
+
+<h1 class="govuk-heading-l">
+  You’re now an Elf-cessability Specialist 🎄
+</h1>
+
+<p class="govuk-body">
+  Congratulations! You’ve completed all 12 accessibility tasks and helped the
+  <strong>Department of Elfish Affairs</strong> make Santa HQ’s digital services
+  more inclusive.
+</p>
+
+<p class="govuk-body">
+  Along the way, you’ve practised spotting real accessibility issues —
+  from keyboard access and focus visibility to ARIA misuse and link purpose.
+</p>
+
+<h2 class="govuk-heading-m">
+  Your Elf-cessability Specialist badge
+</h2>
+
+<p class="govuk-body">
+  As a reward, you can download and share your official
+  <strong>Elf-cessability Specialist</strong> badge.
+</p>
+
+<img
+  src="{{ asset_path }}images/elfbadge.png"
+  alt="Elf-cessability Specialist badge"
+  style="max-width: 240px; margin-bottom: 16px;"
+>
+
+<p class="govuk-body">
+  You can download the badge image or embed it on a website or profile.
+</p>
+
+<h3 class="govuk-heading-s">Download the badge</h3>
+
+<p class="govuk-body">
+  <a
+    href="{{ asset_path }}images/elfbadge.png"
+    download
+    class="govuk-link">
+    Download the Elf-cessability Specialist badge (PNG)
+  </a>
+</p>
+
+<h3 class="govuk-heading-s">Embed the badge</h3>
+
+<p class="govuk-body">
+  Copy and paste this code to embed the badge on a website or portfolio:
+</p>
+
+<pre class="govuk-body"
+     style="background:#f3f2f1; padding:16px; overflow:auto;">
+&lt;a href="https://accessibility-advent.lorithomson.co.uk/"&gt;
+  &lt;img
+    src="https://accessibility-advent.lorithomson.co.uk/assets/images/elfbadge.png"
+    alt="Elf-cessability Specialist badge"
+    style="max-width:200px;"&gt;
+&lt;/a&gt;
+</pre>
+
+<h2 class="govuk-heading-m">What’s next?</h2>
+
+<p class="govuk-body">
+  Accessibility isn’t a one-off task — it’s something to build into everyday
+  design, development and content decisions.
+</p>
+
+<p class="govuk-body">
+  Take what you’ve learned here and try it out on real services:
+  test with a keyboard, zoom the page, run WAVE, and — most importantly —
+  think about real users.
+</p>
+
+<p class="govuk-body">
+  Thanks for taking part, and happy testing 🎅
+</p>
+
+{% endblock %}

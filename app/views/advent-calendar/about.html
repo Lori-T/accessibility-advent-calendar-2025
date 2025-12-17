@@ -1,74 +1,126 @@
 {% extends "/layouts/main.html" %}
 
-{% set pageTitle = "About the Accessibility Advent Calendar" %}
+{% set pageTitle = "About the Elf-cessability induction" %}
+
 {% block content %}
+<h1 class="govuk-heading-l">About the Elf-cessibility induction at Santa HQ</h1>
 
-  <p class="govuk-body">
-    The Accessibility Advent Calendar is a fun and practical way to learn about digital accessibility throughout December. Each day reveals a quick accessibility tip that you can complete in under five minutes. These small checks help build good habits and make digital content more inclusive for everyone.
-  </p>
+<p class="govuk-body">
+  The <strong>Elf-cessability induction at Santa HQ</strong> is a practical training
+  resource designed to build confidence and capability in digital accessibility.
+  It uses short, focused tasks based on real issues commonly found in live services.
+</p>
+<p class="govuk-body">
+  It's <strong>not</strong> designed to make you an accessibility expert, or as a replacement for proper accessibility auditing and user testing.
+</p>
 
-  <p class="govuk-body">
-    The 2025 edition focuses on <strong>25 accessibility checks you can do in under 5 minutes</strong>. These are simple, repeatable activities that anyone can try, regardless of technical confidence.
-  </p>
+<h2 class="govuk-heading-m">Who this training is for</h2>
 
-  <h2 class="govuk-heading-m">Who the calendar is for</h2>
-  <p class="govuk-body">
-    This calendar is for anyone who creates, publishes or maintains digital content, including:
-  </p>
-  <ul class="govuk-list govuk-list--bullet">
-    <li>designers and content designers</li>
-    <li>developers and engineers</li>
-    <li>researchers and accessibility specialists</li>
-    <li>product managers and delivery teams</li>
-    <li>anyone interested in making digital content more accessible</li>
-  </ul>
+<p class="govuk-body">
+  The Elf-cessability induction is for anyone involved in creating, publishing
+  or maintaining digital services, including:
+</p>
 
-  <h2 class="govuk-heading-m">Why accessibility matters</h2>
-  <p class="govuk-body">
-    Digital accessibility is about making sure that everyone can use websites, services and online content. This includes people with disabilities, people using assistive technologies, people in different environments and people using a wide range of devices.
-  </p>
-  <p class="govuk-body">
-    By making accessibility part of everyday practice, we can reduce barriers, remove frustration and help more people succeed online.
-  </p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>content designers and writers</li>
+  <li>interaction and service designers</li>
+  <li>developers and engineers</li>
+  <li>product managers and delivery teams</li>
+  <li>researchers and accessibility specialists</li>
+  <li>anyone responsible for digital quality</li>
+</ul>
 
-  <h2 class="govuk-heading-m">How the calendar works</h2>
-  <p class="govuk-body">
-    Each of the 25 days includes:
-  </p>
-  <ul class="govuk-list govuk-list--bullet">
-    <li>a short explanation of the accessibility topic</li>
-    <li>a five-minute accessibility check to try</li>
-    <li>a brief WCAG 2.2 reference</li>
-    <li>a bonus extra activity for deeper learning</li>
-    <li>useful links to explore the topic further</li>
-  </ul>
+<h2 class="govuk-heading-m">What the induction covers</h2>
 
-  <p class="govuk-body">
-    You can open each door daily throughout December, or browse everything on the <a href="/sitemap" class="govuk-link">site map</a>.
-  </p>
+<p class="govuk-body">
+  The induction is structured as a series of <strong>12 short accessibility tasks</strong>.
+  Each task focuses on a specific, common accessibility issue that can be checked
+  quickly using a browser, keyboard or simple testing tools.
+</p>
 
-  <h2 class="govuk-heading-m">Looking back at the 2024 advent calendar</h2>
-  <p class="govuk-body">
-    If you enjoyed this year’s calendar, you can also explore the <strong>2024 Accessibility Advent Calendar</strong>. Last year's theme focussed on practical introductions to accessibility concepts, including digital access, inclusive design, assistive technologies, creating accessible social media, colour contrast, and more.
-  </p>
+<p class="govuk-body">
+  Across the 12 tasks, you will practise checking:
+</p>
 
-  <p class="govuk-body">
-    You can visit the 2024 calendar here:
-    <a href="https://accessibility-advent.lorithomson.co.uk/" class="govuk-link">Accessibility Advent Calendar 2024</a>
-  </p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>keyboard access and focus visibility</li>
+  <li>link purpose and meaningful text</li>
+  <li>form labels and accessible names</li>
+  <li>colour contrast and text resizing</li>
+  <li>ARIA usage and semantic HTML</li>
+  <li>responsive layouts and reflow</li>
+</ul>
 
-{% endblock %}
+<p class="govuk-body">
+  Each task includes:
+</p>
 
-{% block sidebar %}
-<aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
-  <h2 class="govuk-heading-m" id="subsection-title">Useful links</h2>
-  <nav aria-labelledby="subsection-title">
-    <ul class="govuk-list govuk-!-font-size-16 govuk-list--bullet">
-      <li><a href="/" class="govuk-link">Home</a></li>
-      <li><a href="/site-map" class="govuk-link">Site map</a></li>
-      <li><a href="/accessibility.html" class="govuk-link">Accessibility statement</a></li>
-      <li><a href="https://accessibility-advent.lorithomson.co.uk/" class="govuk-link">2024 advent calendar</a></li>
+<ul class="govuk-list govuk-list--bullet">
+  <li>a short scenario set in Santa HQ</li>
+  <li>a clear accessibility problem to identify</li>
+  <li>a relevant WCAG 2.2 success criterion</li>
+  <li>a bonus challenge for deeper exploration</li>
+</ul>
+
+<h2 class="govuk-heading-m">Tools used during the induction</h2>
+
+<p class="govuk-body">
+  Some tasks introduce a browser-based testing tool known as the
+  <strong>'Workshop Accessibility Verification Engine'</strong> or more commonly known as WAVE.
+</p>
+
+<p class="govuk-body">
+  WAVE highlights potential accessibility issues such as missing labels,
+  structural problems and colour contrast failures.
+  It is useful for quick checks, but it does not replace manual testing.
+</p>
+
+<p class="govuk-body">
+  Throughout the induction, you will learn when tools like WAVE are helpful,
+  and when human judgement and manual testing are essential.
+</p>
+
+<p class="govuk-body">
+  You can install WAVE from the
+  <a href="https://wave.webaim.org/extension/" class="govuk-link">WAVE website</a>.
+</p>
+
+<h2 class="govuk-heading-m">Completing the induction</h2>
+
+<p class="govuk-body">
+  Once you have worked through all 12 tasks, you can finish the induction and
+  receive your <strong>Elf-cessability Specialist</strong> badge and certificate.
+</p>
+
+<p class="govuk-body">
+  These are intended as a light-hearted recognition of progress - and a reminder
+  that accessibility is an ongoing practice, not a one-off exercise.
+</p>
+
+<p class="govuk-body">
+  If you want to explore all tasks in one place, you can use the
+  <a href="/sitemap" class="govuk-link">site map</a>.
+</p>
+
+<h2 class="govuk-heading-m">Previous accessibility training</h2>
+
+<p class="govuk-body">
+  If you found this induction useful, you may also be interested in earlier
+  accessibility training resources, including the:</p>
+    <ul class="govuk-list govuk--list--bullet">
+            <a href="https://accessibility-advent.lorithomson.co.uk/"
+           class="govuk-link">
+          Accessibility Advent Calendar 2024
+        </a>
+      </li>
+      <li>
+        <a href="https://ghost-sighting.lorithomson.co.uk/"
+           class="govuk-link">
+          Record a Ghost Sighting accessibility exercise
+        </a>
+      </li>
     </ul>
-  </nav>
-</aside>
+
+
 {% endblock %}
+

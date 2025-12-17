@@ -1,8 +1,13 @@
 {% extends "/layouts/main.html" %}
 
 {% set pageTitle = "You’ve completed the Elf-cessability induction" %}
-{% set hideBackLink = true %}
 
+{% block beforeContent %}
+  {{ govukBackLink({
+      text: "Back to home",
+      href: "/"
+  }) }}
+{% endblock %}
 {% block content %}
 
 <h1 class="govuk-heading-l">
@@ -16,7 +21,7 @@
 </p>
 
 <p class="govuk-body">
-  Along the way, you’ve practised spotting real accessibility issues —
+  Along the way, you’ve practised spotting real accessibility issues -
   from keyboard access and focus visibility to ARIA misuse and link purpose.
 </p>
 
@@ -69,14 +74,14 @@
 <h2 class="govuk-heading-m">What’s next?</h2>
 
 <p class="govuk-body">
-  Accessibility isn’t a one-off task — it’s something to build into everyday
+  Accessibility isn’t a one-off task - it’s something to build into everyday
   design, development and content decisions.
 </p>
 
 <p class="govuk-body">
   Take what you’ve learned here and try it out on real services:
-  test with a keyboard, zoom the page, run WAVE, and — most importantly —
-  think about real users.
+  test with a keyboard, zoom the page, run WAVE, and - most importantly -
+  think about real users and test with real elves (people) with disabilities to make sure things work.
 </p>
 
 <p class="govuk-body">

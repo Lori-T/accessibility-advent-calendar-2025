@@ -7,6 +7,7 @@
 {% block content %}
 
 <h1 class="govuk-heading-xl">Elf-cessability induction at Santa HQ</h1>
+
 <p class="govuk-body">
   Welcome to the annual festive review led by the
   <strong>Department of Elfish Affairs</strong> (DEA). In the run-up to Christmas,
@@ -16,7 +17,7 @@
 
 <p class="govuk-body">
   This year, you have been recruited as an <strong>Elf-cessability Specialist</strong>.
-  Each day, you will open a new door to uncover a short, practical task that helps
+  You will work through a set of short, practical accessibility tasks that help
   make North Pole digital services more inclusive.
 </p>
 
@@ -45,26 +46,9 @@
 
 <p class="govuk-body">
   Automated tools like WAVE are helpful for finding issues quickly, but they do not
-  catch everything. Throughout the 12 days, you will learn when tools are useful
+  catch everything. Throughout the 12 tasks, you will learn when tools are useful
   and when elf judgement is essential.
 </p>
-
-<!-- <p class="govuk-body">
-  By completing all 12 days, you will build the knowledge needed for your final
-  assignment, reviewing the <strong>Record a Santa Sighting</strong> service.
-  This is a full user journey with intentional accessibility issues to identify.
-</p>
-
-{% if (currentDay and currentYear == "2025" and currentDay <= 12) %}
-  <p class="govuk-body">
-    Today is <strong>Day {{ currentDay }}</strong>. Your next mission awaits.
-  </p>
-<!-- {% endif %} 
-
-<p class="govuk-body">
-  If you would like to explore all the tips at once, you can also use the
-  <a href="/sitemap" class="govuk-link">site map</a>.
-</p>-- -->
 
 <div class="calendar">
 
@@ -74,14 +58,14 @@
       <a
         href="/advent-calendar/day-{{ day }}"
         class="calendar-day"
-        aria-label="Open the door for Day {{ day }} to view today's accessibility checks"
+        aria-label="Open task for Day {{ day }} to view the accessibility check"
         {% if currentYear == 2025 and day == currentDay %} aria-current="date" {% endif %}
       >
         Day {{ day }}
       </a>
     {% else %}
       <p class="calendar-day calendar-day-disabled" aria-hidden="true">
-        Opens {{ day }} December
+        Task {{ day }} not yet available
       </p>
     {% endif %}
 

@@ -12,6 +12,8 @@
 
 {% block content %}
 
+<div id="day-content">
+
 <h1 class="govuk-heading-l">Day 5: Check keyboard access on the Gift Tracker</h1>
 
 <p class="govuk-body">
@@ -60,13 +62,14 @@
     <button
       class="govuk-button"
       type="button"
-      onclick="openDelayDialog()">
+      id="readyButton"
+      onclick="openDialog('ready')">
       ✓ Mark as ready for Christmas Eve
     </button>
 
     <!-- BAD CONTROL: MOUSE ONLY -->
     <div
-      onclick="openDelayDialog()"
+      onclick="openDialog('delayed')"
       style="
         background:#8b0000;
         color:#ffffff;
@@ -90,13 +93,15 @@
 
 </div>
 
+</div>
+
 <!-- ACCESSIBLE MODAL DIALOG -->
-<div id="delay-dialog" hidden>
+<div id="status-dialog" hidden>
   <div
     role="dialog"
     aria-modal="true"
-    aria-labelledby="delay-dialog-title"
-    aria-describedby="delay-dialog-description"
+    aria-labelledby="dialog-title"
+    aria-describedby="dialog-description"
     style="
       position: fixed;
       inset: 0;
@@ -108,28 +113,24 @@
     "
   >
     <div
-      id="delay-dialog-content"
+      id="dialog-content"
       tabindex="-1"
       style="
         background:#ffffff;
         padding:24px;
         border-radius:8px;
         max-width:420px;
-        width:100%;
+        width:calc(100% - 40px);
       "
     >
-      <h2 id="delay-dialog-title" class="govuk-heading-m">
-        Gift delivery delayed
-      </h2>
+      <h2 id="dialog-title" class="govuk-heading-m"></h2>
 
-      <p id="delay-dialog-description" class="govuk-body">
-        Heavy snow has slowed production. Elves are investigating alternative routes ❄️🎁
-      </p>
+      <p id="dialog-description" class="govuk-body"></p>
 
       <button
         class="govuk-button govuk-button--secondary"
         type="button"
-        onclick="closeDelayDialog()">
+        onclick="closeDialog()">
         Close
       </button>
     </div>
@@ -139,31 +140,52 @@
 <script>
   let lastFocusedElement;
 
-  function openDelayDialog() {
+  function openDialog(type) {
     lastFocusedElement = document.activeElement;
 
-    const dialog = document.getElementById('delay-dialog');
-    const content = document.getElementById('delay-dialog-content');
+    const dialog = document.getElementById('status-dialog');
+    const content = document.getElementById('dialog-content');
+    const title = document.getElementById('dialog-title');
+    const description = document.getElementById('dialog-description');
+    const page = document.getElementById('day-content');
+
+    if (type === 'ready') {
+      title.textContent = 'Gift ready for Christmas Eve';
+      description.textContent =
+        'The train set is complete and ready to be loaded onto Santa’s sleigh 🎄🚂';
+    }
+
+    if (type === 'delayed') {
+      title.textContent = 'Gift delivery delayed';
+      description.textContent =
+        'Heavy snow has slowed production. Elves are investigating alternative routes ❄️🎁';
+    }
 
     dialog.removeAttribute('hidden');
+    page.setAttribute('aria-hidden', 'true');
+    page.setAttribute('inert', '');
     content.focus();
 
-    document.addEventListener('keydown', trapDelayFocus);
+    document.addEventListener('keydown', trapFocus, true);
   }
 
-  function closeDelayDialog() {
-    const dialog = document.getElementById('delay-dialog');
-    dialog.setAttribute('hidden', '');
+  function closeDialog() {
+    const dialog = document.getElementById('status-dialog');
+    const page = document.getElementById('day-content');
 
-    document.removeEventListener('keydown', trapDelayFocus);
+    dialog.setAttribute('hidden', '');
+    page.removeAttribute('aria-hidden');
+    page.removeAttribute('inert');
+
+    document.removeEventListener('keydown', trapFocus, true);
     if (lastFocusedElement) lastFocusedElement.focus();
   }
 
-  function trapDelayFocus(e) {
+  function trapFocus(e) {
     if (e.key !== 'Tab') return;
 
     const focusable = document
-      .getElementById('delay-dialog')
+      .getElementById('status-dialog')
       .querySelectorAll('button');
 
     const first = focusable[0];
@@ -176,6 +198,8 @@
       e.preventDefault();
       first.focus();
     }
+
+    if (e.key === 'Escape') closeDialog();
   }
 </script>
 
@@ -196,8 +220,7 @@
 
 <p class="govuk-body">
   When <a href="https://wave.webaim.org/extension/" class="govuk-link">WAVE</a> is run on a page like this,
-  it may highlight elements that look interactive but are not built using semantic
-  HTML controls.
+  it may highlight elements that look interactive but are not built using semantic HTML.
 </p>
 
 <p class="govuk-body">

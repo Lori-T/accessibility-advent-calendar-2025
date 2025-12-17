@@ -12,6 +12,8 @@
 
 {% block content %}
 
+<div id="day-content">
+
 <h1 class="govuk-heading-l">Day 4: Check link purpose on the Naughty and Nice List Viewer</h1>
 
 <p class="govuk-body">
@@ -22,8 +24,8 @@
 
 <p class="govuk-body">
   During testing, several elves reported that it was hard to understand where
-  some links would take them. Many links use vague wording that only makes sense
-  if you can see the surrounding content.
+  some links would take them — especially when navigating using a screen reader
+  or viewing links out of context.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
@@ -48,39 +50,45 @@
 </p>
 
 <div class="govuk-!-padding-4 govuk-!-margin-bottom-4"
-     style="background:#f7f7f7; border-radius:8px;">
+     style="background:#f7f7f7; border-radius:8px; max-width:640px;">
 
   <p class="govuk-body">
     <strong>Eve Snowball</strong><br>
     Behaviour rating: Mostly nice<br>
-    <a href="#">View Eve Snowball’s full behaviour record</a>
+    <a href="#" onclick="openResultDialog('eve'); return false;">
+      View Eve Snowball’s full behaviour record
+    </a>
   </p>
 
   <p class="govuk-body">
     <strong>Buddy the Elf</strong><br>
     Behaviour rating: Under review<br>
-    <a href="#">Click here</a> ❌
+    <a href="#" onclick="openResultDialog('buddy'); return false;">
+      Click here
+    </a> ❌
   </p>
 
   <p class="govuk-body">
     <strong>Holly Tinseltoe Frost</strong><br>
     Behaviour rating: Nice<br>
-    <a href="#">View Peppermint Frost’s behaviour notes</a>
+    <a href="#" onclick="openResultDialog('holly'); return false;">
+      View Holly Tinseltoe Frost’s behaviour record
+    </a>
   </p>
 
 </div>
 
 <h2 class="govuk-heading-m">What this checks for</h2>
 <p class="govuk-body">
-  <strong>2.4.4 link purpose (in context)</strong> - users must be able to
-  understand what a link does from its text or context.
+  <strong>2.4.4 link purpose (in context)</strong> – users must be able to
+  understand what a link does from its text or surrounding context.
 </p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
   Screen reader users often navigate by listing links on a page.
   If several links are called <q>click here</q>, it becomes impossible to tell
-  them apart.
+  them apart without extra effort.
 </p>
 
 <h2 class="govuk-heading-m">
@@ -94,18 +102,134 @@
 
 <p class="govuk-body">
   WAVE helps flag potential problems, but you still need to decide whether the
-  link text makes sense to users when read on its own.
+  link text makes sense when read on its own.
 </p>
 
-<img src="{{ asset_path }}images/wave4.png"
-     alt="Screenshot of the WAVE accessibility tool highlighting links with unclear purpose"
-     style="width: 25%; border-radius: 8px;">
+<img
+  src="{{ asset_path }}images/wave4.png"
+  alt="WAVE highlighting links with unclear purpose"
+  style="width:25%; border-radius:8px;">
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
   Use a screen reader or browser tool to view a list of all links on the page.
   Can you immediately tell what each link does?
 </p>
+
+</div>
+
+<!-- ACCESSIBLE RESULT DIALOG -->
+<div id="result-dialog" hidden>
+  <div
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="result-title"
+    aria-describedby="result-description"
+    style="
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.5);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:1000;
+    "
+  >
+    <div
+      id="result-dialog-content"
+      tabindex="-1"
+      style="
+        background:#ffffff;
+        padding:24px;
+        border-radius:8px;
+        max-width:420px;
+        width:calc(100% - 40px);
+      "
+    >
+      <h2 id="result-title" class="govuk-heading-m"></h2>
+      <p id="result-description" class="govuk-body"></p>
+
+      <button
+        class="govuk-button govuk-button--secondary"
+        type="button"
+        onclick="closeResultDialog()">
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let lastFocusedElement;
+
+  function openResultDialog(person) {
+    lastFocusedElement = document.activeElement;
+
+    const title = document.getElementById('result-title');
+    const description = document.getElementById('result-description');
+    const dialog = document.getElementById('result-dialog');
+    const content = document.getElementById('result-dialog-content');
+    const page = document.getElementById('day-content');
+
+    const results = {
+      eve: {
+        title: 'Eve Snowball — previous results',
+        text: 'Mostly nice for the last 3 years. One minor snowball-related incident.'
+      },
+      buddy: {
+        title: 'Buddy the Elf — previous results',
+        text: 'Under review. Excessive cheer, rule-bending and syrup consumption.'
+      },
+      holly: {
+        title: 'Holly Tinseltoe Frost — previous results',
+        text: 'Consistently nice. Excellent teamwork and festive spirit.'
+      }
+    };
+
+    title.textContent = results[person].title;
+    description.textContent = results[person].text;
+
+    dialog.removeAttribute('hidden');
+    page.setAttribute('aria-hidden', 'true');
+    page.setAttribute('inert', '');
+    content.focus();
+
+    document.addEventListener('keydown', trapFocus, true);
+  }
+
+  function closeResultDialog() {
+    const dialog = document.getElementById('result-dialog');
+    const page = document.getElementById('day-content');
+
+    dialog.setAttribute('hidden', '');
+    page.removeAttribute('aria-hidden');
+    page.removeAttribute('inert');
+
+    document.removeEventListener('keydown', trapFocus, true);
+    if (lastFocusedElement) lastFocusedElement.focus();
+  }
+
+  function trapFocus(e) {
+    if (e.key !== 'Tab') return;
+
+    const focusable = document
+      .getElementById('result-dialog')
+      .querySelectorAll('button');
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+
+    if (e.key === 'Escape') closeResultDialog();
+  }
+</script>
 
 {{ super() }}
 {% endblock %}

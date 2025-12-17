@@ -12,6 +12,8 @@
 
 {% block content %}
 
+<div id="day-content">
+
 <h1 class="govuk-heading-l">Day 12: Check ARIA use on the Sleigh Launch Dashboard</h1>
 
 <p class="govuk-body">
@@ -48,32 +50,30 @@
 </p>
 
 <div class="govuk-!-padding-4 govuk-!-margin-bottom-4"
-     style="background:#eef7ff; border-radius:8px;">
+     style="background:#eef7ff; border-radius:8px; max-width:640px;">
 
   <h3 class="govuk-heading-s">Pre-launch checks</h3>
 
   <div style="display:flex; gap:16px; flex-wrap:wrap;">
 
-    <!-- REAL BUTTON -->
+    <!-- Correct control: native button -->
     <button
       class="govuk-button"
       type="button"
-      onclick="openDialog()">
+      id="spiritButton"
+      onclick="openSpiritDialog()">
       ✓ Start Christmas spirit check
     </button>
 
-    <!-- FAKE BUTTON (ARIA MISUSE, NO KEYBOARD SUPPORT) -->
-   <!-- FAKE BUTTON (LOOKS RIGHT, STILL NOT KEYBOARD REACHABLE) -->
-<a
-  href="#"
-  class="govuk-button govuk-button--warning"
-  role="button"
-  tabindex="-1"
-  onclick="return false;"
->
-  ✖ Launch fuel scan
-</a>
-
+    <!-- Incorrect control: link styled as button with ARIA misuse -->
+    <a
+      href="#"
+      class="govuk-button govuk-button--warning"
+      role="button"
+      tabindex="-1"
+      onclick="openFuelDialog(); return false;">
+      ✖ Launch fuel scan
+    </a>
 
   </div>
 
@@ -84,80 +84,119 @@
 
 </div>
 
-<!-- ACCESSIBLE MODAL DIALOG -->
+</div>
+
+<!-- DIALOG: Christmas spirit check -->
 <div id="spirit-dialog" hidden>
   <div
     role="dialog"
     aria-modal="true"
-    aria-labelledby="dialog-title"
-    aria-describedby="dialog-description"
-    style="
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    "
-  >
-    <div
-      id="dialog-content"
-      tabindex="-1"
-      style="
-        background:#ffffff;
-        padding:24px;
-        border-radius:8px;
-        max-width:420px;
-      "
-    >
-      <h2 id="dialog-title" class="govuk-heading-m">
+    aria-labelledby="spirit-title"
+    aria-describedby="spirit-desc"
+    class="dialog-overlay">
+    <div class="dialog-content" tabindex="-1">
+      <h2 id="spirit-title" class="govuk-heading-m">
         Christmas spirit check running
       </h2>
-
-      <p id="dialog-description" class="govuk-body">
+      <p id="spirit-desc" class="govuk-body">
         Festive levels are high. Reindeer are cheerful and ready for take-off 🎄✨
       </p>
-
-      <button
-        class="govuk-button govuk-button--secondary"
-        type="button"
-        onclick="closeDialog()">
+      <button class="govuk-button govuk-button--secondary" type="button" onclick="closeDialog()">
         Close
       </button>
     </div>
   </div>
 </div>
 
+<!-- DIALOG: Fuel scan -->
+<div id="fuel-dialog" hidden>
+  <div
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="fuel-title"
+    aria-describedby="fuel-desc"
+    class="dialog-overlay">
+    <div class="dialog-content" tabindex="-1">
+      <h2 id="fuel-title" class="govuk-heading-m">
+        Fuel scan started
+      </h2>
+      <p id="fuel-desc" class="govuk-body">
+        Fuel reserves are being analysed. Results pending ❄️⛽
+      </p>
+      <button class="govuk-button govuk-button--secondary" type="button" onclick="closeDialog()">
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .dialog-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .dialog-content {
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 8px;
+    max-width: 420px;
+    width: calc(100% - 40px);
+  }
+</style>
+
 <script>
   let lastFocusedElement;
 
-  function openDialog() {
+  function openSpiritDialog() {
+    openDialog('spirit-dialog');
+  }
+
+  function openFuelDialog() {
+    openDialog('fuel-dialog');
+  }
+
+  function openDialog(id) {
     lastFocusedElement = document.activeElement;
-    const dialog = document.getElementById('spirit-dialog');
-    const content = document.getElementById('dialog-content');
+
+    const page = document.getElementById('day-content');
+    const dialog = document.getElementById(id);
+    const content = dialog.querySelector('.dialog-content');
 
     dialog.removeAttribute('hidden');
-    content.focus();
+    page.setAttribute('aria-hidden', 'true');
+    page.setAttribute('inert', '');
 
-    document.addEventListener('keydown', trapFocus);
+    content.focus();
+    document.addEventListener('keydown', trapFocus, true);
   }
 
   function closeDialog() {
-    const dialog = document.getElementById('spirit-dialog');
-    dialog.setAttribute('hidden', '');
+    const dialogs = document.querySelectorAll('[role="dialog"]');
+    const page = document.getElementById('day-content');
 
-    document.removeEventListener('keydown', trapFocus);
+    dialogs.forEach(d => d.parentElement.setAttribute('hidden', ''));
+
+    page.removeAttribute('aria-hidden');
+    page.removeAttribute('inert');
+
+    document.removeEventListener('keydown', trapFocus, true);
     if (lastFocusedElement) lastFocusedElement.focus();
   }
 
   function trapFocus(e) {
+    if (e.key === 'Escape') closeDialog();
     if (e.key !== 'Tab') return;
 
-    const focusable = document
-      .getElementById('spirit-dialog')
-      .querySelectorAll('button');
+    const activeDialog = document.querySelector('[role="dialog"]:not([hidden])');
+    if (!activeDialog) return;
 
+    const focusable = activeDialog.querySelectorAll('button');
     const first = focusable[0];
     const last = focusable[focusable.length - 1];
 
@@ -190,7 +229,7 @@
 <img
   src="{{ asset_path }}images/wave12.png"
   alt="WAVE highlighting an element with role button that is not a native button"
-  style="width: 40%; border-radius: 8px;">
+  style="width:40%; border-radius:8px;">
 
 <h2 class="govuk-heading-m">What this checks for</h2>
 <p class="govuk-body">
@@ -212,7 +251,6 @@
 </p>
 
 {{ super() }}
-
 {% endblock %}
 
 {% block dayNavigation %}

@@ -14,112 +14,112 @@
 
 <div id="day-content">
 
-  <h1 class="govuk-heading-l">Day 6: Check focus visibility in the Reindeer Health Monitor</h1>
+<h1 class="govuk-heading-l">Day 6: Check focus visibility in the Reindeer Health Monitor</h1>
 
-  <p class="govuk-body">
-    The <strong>Reindeer Health Monitor</strong> is used by Santa HQ to keep track of
-    each reindeer’s wellbeing during the busiest time of year. Some elves have reported
-    losing their place when navigating the system using only a keyboard.
-  </p>
+<p class="govuk-body">
+  The <strong>Reindeer Health Monitor</strong> is used by Santa HQ to keep track of
+  each reindeer’s wellbeing during the busiest time of year. Some elves have reported
+  losing their place when navigating the system using only a keyboard.
+</p>
 
-  <p class="govuk-body">
-    Today, you will check whether it is always clear which element is currently selected
-    as you move through the page using the keyboard.
-  </p>
+<p class="govuk-body">
+  Today, you will check whether it is always clear which element is currently selected
+  as you move through the page using the keyboard.
+</p>
 
-  <h2 class="govuk-heading-m">Your mission today</h2>
-  <p class="govuk-body">
-    Check that all interactive elements show a clear and visible focus indicator.
-  </p>
+<h2 class="govuk-heading-m">Your mission today</h2>
+<p class="govuk-body">
+  Check that all interactive elements show a clear and visible focus indicator.
+</p>
 
-  <h2 class="govuk-heading-m">Quick 5-minute check</h2>
-  <ul class="govuk-list govuk-list--bullet">
-    <li>use the <kbd>Tab</kbd> key to move through the page</li>
-    <li>use <kbd>Shift</kbd> + <kbd>Tab</kbd> to move backwards</li>
-    <li>check that focus is always visible and easy to spot</li>
-    <li>focus must not rely on colour alone</li>
-    <li>pay close attention to custom styled buttons and controls</li>
-  </ul>
+<h2 class="govuk-heading-m">Quick 5-minute check</h2>
+<ul class="govuk-list govuk-list--bullet">
+  <li>use the <kbd>Tab</kbd> key to move through the page</li>
+  <li>use <kbd>Shift</kbd> + <kbd>Tab</kbd> to move backwards</li>
+  <li>check that focus is always visible and easy to spot</li>
+  <li>focus must not rely on colour alone</li>
+  <li>pay close attention to custom styled buttons and controls</li>
+</ul>
 
-  <p class="govuk-body">
-    Focus visibility issues are best found using manual testing.
-    Automated tools such as the <strong>Workshop Accessibility Verification Engine (WAVE)</strong>
-    are not reliable for checking focus visibility.
-  </p>
+<p class="govuk-body">
+  Focus visibility issues are best found using manual testing.
+  Automated tools such as the <strong>Workshop Accessibility Verification Engine (WAVE)</strong>
+  are not reliable for checking focus visibility.
+</p>
 
-  <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
-  <h2 class="govuk-heading-m">Test the Reindeer Health Monitor</h2>
-  <p class="govuk-body">
-    This simplified example shows part of a reindeer’s health record.
-    One control works with the keyboard but does not show a visible focus indicator.
-  </p>
+<h2 class="govuk-heading-m">Test the Reindeer Health Monitor</h2>
+<p class="govuk-body">
+  This simplified example shows part of a reindeer’s health record.
+  One control receives keyboard focus, but does not show it clearly.
+</p>
 
-  <div class="govuk-!-padding-4 govuk-!-margin-bottom-4"
-       style="background:#ffffff; border-left: 5px solid #1d70b8; max-width: 640px;">
+<div class="govuk-!-padding-4 govuk-!-margin-bottom-4"
+     style="background:#ffffff; border-left:5px solid #1d70b8; max-width:640px;">
 
-    <h3 class="govuk-heading-s govuk-!-margin-bottom-3">
-      Blitzen’s health record
-    </h3>
+  <h3 class="govuk-heading-s govuk-!-margin-bottom-3">
+    Blitzen’s health record
+  </h3>
 
-    <div class="govuk-button-group">
+  <div class="govuk-button-group">
 
-      <!-- GOOD BUTTON -->
-      <button
-        class="govuk-button"
-        type="button"
-        id="healthDialogOpener"
-        onclick="openHealthDialog()">
-        ✔ Reindeer feeling festive
-      </button>
+    <!-- GOOD BUTTON -->
+    <button
+      class="govuk-button"
+      type="button"
+      id="festiveButton"
+      onclick="openHealthDialog('festive')">
+      ✔ Reindeer feeling festive
+    </button>
 
-      <!-- BAD BUTTON: focus exists but is not visible -->
-      <button
-        type="button"
-        class="govuk-button no-visible-focus"
-        onclick="openHealthDialog()"
-        style="background:#d4351c; border-color:#d4351c; color:#ffffff;">
-        ✖ Reindeer feeling grumpy
-      </button>
-
-    </div>
-
-    <p class="govuk-body govuk-!-margin-top-3">
-      One of these buttons can be activated using the keyboard, but it does not show
-      where focus is when tabbing to it.
-    </p>
+    <!-- BAD BUTTON: FOCUS PRESENT BUT NOT VISIBLE -->
+    <button
+      class="govuk-button no-visible-focus"
+      type="button"
+      onclick="openHealthDialog('grumpy')"
+      style="background:#d4351c; border-color:#d4351c; color:#ffffff;">
+      ✖ Reindeer feeling grumpy
+    </button>
 
   </div>
 
-  <h2 class="govuk-heading-m">What this checks for</h2>
-  <p class="govuk-body">
-    <strong>2.4.7 focus visible</strong> – users must be able to see which element
-    currently has keyboard focus.
-  </p>
-
-  <h2 class="govuk-heading-m">Why this matters</h2>
-  <p class="govuk-body">
-    Keyboard users rely on visible focus to understand where they are on a page.
-    If focus is missing or unclear, users can become disoriented or unable to
-    complete tasks.
-  </p>
-
-  <h2 class="govuk-heading-m">Bonus challenge</h2>
-  <p class="govuk-body">
-    Zoom the page to 200 percent and then 400 percent and repeat the keyboard test.
-    Is the focus indicator still easy to see?
-  </p>
-
-  <p class="govuk-body">
-    You can also read more about keyboard accessibility in
-    <a href="https://accessibility-advent.lorithomson.co.uk/advent-calendar/day-11" class="govuk-link">
-      last year’s advent calendar, Day 11
-    </a>.
+  <p class="govuk-body govuk-!-margin-top-3">
+    One of these buttons can be focused using the keyboard, but it does not show
+    where focus is when tabbing to it.
   </p>
 
 </div>
 
-<!-- ACCESSIBLE DIALOG -->
+<h2 class="govuk-heading-m">What this checks for</h2>
+<p class="govuk-body">
+  <strong>2.4.7 focus visible</strong> – users must be able to see which element
+  currently has keyboard focus.
+</p>
+
+<h2 class="govuk-heading-m">Why this matters</h2>
+<p class="govuk-body">
+  Keyboard users rely on visible focus to understand where they are on a page.
+  If focus is missing or unclear, users can become disoriented or unable to
+  complete tasks.
+</p>
+
+<h2 class="govuk-heading-m">Bonus challenge</h2>
+<p class="govuk-body">
+  Zoom the page to 200 percent and then 400 percent and repeat the keyboard test.
+  Is the focus indicator still easy to see?
+</p>
+
+<p class="govuk-body">
+  You can also read more about keyboard accessibility in
+  <a href="https://accessibility-advent.lorithomson.co.uk/advent-calendar/day-11" class="govuk-link">
+    last year’s advent calendar, Day 11
+  </a>.
+</p>
+
+</div>
+
+<!-- ACCESSIBLE MODAL DIALOG -->
 <div id="health-dialog" hidden>
   <div
     role="dialog"
@@ -133,22 +133,28 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      z-index:9999;
+      z-index:1000;
     "
   >
     <div
       id="health-dialog-content"
       tabindex="-1"
-      style="background:#ffffff; padding:24px; border-radius:8px; max-width:420px; width:calc(100% - 40px);">
-      <h2 id="health-dialog-title" class="govuk-heading-m">
-        Health check complete
-      </h2>
+      style="
+        background:#ffffff;
+        padding:24px;
+        border-radius:8px;
+        max-width:420px;
+        width:calc(100% - 40px);
+      "
+    >
+      <h2 id="health-dialog-title" class="govuk-heading-m"></h2>
 
-      <p id="health-dialog-description" class="govuk-body">
-        Blitzen is full of festive energy and ready to fly 🦌✨
-      </p>
+      <p id="health-dialog-description" class="govuk-body"></p>
 
-      <button class="govuk-button govuk-button--secondary" type="button" data-close-dialog>
+      <button
+        class="govuk-button govuk-button--secondary"
+        type="button"
+        onclick="closeHealthDialog()">
         Close
       </button>
     </div>
@@ -156,6 +162,7 @@
 </div>
 
 <style>
+  /* Deliberate focus visibility failure */
   .no-visible-focus:focus {
     outline: none;
     box-shadow: none;
@@ -163,65 +170,69 @@
 </style>
 
 <script>
-  (function () {
+  let lastFocusedElement;
+
+  function openHealthDialog(state) {
+    lastFocusedElement = document.activeElement;
+
+    const dialog = document.getElementById('health-dialog');
+    const content = document.getElementById('health-dialog-content');
+    const title = document.getElementById('health-dialog-title');
+    const description = document.getElementById('health-dialog-description');
     const page = document.getElementById('day-content');
-    const dialogHost = document.getElementById('health-dialog');
-    const opener = document.getElementById('healthDialogOpener');
-    const overlay = dialogHost.querySelector('[role="dialog"]');
 
-    let lastActive = null;
-
-    function getFocusable(container) {
-      return Array.from(container.querySelectorAll(
-        'button'
-      ));
+    if (state === 'festive') {
+      title.textContent = 'Health check complete';
+      description.textContent =
+        'Blitzen is full of festive energy and ready to fly 🦌✨';
     }
 
-    function trapTab(e) {
-      if (e.key !== 'Tab') return;
-
-      const focusable = getFocusable(overlay);
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
+    if (state === 'grumpy') {
+      title.textContent = 'Health check warning';
+      description.textContent =
+        'Blitzen looks tired and grumpy. Extra snacks required before take-off 🦌🥕';
     }
 
-    function onKeydown(e) {
-      if (e.key === 'Escape') closeHealthDialog();
-      trapTab(e);
+    dialog.removeAttribute('hidden');
+    page.setAttribute('aria-hidden', 'true');
+    page.setAttribute('inert', '');
+    content.focus();
+
+    document.addEventListener('keydown', trapFocus, true);
+  }
+
+  function closeHealthDialog() {
+    const dialog = document.getElementById('health-dialog');
+    const page = document.getElementById('day-content');
+
+    dialog.setAttribute('hidden', '');
+    page.removeAttribute('aria-hidden');
+    page.removeAttribute('inert');
+
+    document.removeEventListener('keydown', trapFocus, true);
+    if (lastFocusedElement) lastFocusedElement.focus();
+  }
+
+  function trapFocus(e) {
+    if (e.key !== 'Tab') return;
+
+    const focusable = document
+      .getElementById('health-dialog')
+      .querySelectorAll('button');
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
     }
 
-    window.openHealthDialog = function () {
-      lastActive = document.activeElement;
-      dialogHost.removeAttribute('hidden');
-
-      page.setAttribute('aria-hidden', 'true');
-      page.setAttribute('inert', '');
-
-      document.body.style.overflow = 'hidden';
-
-      document.getElementById('health-dialog-content').focus();
-      document.addEventListener('keydown', onKeydown, true);
-    };
-
-    window.closeHealthDialog = function () {
-      dialogHost.setAttribute('hidden', '');
-      page.removeAttribute('aria-hidden');
-      page.removeAttribute('inert');
-      document.body.style.overflow = '';
-      document.removeEventListener('keydown', onKeydown, true);
-      (lastActive || opener).focus();
-    };
-
-    dialogHost.querySelector('[data-close-dialog]').addEventListener('click', closeHealthDialog);
-  })();
+    if (e.key === 'Escape') closeHealthDialog();
+  }
 </script>
 
 {{ super() }}

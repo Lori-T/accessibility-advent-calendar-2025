@@ -402,3 +402,12 @@ body.no-festive .govuk-header::after {
     margin-top: 0;
   }
 }
+@media print {
+
+  /* Hide interactive controls when printing */
+  button,
+  .govuk-button {
+    display: none !important;
+  }
+
+}

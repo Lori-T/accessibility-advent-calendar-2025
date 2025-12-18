@@ -1,0 +1,55 @@
+{% extends "/layouts/main.html" %}
+
+{% set pageTitle = "Elf-cessability Specialist certificate" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back to completion page",
+    href: "/advent-calendar/complete"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div id="certificate"
+     class="govuk-!-padding-6"
+     style="border: 6px solid #00703c; background: #ffffff; max-width: 760px;">
+
+  <img
+    src="{{ asset_path }}images/elfbadge.png"
+    alt="Elf-cessability Specialist badge"
+    style="max-width: 160px; margin-bottom: 24px;"
+  >
+
+  <h1 class="govuk-heading-l">
+    Certificate of completion
+  </h1>
+
+  <p class="govuk-body govuk-!-margin-bottom-4">
+    This certifies that you have successfully completed the
+  </p>
+
+  <p class="govuk-heading-m govuk-!-margin-bottom-4">
+    Elf-cessability induction
+  </p>
+
+  <p class="govuk-body">
+    and demonstrated practical understanding of digital accessibility,
+    including keyboard access, colour contrast, captions, focus visibility,
+    and meaningful content structure.
+  </p>
+
+  <p class="govuk-body govuk-!-margin-top-6">
+    Issued by the <strong>Department of Elfish Affairs</strong>
+  </p>
+
+</div>
+
+<button
+  class="govuk-button govuk-!-margin-top-4"
+  type="button"
+  onclick="window.print()">
+  Print certificate
+</button>
+
+{% endblock %}

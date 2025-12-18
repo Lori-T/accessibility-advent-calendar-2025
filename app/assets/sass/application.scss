@@ -384,3 +384,21 @@ body.no-festive .govuk-header::after {
   display: none !important;
 }
 
+@media print {
+
+  .govuk-header,
+  .govuk-footer,
+  .govuk-back-link,
+  nav {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+  }
+
+  #certificate {
+    border: 8px solid #0b0c0c;
+    margin-top: 0;
+  }
+}

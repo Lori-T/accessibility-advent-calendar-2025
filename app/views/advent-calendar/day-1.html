@@ -51,35 +51,72 @@
 
 <div class="govuk-grid-row govuk-!-margin-top-2">
 
+  <!-- Image 1 -->
   <div class="govuk-grid-column-one-third govuk-!-margin-bottom-4">
-    <img src="{{ asset_path }}images/north-pole-map.png"
-         alt="Santa's Christmas navigation map showing his planned route from the North Pole"
-         style="width: 100%; border-radius: 8px;">
-    <p class="govuk-body govuk-!-margin-top-1">
-      ✔ Correct alt text.
-    </p>
+    <img
+      src="{{ asset_path }}images/north-pole-map.png"
+      alt="Santa's Christmas navigation map showing his planned route from the North Pole"
+      style="width: 100%; border-radius: 8px;"
+    >
+
+    <details class="govuk-details govuk-!-margin-top-2">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Show answer<span class="govuk-visually-hidden"> for Santa’s navigation map image</span>
+
+        </span>   
+      </summary>
+      <div class="govuk-details__text">
+        ✔ This image has appropriate alt text that describes the information shown.
+      </div>
+    </details>
   </div>
 
+  <!-- Image 2 -->
   <div class="govuk-grid-column-one-third govuk-!-margin-bottom-4">
     {# ❌ Deliberate accessibility issue: no alt attribute #}
-    <img src="{{ asset_path }}images/reindeer-closeup.jpg"
-         style="width: 100%; border-radius: 8px;">
-    <p class="govuk-body govuk-!-margin-top-1">
-      ❌ <strong>Accessibility issue:</strong> missing alt text.
-      Screen readers will not announce this image.
-    </p>
+    <img
+      src="{{ asset_path }}images/reindeer-closeup.jpg"
+      style="width: 100%; border-radius: 8px;"
+    >
+
+    <details class="govuk-details govuk-!-margin-top-2">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Show answer<span class="govuk-visually-hidden"> for reindeer close-up image</span>
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        ❌ <strong>Accessibility issue:</strong> this image is missing alt text.
+        Screen reader users will not be told what the image shows.
+      </div>
+    </details>
   </div>
 
+  <!-- Image 3 -->
   <div class="govuk-grid-column-one-third govuk-!-margin-bottom-4">
-    <img src="{{ asset_path }}images/sleigh-flight.jpg"
-         alt=""
-         style="width: 100%; border-radius: 8px;">
-    <p class="govuk-body govuk-!-margin-top-1">
-      ⚠ Decorative image: correctly marked with <code>alt=""</code>.
-    </p>
+    <img
+      src="{{ asset_path }}images/sleigh-flight.jpg"
+      alt=""
+      style="width: 100%; border-radius: 8px;"
+    >
+
+    <details class="govuk-details govuk-!-margin-top-2">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Show answer<span class="govuk-visually-hidden"> for sleigh flight image</span>
+
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        ⚠ This is a decorative image and is correctly marked with <code>alt=""</code>,
+        so it is ignored by screen readers.
+      </div>
+    </details>
   </div>
 
 </div>
+
 
 <h2 class="govuk-heading-m">What this checks for</h2>
 <p class="govuk-body">

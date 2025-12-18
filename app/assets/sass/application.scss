@@ -61,16 +61,19 @@ html, body {
   display: block;
   max-height: 110px;
   object-fit: contain;
-  filter:
-    drop-shadow(0 0 2px rgba(255,255,255,0.5))
-    drop-shadow(0 0 8px var(--festive-gold));
+  border-radius: 6px;}
+
+/* Strong, clear focus without breaking layout */
+.govuk-header__link--homepage:focus .santa-logo,
+.govuk-header__link--homepage:focus-visible .santa-logo {
+ 
+
+  box-shadow:
+    0 0 0 3px #0b0c0c,   /* black focus ring */
+    0 0 0 6px #ffbf47;   /* GOV.UK yellow outer ring */
+  border-radius: 6px;   
 }
 
-.govuk-header__link--homepage:focus .santa-logo {
-  filter:
-    drop-shadow(0 0 6px var(--festive-gold))
-    drop-shadow(0 0 12px rgba(255,255,255,0.9));
-}
 
 /* Service name */
 .govuk-header__link.govuk-header__service-name {

@@ -1,5 +1,5 @@
 {
-  "serviceName": "12 Days of Accessibility tasks",
+  "serviceName": "12 days of accessibility: elf checklist",
   "plugins": {
     "govuk-frontend": {
       "rebrand": true

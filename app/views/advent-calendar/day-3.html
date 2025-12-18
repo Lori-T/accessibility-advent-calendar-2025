@@ -50,23 +50,34 @@
 <div class="govuk-!-padding-4 govuk-!-margin-bottom-4"
      style="background:#f7f7f7; border-radius:8px;">
 
-  <h2 class="govuk-heading-s">Toy production</h2>
+<h2 class="govuk-heading-s">
+  <span aria-hidden="true">🎁 </span>
+  Toy production
+</h2>
+
 
   <p class="govuk-body">
     The toy production team is currently working at full capacity.
     Several new toy designs have entered the assembly phase.
   </p>
 
+  {# Deliberate issue: skipped heading level #}
   <h4 class="govuk-heading-s">
-    ❌ Production schedule
-  </h4>
+  <span aria-hidden="true">🛠️ </span>
+  Production schedule
+</h4>
+
 
   <p class="govuk-body">
     This week’s schedule includes extended shifts and additional quality checks.
     Materials are arriving later than planned.
   </p>
 
-  <h3 class="govuk-heading-s">✔ Materials and supplies</h3>
+ <h3 class="govuk-heading-s">
+  <span aria-hidden="true">📦 </span>
+  Materials and supplies
+</h3>
+
 
   <p class="govuk-body">
     Stock levels are stable. Replacement parts for wooden toys have been reordered
@@ -74,6 +85,54 @@
   </p>
 
 </div>
+<details class="govuk-details govuk-!-margin-top-4">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Reveal accessibility answers
+      <span class="govuk-visually-hidden">
+        for heading structure in the Workshop Log
+      </span>
+    </span>
+  </summary>
+
+  <div class="govuk-details__text">
+
+    <p class="govuk-body">
+      The example above contains a heading structure issue.
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        The page starts correctly with a single <code>h1</code>.
+      </li>
+
+      <li>
+        The section heading <strong>“Toy production”</strong> is marked up as
+        <code>h2</code>, which is appropriate.
+      </li>
+
+      <li>
+        <strong>“Production schedule”</strong> is marked up as <code>h4</code>,
+        which skips a heading level.
+        <span class="govuk-visually-hidden">
+          Heading levels must not be skipped. An h4 should not follow an h2.
+        </span>
+      </li>
+
+      <li>
+        The correct heading level for <strong>“Production schedule”</strong>
+        would be <code>h2</code> as it appears the same importance as the others, or <code>h3</code> if it was less important.
+      </li>
+
+      <li>
+        Skipped heading levels make it harder for screen reader users to
+        understand the structure of the page.
+      </li>
+    </ul>
+
+  </div>
+</details>
+
 
 <h2 class="govuk-heading-m">What this checks for</h2>
 <p class="govuk-body">

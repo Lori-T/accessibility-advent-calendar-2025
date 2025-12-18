@@ -52,7 +52,7 @@
 <h2 class="govuk-heading-m">Test the Reindeer Health Monitor</h2>
 <p class="govuk-body">
   This simplified example shows part of a reindeer’s health record.
-  One control receives keyboard focus, but the focus is not visible.
+  One of these controls behaves differently when you navigate using the keyboard.
 </p>
 
 <div class="govuk-!-padding-4 govuk-!-margin-bottom-4"
@@ -84,12 +84,51 @@
 
   </div>
 
-  <p class="govuk-body govuk-!-margin-top-3">
-    One of these buttons can be focused using the keyboard, but it does not show
-    where focus is when tabbing to it.
-  </p>
-
 </div>
+<details class="govuk-details govuk-!-margin-top-4">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Show answers and explanation
+    </span>
+  </summary>
+
+  <div class="govuk-details__text">
+
+    <h3 class="govuk-heading-s">Which control has the issue</h3>
+
+    <p class="govuk-body">
+      The button labelled <strong>“Reindeer feeling grumpy”</strong> receives
+      keyboard focus, but does not show a visible focus indicator.
+    </p>
+
+    <h3 class="govuk-heading-s">Why this is a problem</h3>
+
+    <p class="govuk-body">
+      Keyboard users rely on a visible focus indicator to understand where they
+      are on a page.
+    </p>
+
+    <p class="govuk-body">
+      In this example, the button has not been implemented correctly.
+    <p class="govuk-body">
+      This means the button can still be focused, but users cannot see where
+      focus has moved when tabbing through the page.
+    </p>
+
+    <h3 class="govuk-heading-s">What works correctly</h3>
+
+    <p class="govuk-body">
+      The <strong>“Reindeer feeling festive”</strong> button keeps its visible
+      focus indicator, making it clear when it has keyboard focus.
+    </p>
+
+    <p class="govuk-body">
+      Focus indicators should be clearly visible, have sufficient contrast,
+      and not be removed without providing an accessible alternative.
+    </p>
+
+  </div>
+</details>
 
 <h2 class="govuk-heading-m">What this checks for</h2>
 

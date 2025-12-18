@@ -74,34 +74,73 @@
   <h3 class="govuk-heading-s">Workshop status</h3>
 
   <p style="color: #9b9b9b;">
-    ❌ This text is too light against the background and does not meet the minimum
-    contrast ratio. The contrast between the text and background is around
-    <strong>2.3:1</strong>, which is below the required <strong>4.5:1</strong> for
-    normal body text.
+    Current toy output is running as expected across all workshops.
   </p>
 
   <p style="color: #333;">
-    ✔ This text has sufficient contrast and is easier to read. The contrast ratio
-    is approximately <strong>12.6:1</strong>, which comfortably exceeds the minimum
-    requirement.
+    Sleigh maintenance checks are complete and ready for the next flight.
   </p>
 
   <button class="govuk-button" style="background:#c00; color:#fff;">
-    ✔ Button with sufficient contrast<br>
-    <span class="govuk-visually-hidden">
-      White text on dark red background has a contrast ratio of about 7.4 to 1.
-    </span>
+    Update toy schedule
   </button>
 
   <button class="govuk-button" style="background:#f5c5c5; color:#c00;">
-    ❌ Button with low contrast<br>
-    <span class="govuk-visually-hidden">
-      Red text on a pale pink background has a contrast ratio of about 2.6 to 1,
-      which does not meet the minimum requirement.
-    </span>
+    Review delivery notes
   </button>
 
 </div>
+<details class="govuk-details govuk-!-margin-top-4">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Show answers
+      <span class="govuk-visually-hidden">
+        for colour contrast examples
+      </span>
+    </span>
+  </summary>
+
+  <div class="govuk-details__text">
+
+    <p class="govuk-body">
+      The examples above include both passing and failing colour contrast.
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        The light grey 'Curent toy output...' text fails contrast.
+        <span class="govuk-visually-hidden">
+          It has a contrast ratio of approximately 2.3 to 1.
+        </span>
+        It does not meet the minimum requirement of 4.5:1 for normal text.
+      </li>
+
+      <li>
+        The darker text 'Sleigh maintenance checks...' passes contrast requirements.
+        <span class="govuk-visually-hidden">
+          It has a contrast ratio of approximately 12.6 to 1.
+        </span>
+        It comfortably exceeds the minimum requirement.
+      </li>
+
+      <li>
+        The dark red button 'Update toy schedule' with white text passes contrast.
+        <span class="govuk-visually-hidden">
+          The contrast ratio is approximately 7.4 to 1.
+        </span>
+      </li>
+
+      <li>
+        The pale pink button 'Review delivery notes' with red text fails contrast.
+        <span class="govuk-visually-hidden">
+          The contrast ratio is approximately 2.6 to 1.
+        </span>
+      </li>
+    </ul>
+
+  </div>
+</details>
+
 
 
 <h2 class="govuk-heading-m">Finding this issue using the special elf testing tool</h2>

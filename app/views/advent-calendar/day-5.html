@@ -202,6 +202,61 @@
     if (e.key === 'Escape') closeDialog();
   }
 </script>
+<details class="govuk-details govuk-!-margin-top-4">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Show answers and explanation
+    </span>
+  </summary>
+
+  <div class="govuk-details__text">
+
+    <h3 class="govuk-heading-s">Which control fails</h3>
+
+    <p class="govuk-body">
+      The control labelled <strong>“Mark as delayed by snow”</strong> cannot be
+      reached or activated using the keyboard.
+    </p>
+
+    <h3 class="govuk-heading-s">Why this is a problem</h3>
+
+    <p class="govuk-body">
+      This control is built using a <code>&lt;div&gt;</code> with a mouse
+      <code>onclick</code> handler.
+    </p>
+
+    <p class="govuk-body">
+      Because it is not a native interactive element (like a
+      <code>&lt;button&gt;</code>), it:
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>does not receive keyboard focus</li>
+      <li>cannot be activated using <kbd>Enter</kbd> or <kbd>Space</kbd></li>
+      <li>is invisible to many assistive technologies</li>
+    </ul>
+
+    <h3 class="govuk-heading-s">What works correctly</h3>
+
+    <p class="govuk-body">
+      The <strong>“Mark as ready for Christmas Eve”</strong> button uses a native
+      <code>&lt;button&gt;</code> element, so it:
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>receives focus automatically</li>
+      <li>works with keyboard and mouse</li>
+      <li>exposes the correct role to assistive technology</li>
+    </ul>
+
+    <p class="govuk-body">
+      In most cases, the fix is simple: use the correct HTML element instead of
+      recreating controls with <code>&lt;div&gt;</code> or <code>&lt;span&gt;</code>.
+    </p>
+
+  </div>
+</details>
+
 
 <h2 class="govuk-heading-m">What this checks for</h2>
 

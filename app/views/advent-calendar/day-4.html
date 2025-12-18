@@ -55,57 +55,96 @@
 
   <dl class="govuk-summary-list">
 
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Eve Snowball
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Behaviour rating: Mostly nice
-      </dd>
-      <dd class="govuk-summary-list__actions">
-        <a href="#" class="govuk-link"
-           onclick="openResultDialog('eve'); return false;">
-           View behaviour record<span class="govuk-visually-hidden"> View Eve Snowball’s behaviour record</span></a>
-      </dd>
-    </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Eve Snowball
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Behaviour rating: Mostly nice
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a href="#" class="govuk-link"
+         onclick="openResultDialog('eve'); return false;">
+        View behaviour record
+      </a>
+    </dd>
+  </div>
 
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Buddy the Elf
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Behaviour rating: Under review
-      </dd>
-      <dd class="govuk-summary-list__actions">
-        <a href="#" class="govuk-link"
-           onclick="openResultDialog('buddy'); return false;">
-          Click here
-        </a>
-        <span class="govuk-visually-hidden">
-          This link text is ambiguous and does not describe its purpose.
-        </span>
-        ❌
-      </dd>
-    </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Buddy the Elf
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Behaviour rating: Under review
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a href="#" class="govuk-link"
+         onclick="openResultDialog('buddy'); return false;">
+        Click here
+      </a>
+    </dd>
+  </div>
 
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Holly Tinseltoe Frost
-      </dt>
-      <dd class="govuk-summary-list__value">
-        Behaviour rating: Nice
-      </dd>
-      <dd class="govuk-summary-list__actions">
-        <a href="#" class="govuk-link"
-           onclick="openResultDialog('holly'); return false;">
-          View behaviour record<span class="govuk-visually-hidden"> View Holly Tinseltoe Frost’s behaviour record</span>
-        </a>
-      </dd>
-    </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Holly Tinseltoe Frost
+    </dt>
+    <dd class="govuk-summary-list__value">
+      Behaviour rating: Nice
+    </dd>
+    <dd class="govuk-summary-list__actions">
+      <a href="#" class="govuk-link"
+         onclick="openResultDialog('holly'); return false;">
+        View behaviour record
+      </a>
+    </dd>
+  </div>
 
-  </dl>
+</dl>
 
 </div>
+<details class="govuk-details govuk-!-margin-top-4">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Show answers and explanation
+    </span>
+  </summary>
+
+  <div class="govuk-details__text">
+
+    <h3 class="govuk-heading-s">Which link fails and why</h3>
+
+    <p class="govuk-body">
+      The link for <strong>Buddy the Elf</strong> uses the text
+      <q>Click here</q>.
+    </p>
+
+    <p class="govuk-body">
+      When links are listed out of context - for example in a screen reader’s
+      links list - <q>Click here</q> gives no information about what the link
+      does or where it goes.
+    </p>
+
+    <h3 class="govuk-heading-s">What a better link looks like</h3>
+
+    <p class="govuk-body">
+      A clearer link would describe the action or destination, such as:
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>View behaviour record and include visually hidden text to announce which person</li>
+      <li>View Buddy the Elf’s behaviour record</li>
+      <li>Open behaviour record for Buddy the Elf</li>
+    </ul>
+
+    <p class="govuk-body">
+      Eve Snowball and Holly Tinseltoe Frost already use descriptive link text,
+      so their links make sense even when read on their own.
+    </p>
+
+  </div>
+</details>
+
 
 
 

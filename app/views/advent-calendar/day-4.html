@@ -48,35 +48,66 @@
   Below is a simplified extract from the Naughty and Nice List Viewer.
   One link has a deliberate accessibility issue.
 </p>
-
 <div class="govuk-!-padding-4 govuk-!-margin-bottom-4"
      style="background:#f7f7f7; border-radius:8px; max-width:640px;">
 
-  <p class="govuk-body">
-    <strong>Eve Snowball</strong><br>
-    Behaviour rating: Mostly nice<br>
-    <a href="#" onclick="openResultDialog('eve'); return false;">
-      View Eve Snowball’s full behaviour record
-    </a>
-  </p>
+  <h3 class="govuk-heading-s">Naughty and Nice List</h3>
 
-  <p class="govuk-body">
-    <strong>Buddy the Elf</strong><br>
-    Behaviour rating: Under review<br>
-    <a href="#" onclick="openResultDialog('buddy'); return false;">
-      Click here
-    </a> ❌
-  </p>
+  <dl class="govuk-summary-list">
 
-  <p class="govuk-body">
-    <strong>Holly Tinseltoe Frost</strong><br>
-    Behaviour rating: Nice<br>
-    <a href="#" onclick="openResultDialog('holly'); return false;">
-      View Holly Tinseltoe Frost’s behaviour record
-    </a>
-  </p>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Eve Snowball
+      </dt>
+      <dd class="govuk-summary-list__value">
+        Behaviour rating: Mostly nice
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a href="#" class="govuk-link"
+           onclick="openResultDialog('eve'); return false;">
+           View behaviour record<span class="govuk-visually-hidden"> View Eve Snowball’s behaviour record</span></a>
+      </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Buddy the Elf
+      </dt>
+      <dd class="govuk-summary-list__value">
+        Behaviour rating: Under review
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a href="#" class="govuk-link"
+           onclick="openResultDialog('buddy'); return false;">
+          Click here
+        </a>
+        <span class="govuk-visually-hidden">
+          This link text is ambiguous and does not describe its purpose.
+        </span>
+        ❌
+      </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Holly Tinseltoe Frost
+      </dt>
+      <dd class="govuk-summary-list__value">
+        Behaviour rating: Nice
+      </dd>
+      <dd class="govuk-summary-list__actions">
+        <a href="#" class="govuk-link"
+           onclick="openResultDialog('holly'); return false;">
+          View behaviour record<span class="govuk-visually-hidden"> View Holly Tinseltoe Frost’s behaviour record</span>
+        </a>
+      </dd>
+    </div>
+
+  </dl>
 
 </div>
+
+
 
 <h2 class="govuk-heading-m">What this checks for</h2>
 

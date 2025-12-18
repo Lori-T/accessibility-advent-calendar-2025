@@ -23,8 +23,11 @@
 
 <p class="govuk-body">
   Today, you are reviewing part of the Control Panel to learn how to check whether
-  text and controls meet minimum colour contrast requirements.
+  text and controls meet minimum colour contrast requirements. Poor contrast does
+  not just affect people with visual impairments - it can impact any elf using a
+  screen in bright light (snow blindness is common in the North Pole), on a low-quality display, or when sleepy.
 </p>
+
 
 <h2 class="govuk-heading-m">Your mission today</h2>
 <p class="govuk-body">
@@ -34,20 +37,37 @@
 
 <h2 class="govuk-heading-m">Quick 5-minute check</h2>
 <ul class="govuk-list govuk-list--bullet">
-  <li>normal body text must have a contrast ratio of at least <strong>4.5:1</strong></li>
-  <li>large text (18px or larger, or 14px bold) must have a contrast ratio of at least <strong>3:1</strong></li>
-  <li>text in buttons, links and form controls must also meet contrast requirements</li>
-  <li>placeholder text often fails contrast and should be checked carefully</li>
-  <li>do not rely on visual judgement alone when checking contrast</li>
+  <li>
+    normal body text must have a contrast ratio of at least <strong>4.5:1</strong>
+    so it can be read by people with low vision
+  </li>
+  <li>
+    large text (18px or larger, or 14px bold) must have a contrast ratio of at least
+    <strong>3:1</strong>
+  </li>
+  <li>
+    text in buttons, links and form controls must also meet contrast requirements,
+    not just body text
+  </li>
+  <li>
+    placeholder text often fails contrast and should not be the only way information
+    is conveyed
+  </li>
+  <li>
+    do not rely on visual judgement alone - contrast that looks fine to you may fail
+    for others
+  </li>
 </ul>
+
 
 <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
 
 <h2 class="govuk-heading-m">Review the Elves’ Control Panel</h2>
 <p class="govuk-body">
-  Below is a simplified section of the Control Panel showing examples of good and bad
-  colour contrast.
+  The following example is a simplified section of the Control Panel showing examples of good and bad
+  colour contrast. The failing examples rely on colours that are too similar in brightness, making the text harder to distinguish from the background.
 </p>
+
 
 <div class="govuk-!-padding-4" style="background: #f1f1f1; border-radius: 8px;">
 
@@ -55,22 +75,34 @@
 
   <p style="color: #9b9b9b;">
     ❌ This text is too light against the background and does not meet the minimum
-    contrast ratio.
+    contrast ratio. The contrast between the text and background is around
+    <strong>2.3:1</strong>, which is below the required <strong>4.5:1</strong> for
+    normal body text.
   </p>
 
   <p style="color: #333;">
-    ✔ This text has sufficient contrast and is easier to read.
+    ✔ This text has sufficient contrast and is easier to read. The contrast ratio
+    is approximately <strong>12.6:1</strong>, which comfortably exceeds the minimum
+    requirement.
   </p>
 
   <button class="govuk-button" style="background:#c00; color:#fff;">
-    ✔ Button with sufficient contrast
+    ✔ Button with sufficient contrast<br>
+    <span class="govuk-visually-hidden">
+      White text on dark red background has a contrast ratio of about 7.4 to 1.
+    </span>
   </button>
 
   <button class="govuk-button" style="background:#f5c5c5; color:#c00;">
-    ❌ Button with low contrast
+    ❌ Button with low contrast<br>
+    <span class="govuk-visually-hidden">
+      Red text on a pale pink background has a contrast ratio of about 2.6 to 1,
+      which does not meet the minimum requirement.
+    </span>
   </button>
 
 </div>
+
 
 <h2 class="govuk-heading-m">Finding this issue using the special elf testing tool</h2>
 <p class="govuk-body">
@@ -88,6 +120,8 @@
   consider whether colour is being used in a way that is clear and usable for everyone.
 </p>
 
+<p class="govuk-body"> The elves sometimes use <a href="https://webaim.org/resources/contrastchecker/" class="govuk-link">WebAIM's Contrast Checker</a> to verify their colour choices too.</p>
+
 <h2 class="govuk-heading-m">What this checks for</h2>
 <p class="govuk-body">
     <strong><a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html" class="govuk-link" target="_blank">1.4.3 contrast (minimum) (opens in a new tab)</a></strong> Text must be readable against its background.
@@ -96,9 +130,21 @@
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
   Poor colour contrast can make content difficult or impossible to read for people
-  with low vision, colour vision deficiencies, or when screens are used in bright
-  or low-light conditions.
+  with low vision or colour vision deficiencies. It also affects users in everyday
+  situations - such as using a screen in sunlight, on older devices, or when fatigued.
 </p>
+
+<p class="govuk-body">
+  When contrast is too low, users may miss important information, make mistakes,
+  or abandon tasks altogether. Good contrast improves readability for everyone,
+  not just people with disabilities.
+</p>
+<p class="govuk-body">
+  A common misconception is that increasing font size or using bold text fixes
+  contrast issues. While size can help, colour contrast must still meet minimum
+  requirements.
+</p>
+
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">

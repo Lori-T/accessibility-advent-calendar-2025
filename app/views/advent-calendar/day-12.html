@@ -46,7 +46,7 @@
 <h2 class="govuk-heading-m">Test the Sleigh Launch Dashboard</h2>
 <p class="govuk-body">
   One of the controls below is built correctly.
-  The other only looks like a button.
+ The other behaves differently when used with a keyborad.
 </p>
 
 <div class="govuk-!-padding-4 govuk-!-margin-bottom-4"
@@ -209,6 +209,27 @@
     }
   }
 </script>
+<details class="govuk-details govuk-!-margin-top-4">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Show accessibility issue
+    </span>
+  </summary>
+
+  <div class="govuk-details__text">
+    <p class="govuk-body">
+      The <strong>Launch fuel scan</strong> control is styled to look like a button
+      and uses <code>role="button"</code>, but it is not a native
+      <code>&lt;button&gt;</code> element.
+    </p>
+
+    <p class="govuk-body">
+      ARIA roles do not add keyboard behaviour. Because this control is not built
+      using a real button, it cannot be reached or activated correctly using the
+      keyboard.
+    </p>
+  </div>
+</details>
 
 <h2 class="govuk-heading-m">
   Finding this using the Web Accesibility Viewer for Elves (WAVE)

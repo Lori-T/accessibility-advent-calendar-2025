@@ -22,7 +22,7 @@
 
 <p class="govuk-body">
   Today, you are checking how well the dashboard layout adapts when the page is zoomed.
-  Some tiles reflow correctly, while one has a deliberate reflow issue.
+  Some tiles adapt smoothly, while one has a deliberate reflow issue.
 </p>
 
 <h2 class="govuk-heading-m">Your mission today</h2>
@@ -58,58 +58,107 @@
   align-items: stretch;
 ">
 
-  <!-- GOOD TILE -->
-  <div style="
-    border: 1px solid #b1b4b6;
-    background: #f3f2f1;
-    padding: 16px;
-    border-radius: 4px;
-  ">
-    <strong>✔ Wrapping machine</strong>
-    <p class="govuk-body">
-      This tile reflows correctly as the page is zoomed.
-    </p>
-    <span class="govuk-tag govuk-tag--green">Online</span>
-  </div>
+ <div style="
+  border: 1px solid #b1b4b6;
+  background: #f3f2f1;
+  padding: 16px;
+  border-radius: 4px;
+">
+  <strong>Wrapping machine</strong>
+  <p class="govuk-body">
+    Automatically wraps gifts of all sizes using recycled festive paper.
+    Handles high volumes during peak periods without delays.
+  </p>
+  <span class="govuk-tag govuk-tag--green">Online</span>
+</div>
 
-  <!-- BAD TILE -->
-  <div style="
-    border: 2px solid #d4351c;
-    background: #fff0f0;
-    padding: 16px;
-    border-radius: 4px;
-    width: 600px;
-    max-width: 100%;
-    white-space: nowrap;
-    overflow-x: auto;
-  ">
-    <strong>❌ Ribbon cutter</strong>
-    <p class="govuk-body">
-      This tile uses a fixed width and does not reflow properly at higher zoom levels.
-    </p>
-    <span class="govuk-tag govuk-tag--red">Offline</span>
-  </div>
 
-  <!-- GOOD TILE -->
+<div style="
+  border: 1px solid #b1b4b6;
+  background: #f3f2f1;
+  padding: 16px;
+  border-radius: 4px;
+  width: 600px;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow-x: auto;
+">
+  <strong>Ribbon cutter</strong>
+  <p class="govuk-body">
+    Cuts decorative ribbon for wrapped presents, including long personalised
+    messages such as “To the nicest elf in the North Pole workshop 2025”.
+    Requires careful monitoring during busy production periods.
+  </p>
+  <span class="govuk-tag govuk-tag--red">Offline</span>
+</div>
+
+
   <div style="
-    border: 1px solid #b1b4b6;
-    background: #f3f2f1;
-    padding: 16px;
-    border-radius: 4px;
-  ">
-    <strong>✔ Sleigh polish station</strong>
-    <p class="govuk-body">
-      This tile adapts correctly without horizontal scrolling.
-    </p>
-    <span class="govuk-tag govuk-tag--blue">Maintenance</span>
-  </div>
+  border: 1px solid #b1b4b6;
+  background: #f3f2f1;
+  padding: 16px;
+  border-radius: 4px;
+">
+  <strong>Sleigh polish station</strong>
+  <p class="govuk-body">
+    Maintains sleigh runners and panels to ensure smooth take-off
+    and landing in snowy conditions.
+  </p>
+  <span class="govuk-tag govuk-tag--blue">Maintenance</span>
+</div>
 
 </div>
 
+<details class="govuk-details govuk-!-margin-top-4">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Show answer and explanation
+    </span>
+  </summary>
+
+  <div class="govuk-details__text">
+
+    <h3 class="govuk-heading-s">Which tile has the issue</h3>
+
+    <p class="govuk-body">
+      The <strong>Ribbon cutter</strong> tile does not reflow correctly when the page
+      is zoomed.
+    </p>
+
+    <h3 class="govuk-heading-s">What users experience</h3>
+
+    <p class="govuk-body">
+      At higher zoom levels, users must scroll horizontally to read the content in
+      this tile.
+    </p>
+
+    <p class="govuk-body">
+      This makes reading slower and more difficult, especially for people using
+      screen magnification or small screens.
+    </p>
+
+      <h3 class="govuk-heading-s">What works correctly</h3>
+
+    <p class="govuk-body">
+      The other tiles adapt their layout as the page is zoomed, allowing content
+      to be read without horizontal scrolling.
+    </p>
+
+  </div>
+</details>
+
 <h2 class="govuk-heading-m govuk-!-margin-top-6">What this checks for</h2>
 
-<p class="govuk-body"><a href="https://www.w3.org/WAI/WCAG22/Understanding/reflow.html" class="govuk-link" target="_blank">1.4.10 reflow (opens in a new tab)</a></strong> – content must adapt at high zoom and narrow widths without requiring horizontal scrolling.</p> 
-
+<p class="govuk-body">
+  <strong>
+    <a href="https://www.w3.org/WAI/WCAG22/Understanding/reflow.html"
+       class="govuk-link"
+       target="_blank">
+      1.4.10 reflow (opens in a new tab)
+    </a>
+  </strong>
+  – content must adapt at high zoom and narrow widths without requiring horizontal scrolling.
+</p>
 
 <h2 class="govuk-heading-m">Why this matters</h2>
 <p class="govuk-body">
@@ -120,7 +169,7 @@
 
 <h2 class="govuk-heading-m">Bonus challenge</h2>
 <p class="govuk-body">
-  Compare this dashboard at different zoom levels up to 400%. 
+  Compare this dashboard at different zoom levels up to 400%.
   Which tile causes the biggest problem, and why?
 </p>
 

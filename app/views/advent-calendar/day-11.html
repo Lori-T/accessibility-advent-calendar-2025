@@ -53,13 +53,10 @@
       <th scope="col" class="govuk-table__header">Reindeer</th>
       <th scope="col" class="govuk-table__header">Cruising speed</th>
 
-      {# ❌ Deliberate accessibility issue #}
-      <td class="govuk-table__cell" style="background:#f7d7d7;">
-        <strong>❌ Pilot elf</strong><br>
-        <span style="font-size:14px; color:#000;">
-          Styled like a header, but not a real header
-        </span>
-      </td>
+      {# Deliberate accessibility issue #}
+      <td class="govuk-table__cell">
+        <strong>Pilot elf</strong><br>
+              </td>
     </tr>
   </thead>
 
@@ -76,6 +73,26 @@
     </tr>
   </tbody>
 </table>
+<details class="govuk-details govuk-!-margin-top-4">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Show answer and explanation
+    </span>
+  </summary>
+
+  <div class="govuk-details__text">
+    <p class="govuk-body">
+      The <strong>Pilot elf</strong> column is visually styled to look like a table
+      header, but it is marked up as a <code>&lt;td&gt;</code> and uses <code>strong</code> to make it visually stand out instead of a
+      <code>&lt;th&gt;</code>.
+    </p>
+
+    <p class="govuk-body">
+      Because of this, screen readers do not treat it as a column header and do
+      not announce it when users move through the table.
+    </p>
+  </div>
+</details>
 
 <h2 class="govuk-heading-m">
   Finding this using the Web Accesibility Viewer for Elves (WAVE)

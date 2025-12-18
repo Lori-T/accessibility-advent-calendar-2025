@@ -386,28 +386,44 @@ body.no-festive .govuk-header::after {
 
 @media print {
 
-  .govuk-header,
-  .govuk-footer,
-  .govuk-back-link,
-  nav {
+  /* Set predictable page size and margins */
+  @page {
+    size: A4;
+    margin: 20mm;
+  }
+
+  /* Hide everything by default */
+  body * {
+    visibility: hidden;
+  }
+
+  /* Show certificate only */
+  #certificate,
+  #certificate * {
+    visibility: visible;
+  }
+
+  /* Reset layout so it flows naturally on the page */
+  #certificate {
+    position: static;        /* IMPORTANT: no absolute positioning */
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+    page-break-inside: avoid;
+  }
+
+  /* Hide form fields and buttons */
+  .print-hide {
     display: none !important;
   }
 
+  /* Prevent accidental clipping */
+  html,
   body {
-    background: #ffffff !important;
-  }
-
-  #certificate {
-    border: 8px solid #0b0c0c;
-    margin-top: 0;
+    height: auto;
+    overflow: visible;
   }
 }
-@media print {
-
-  /* Hide interactive controls when printing */
-  button,
-  .govuk-button {
-    display: none !important;
-  }
-
+#certificate {
+  padding: 32px;
 }

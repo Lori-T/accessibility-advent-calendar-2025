@@ -11,45 +11,134 @@
 
 {% block content %}
 
-<div id="certificate"
-     class="govuk-!-padding-6"
-     style="border: 6px solid #00703c; background: #ffffff; max-width: 760px;">
-
-  <img
-    src="{{ asset_path }}images/elfbadge.png"
-    alt="Elf-cessability Specialist badge"
-    style="max-width: 160px; margin-bottom: 24px;"
+<!-- Name input -->
+<div class="govuk-form-group print-hide">
+  <label class="govuk-label" for="certificate-name">
+    Your name
+  </label>
+  <input
+    class="govuk-input govuk-input--width-20"
+    id="certificate-name"
+    type="text"
+    oninput="updateCertificateName()"
   >
+</div>
 
-  <h1 class="govuk-heading-l">
+<!-- Certificate -->
+<div
+  id="certificate"
+  class="govuk-!-padding-6"
+  role="region"
+  aria-labelledby="certificate-title"
+  style="
+    border: 6px solid #00703c;
+    background: #ffffff;
+    max-width: 760px;
+    page-break-inside: avoid;
+  "
+>
+
+  <!-- Logos -->
+  <div
+    style="
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      margin-bottom:32px;
+    "
+  >
+    <img
+      src="{{ asset_path }}images/dea_logo_black.png"
+      alt="Department of Elfish Affairs logo"
+      style="max-width:140px;"
+    >
+
+    <img
+      src="{{ asset_path }}images/elfbadge.png"
+      alt=""
+      aria-hidden="true"
+      style="max-width:120px;"
+    >
+  </div>
+
+  <h1
+    id="certificate-title"
+    class="govuk-heading-l"
+  >
     Certificate of completion
   </h1>
 
-  <p class="govuk-body govuk-!-margin-bottom-4">
-    This certifies that you have successfully completed the
+  <p class="govuk-body govuk-!-margin-bottom-2">
+    This certifies that
   </p>
 
-  <p class="govuk-heading-m govuk-!-margin-bottom-4">
-    Elf-cessability induction
+  <p
+    class="govuk-heading-m govuk-!-margin-bottom-4"
+    id="certificate-recipient"
+    aria-live="polite"
+  >
+    [Your name]
   </p>
 
   <p class="govuk-body">
-    and demonstrated practical understanding of digital accessibility,
-    including keyboard access, colour contrast, captions, focus visibility,
-    and meaningful content structure.
+    has successfully completed the
+    <strong>Elf-cessability induction</strong> and demonstrated practical
+    understanding of digital accessibility, including keyboard access,
+    colour contrast, captions, focus visibility, and meaningful content
+    structure.
   </p>
 
   <p class="govuk-body govuk-!-margin-top-6">
-    Issued by the <strong>Department of Elfish Affairs</strong>
+    Signed,
   </p>
+
+  <p class="govuk-body">
+    <strong>S. Claus</strong><br>
+    Department of Elfish Affairs
+  </p>
+
+  <span class="govuk-visually-hidden">
+    This certificate confirms successful completion of accessibility training.
+  </span>
 
 </div>
 
+<!-- Print button underneath -->
 <button
-  class="govuk-button govuk-!-margin-top-4"
+  class="govuk-button govuk-!-margin-top-4 print-hide"
   type="button"
-  onclick="window.print()">
+  onclick="window.print()"
+>
   Print certificate
 </button>
+
+<style>
+  @media print {
+    .print-hide {
+      display: none !important;
+    }
+
+    body {
+      background: #ffffff !important;
+    }
+
+    #certificate {
+      margin: 0;
+      width: 100%;
+      max-width: none;
+      page-break-after: avoid;
+      page-break-inside: avoid;
+    }
+  }
+</style>
+
+<script>
+  function updateCertificateName () {
+    const input = document.getElementById('certificate-name');
+    const output = document.getElementById('certificate-recipient');
+
+    output.textContent = input.value || '[Your name]';
+  }
+</script>
 
 {% endblock %}

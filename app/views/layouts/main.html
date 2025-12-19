@@ -4,7 +4,7 @@
 {% block beforeContent %}
   {{ govukPhaseBanner({
     tag: { text: "Training" },
-    html: 'This is not a real service – this is for training purposes only. You can <a class="govuk-link" href="mailto:lorithomson@hotmail.co.uk">give your feedback on this resource by email</a> or <a href="https://www.surveymonkey.com/r/V9NSS3Z" class="govuk-link" target="_blank" rel="noopener noreferrer"> feedback survey (opens in a new tab)</a>.'
+    html: 'This is not a real service – this is for training purposes only. You can <a class="govuk-link" href="mailto:lorithomson@hotmail.co.uk">give your feedback on this resource by email</a> or <a href="https://www.surveymonkey.com/r/V9NSS3Z" class="govuk-link" target="_blank" rel="noopener noreferrer">feedback survey (opens in a new tab)</a>.'
   }) }}
 {% endblock %}
 
@@ -13,24 +13,23 @@
 
   <link rel="icon" href="" type="image/x-icon">
   <link rel="shortcut icon" href="" type="image/x-icon">
-
   <link
     rel="icon"
     type="image/svg+xml"
     href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🎅</text></svg>'
   >
+
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2KT9VZWHN5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-2KT9VZWHN5');
+  </script>
 {% endblock %}
 
 {% block header %}
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2KT9VZWHN5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2KT9VZWHN5');
-</script>
 <header class="govuk-header" role="banner" data-module="govuk-header">
   <div class="govuk-header__container govuk-width-container header-with-toggle">
 
@@ -47,11 +46,11 @@
 
     <!-- Service name -->
     {% if serviceName %}
-    <div class="govuk-header__content">
-      <a href="/" class="govuk-header__link govuk-header__service-name">
-        {{ serviceName }}
-      </a>
-    </div>
+      <div class="govuk-header__content">
+        <a href="/" class="govuk-header__link govuk-header__service-name">
+          {{ serviceName }}
+        </a>
+      </div>
     {% endif %}
 
     <!-- FESTIVE TOGGLE -->
@@ -59,6 +58,7 @@
       id="festive-toggle"
       class="festive-toggle-combo"
       aria-pressed="false"
+      type="button"
     >
       <span class="switch-track">
         <span class="switch-knob"></span>
@@ -66,7 +66,6 @@
 
       <span class="switch-text">Festive effects</span>
 
-      <!-- Screen reader announcement -->
       <span
         id="festive-toggle-announcement"
         class="govuk-visually-hidden"
@@ -83,54 +82,49 @@
 {% block stylesheets %}
   {{ super() }}
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const body = document.body;
-  const btn = document.getElementById("festive-toggle");
-  if (!btn) return;
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const body = document.body;
+    const btn = document.getElementById("festive-toggle");
+    if (!btn) return;
 
-  const label = btn.querySelector(".switch-text");
-  const announcement = document.getElementById("festive-toggle-announcement");
+    const label = btn.querySelector(".switch-text");
+    const announcement = document.getElementById("festive-toggle-announcement");
 
-  function updateState(isOn) {
-    if (isOn) {
-      body.classList.remove("no-festive");
-      btn.setAttribute("aria-pressed", "true");
-      btn.classList.add("is-on");
+    function updateState(isOn) {
+      if (isOn) {
+        body.classList.remove("no-festive");
+        btn.setAttribute("aria-pressed", "true");
+        btn.classList.add("is-on");
 
-      label.textContent = "❄️ Turn festive effects off";
+        label.textContent = "❄️ Turn festive effects off";
+        announcement.textContent =
+          "Festive effects on. Festive fairy lights appear across the headers and presents and stockings are displayed on the page.";
 
-      announcement.textContent =
-        "Festive effects on. Festive fairy lights appear across the headers and presents and stockings are displayed on the page.";
+        localStorage.setItem("festiveEffects", "on");
+      } else {
+        body.classList.add("no-festive");
+        btn.setAttribute("aria-pressed", "false");
+        btn.classList.remove("is-on");
 
-      localStorage.setItem("festiveEffects", "on");
-    } else {
-      body.classList.add("no-festive");
-      btn.setAttribute("aria-pressed", "false");
-      btn.classList.remove("is-on");
+        label.textContent = "🎄 Turn festive effects on";
+        announcement.textContent =
+          "Festive effects off. Decorative animations and festive visuals are hidden.";
 
-      label.textContent = "🎄 Turn festive effects on";
-
-      announcement.textContent =
-        "Festive effects off. Decorative animations and festive visuals are hidden.";
-
-      localStorage.setItem("festiveEffects", "off");
+        localStorage.setItem("festiveEffects", "off");
+      }
     }
-  }
 
-  // Restore saved preference
-  const pref = localStorage.getItem("festiveEffects");
-  updateState(pref !== "off");
+    const pref = localStorage.getItem("festiveEffects");
+    updateState(pref !== "off");
 
-  // Toggle on click
-  btn.addEventListener("click", function (event) {
-    event.stopPropagation();
-    const isOn = btn.getAttribute("aria-pressed") === "true";
-    updateState(!isOn);
+    btn.addEventListener("click", function (event) {
+      event.stopPropagation();
+      const isOn = btn.getAttribute("aria-pressed") === "true";
+      updateState(!isOn);
+    });
   });
-});
-</script>
-
+  </script>
 {% endblock %}
 
 {% block content %}
